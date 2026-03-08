@@ -16,6 +16,8 @@
   /* TTTG Charcoal */
   --color-bg: #FAFAFA;
   /* TTTG Off-White */
+  --color-accent: #4B635E;
+  /* Deep Sage Green - Third Accent */
 }
 
 @layer base {

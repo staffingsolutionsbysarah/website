@@ -43,30 +43,24 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.26em] text-black/55">About Sarah Fell</p>
             <h1 className="text-5xl font-medium tracking-[-0.03em] md:text-6xl">Senior recruitment support for industrial and operations hiring.</h1>
-            <p className="mt-6 text-base leading-relaxed text-black/70 md:text-lg">
-              I built Staffing Solutions by Sarah Fell to help hiring managers fill hard-to-replace roles in
-              manufacturing and skilled trades with less delay and less hiring risk.
+            <p className="mt-6 text-sm font-bold tracking-[0.05em] text-[#C6A64A] uppercase md:text-base">
+              Recruitment expertise built on more than a decade of search experience.
             </p>
             <p className="mt-4 text-base leading-relaxed text-black/70 md:text-lg">
-              Through a strategic partnership with Top Tier Talent Group, I now support more sectors while keeping the
-              same direct recruiter relationship, practical search process, and quality-first delivery.
+              Staffing Solutions by Sarah Fell, Inc. was founded to support hiring managers responsible for filling critical roles across technical, operational, and professional teams. The focus is a practical, recruiter-led search process built around clear communication, role fit, and long-term hiring success.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-black/70 md:text-lg">
+              Through a strategic partnership with <a href="https://toptiertalentgroup.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-black hover:underline">Top Tier Talent Group</a>, I now support a broader range of sectors while maintaining the same direct recruiter relationship, disciplined search approach, and quality-first delivery clients rely on.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/"
-                className="inline-flex items-center gap-2 border border-[#2C3434] bg-[#2C3434] px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#C6A64A] hover:border-[#C6A64A]"
-              >
-                View Home
-              </Link>
-              <a
                 href="/#book"
                 className="inline-flex items-center gap-2 border border-black/20 bg-transparent px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-black/75 transition hover:border-[#C6A64A] hover:text-black"
               >
                 Book a Call
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -80,7 +74,7 @@ export default function AboutPage() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-medium tracking-tight md:text-5xl">What clients can expect</h2>
+          <h2 className="text-4xl font-medium tracking-tight text-[#E4CF8C] md:text-5xl">What clients can expect</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {values.map((value) => (
               <article key={value.title} className="rounded-2xl border border-white/15 bg-white/[0.04] p-6">
