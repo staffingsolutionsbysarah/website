@@ -3,6 +3,7 @@ import { Inter, Poppins, Roboto } from 'next/font/google';
 import './globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import PageTransition from '../components/PageTransition';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const poppins = Poppins({ weight: ['400', '600', '700'], subsets: ['latin'], variable: '--font-poppins' });
@@ -23,7 +24,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${poppins.variable} ${roboto.variable} font-body bg-[#F5F5F5] text-[#2C3E50] antialiased flex flex-col min-h-screen`}>
         <Navbar />
         <main className="flex-grow">
-          {children}
+          <PageTransition>{children}</PageTransition>
         </main>
         <Footer />
       </body>

@@ -57,23 +57,23 @@ const steps = [
 const reviews = [
   {
     text: "Sarah found us three solid millwrights right when we needed them. She understands the plant environment and didn't just toss us random resumes to sift through.",
-    author: "Maintenance Manager",
-    company: "Food Processing",
+    author: 'Maintenance Manager',
+    company: 'Food Processing',
   },
   {
-    text: "We were struggling to find good mechanics for the floor. They stepped in, figured out what we actually needed, and got us reliable guys who showed up and worked hard.",
-    author: "Operations Director",
-    company: "Industrial Manufacturing",
+    text: 'We were struggling to find good mechanics for the floor. They stepped in, figured out what we actually needed, and got us reliable guys who showed up and worked hard.',
+    author: 'Operations Director',
+    company: 'Industrial Manufacturing',
   },
   {
-    text: "Even for our lower-level shop floor roles, the candidates are screened better than what we used to see. It takes a huge load off our supervisors.",
-    author: "Plant Supervisor",
-    company: "Packaging Facility",
+    text: 'Even for our lower-level shop floor roles, the candidates are screened better than what we used to see. It takes a huge load off our supervisors.',
+    author: 'Plant Supervisor',
+    company: 'Packaging Facility',
   },
   {
-    text: "No fluff, just straightforward recruiting. We needed a few dependable operators for the third shift and they were lined up in days.",
-    author: "Shift Lead",
-    company: "Automotive Assembly",
+    text: 'No fluff, just straightforward recruiting. We needed a few dependable operators for the third shift and they were lined up in days.',
+    author: 'Shift Lead',
+    company: 'Automotive Assembly',
   },
 ];
 
@@ -390,7 +390,6 @@ export default function HomePage() {
           >
             <AnimatePresence initial={false} mode="popLayout">
               {reviewItems.slice(0, 3).map((review, index) => {
-                // The center item is at index 1 in the visible slice of 3 items
                 const isCenter = index === 1;
 
                 return (

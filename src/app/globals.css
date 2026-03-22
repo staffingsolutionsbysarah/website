@@ -40,9 +40,79 @@
     background-color: var(--color-bg);
     color: var(--color-dark);
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
 
 @layer components {
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    animation: marquee-slide 22s linear infinite;
+  }
+
+  .halo-button {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .halo-button::after {
+    content: "";
+    position: absolute;
+    inset: -140% auto auto -30%;
+    height: 260%;
+    width: 42%;
+    transform: rotate(24deg);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.28) 45%, rgba(255, 255, 255, 0) 100%);
+    animation: halo-sweep 5.8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .motion-panel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .motion-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 42%),
+      radial-gradient(circle at top right, rgba(198, 166, 74, 0.14), rgba(198, 166, 74, 0) 42%);
+    pointer-events: none;
+  }
+
+  .orbital-ring {
+    position: absolute;
+    border-radius: 999px;
+    border: 1px solid rgba(198, 166, 74, 0.22);
+    animation: orbital-pulse 6.8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .section-glow {
+    position: relative;
+  }
+
+  .section-glow::after {
+    content: "";
+    position: absolute;
+    inset: auto 10% -18% 10%;
+    height: 120px;
+    background: radial-gradient(circle, rgba(198, 166, 74, 0.22), rgba(198, 166, 74, 0));
+    filter: blur(24px);
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
   .btn-primary {
     background-color: var(--color-dark);
     color: white;
@@ -90,5 +160,58 @@
     background-color: var(--color-dark);
     color: white;
     border-color: var(--color-dark);
+  }
+}
+
+@keyframes marquee-slide {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes halo-sweep {
+  0%,
+  12% {
+    transform: translateX(-170%) rotate(24deg);
+    opacity: 0;
+  }
+
+  18%,
+  36% {
+    transform: translateX(320%) rotate(24deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(320%) rotate(24deg);
+    opacity: 0;
+  }
+}
+
+@keyframes orbital-pulse {
+  0%,
+  100% {
+    transform: scale(0.98);
+    opacity: 0.24;
+  }
+
+  50% {
+    transform: scale(1.03);
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+
+  .halo-button::after,
+  .orbital-ring {
+    animation: none;
   }
 }
