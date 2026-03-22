@@ -10,11 +10,11 @@ const fadeUp = {
   show: { opacity: 1, y: 0 },
 };
 
-const activeJobs = jobs.filter(
-  (job) =>
-    (job.active === true || job.active === 'TRUE' || job.active === 'true') &&
-    (job.public === true || job.public === 'TRUE' || job.public === 'true')
-);
+const activeJobs = jobs.filter((job) => {
+  const isActive = String(job.active).toLowerCase() === 'true';
+  const isPublic = String(job.public).toLowerCase() === 'true';
+  return isActive && isPublic;
+});
 
 export default function JobsPage() {
   const shouldReduceMotion = useReducedMotion();
