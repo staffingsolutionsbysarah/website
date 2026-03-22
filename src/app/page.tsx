@@ -139,15 +139,15 @@ export default function HomePage() {
       <div className="pointer-events-none absolute top-[28%] left-[-90px] h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,_rgba(120,148,146,0.2)_0%,_rgba(120,148,146,0)_72%)]" />
       <div className="pointer-events-none absolute -bottom-28 right-[20%] h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,_rgba(44,52,52,0.13)_0%,_rgba(44,52,52,0)_70%)]" />
 
-      <section className="relative border-b border-black/10 px-6 pt-10 pb-16 md:pt-14 md:pb-24">
-        <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
+      <section className="relative border-b border-black/10 px-4 pt-8 pb-12 md:px-6 md:pt-14 md:pb-24">
+        <div className="mx-auto grid max-w-[1200px] items-center gap-8 md:gap-12 lg:grid-cols-[1.15fr_1fr]">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="show"
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="max-w-[16ch] text-5xl font-medium leading-[0.95] tracking-[-0.03em] md:text-7xl">
+            <h1 className="max-w-[16ch] text-[2.4rem] font-medium leading-[1] tracking-[-0.03em] sm:text-5xl md:text-7xl">
               Recruitment support for hiring managers responsible for delivering critical roles.
             </h1>
             <p className="mt-6 max-w-[58ch] text-base leading-relaxed text-black/70 md:text-lg">
@@ -205,7 +205,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#1F2628] px-6 py-20 text-white md:py-28">
+      <section className="bg-[#1F2628] px-4 py-14 text-white md:px-6 md:py-28">
         <div className="mx-auto max-w-[1200px]">
           <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
 
