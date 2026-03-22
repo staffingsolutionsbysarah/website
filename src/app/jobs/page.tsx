@@ -73,8 +73,11 @@ export default function JobsPage() {
                 >
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div className="flex-1">
-                      <div className="flex flex-wrap items-center gap-3">
+                      <div className="flex items-start justify-between gap-3">
                         <h2 className="text-xl font-medium tracking-tight">{job.title}</h2>
+                        <p className="shrink-0 text-sm font-medium text-black/70">{job.salary}</p>
+                      </div>
+                      <div className="mt-3 flex flex-wrap items-center gap-3">
                         <span className="rounded-full border border-black/12 bg-[#F9F7F1] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/55">
                           {job.type}
                         </span>
