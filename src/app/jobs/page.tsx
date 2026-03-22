@@ -1,23 +1,59 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { jobs } from '@/data/jobs';
+import type { Job } from '@/data/jobs';
+
+const SHEET_URL =
+  'https://opensheet.elk.sh/1Rnx5NJSc7y2CxbkHBJThl3u6dUCRlaKioIGW0WqYQvQ/Sheet1';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0 },
 };
 
-const activeJobs = jobs.filter((job) => {
-  const isActive = String(job.active).toLowerCase() === 'true';
-  const isPublic = String(job.public).toLowerCase() === 'true';
-  return isActive && isPublic;
-});
+function isActive(job: Job) {
+  return String(job.active).trim().toLowerCase() === 'true';
+}
+
+function isPublic(job: Job) {
+  return String(job.public).trim().toLowerCase() === 'true';
+}
+
+function isValidRow(row: Record<string, string>): boolean {
+  return !!(row.id && row.title);
+}
 
 export default function JobsPage() {
   const shouldReduceMotion = useReducedMotion();
+  const [activeJobs, setActiveJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(SHEET_URL)
+      .then((r) => r.json())
+      .then((rows: Record<string, string>[]) => {
+        const filtered = rows
+          .filter(isValidRow)
+          .map((row) => ({
+            id: row.id,
+            title: row.title,
+            salary: row.salary || undefined,
+            location: row.location,
+            type: row.type,
+            summary: row.summary,
+            active: row.active,
+            public: row.public,
+            href: row.href,
+          }))
+          .filter((job) => isActive(job) && isPublic(job));
+        setActiveJobs(filtered);
+      })
+      .catch(() => setActiveJobs([]))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <div className="relative overflow-hidden bg-[#F4F2ED] text-[var(--color-dark)]">
@@ -41,7 +77,9 @@ export default function JobsPage() {
             </motion.p>
           </motion.div>
 
-          {activeJobs.length === 0 ? (
+          {loading ? (
+            <div className="mt-14 text-sm text-black/40">Loading roles…</div>
+          ) : activeJobs.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -79,7 +117,9 @@ export default function JobsPage() {
                     <div className="flex-1">
                       <div className="flex items-start justify-between gap-3">
                         <h2 className="text-xl font-medium tracking-tight">{job.title}</h2>
-                        <p className="shrink-0 text-sm font-medium text-black/70">{job.salary}</p>
+                        {job.salary && (
+                          <p className="shrink-0 text-sm font-medium text-black/70">{job.salary}</p>
+                        )}
                       </div>
                       <div className="mt-3 flex flex-wrap items-center gap-3">
                         <span className="rounded-full border border-black/12 bg-[#F9F7F1] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/55">
