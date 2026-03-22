@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 const navItems = [
   { href: '/about', label: 'About Us' },
+  { href: '/jobs', label: 'Jobs' },
   { href: '/book-a-call', label: 'Book a Call', cta: true },
 ];
 
