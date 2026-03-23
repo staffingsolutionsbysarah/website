@@ -30,6 +30,7 @@ export default function JobsPage() {
   const shouldReduceMotion = useReducedMotion();
   const [activeJobs, setActiveJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     fetch(SHEET_URL)
@@ -77,9 +78,29 @@ export default function JobsPage() {
             </motion.p>
           </motion.div>
 
+          <motion.div variants={fadeUp} className="mt-10">
+            <input
+              type="text"
+              placeholder="Search roles…"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full max-w-md rounded-full border border-black/15 bg-white/80 px-5 py-3 text-sm text-black/80 placeholder-black/35 outline-none ring-0 transition focus:border-[#C6A64A] focus:ring-1 focus:ring-[#C6A64A]"
+            />
+          </motion.div>
+
           {loading ? (
             <div className="mt-14 text-sm text-black/40">Loading roles…</div>
-          ) : activeJobs.length === 0 ? (
+          ) : (() => {
+            const filtered = activeJobs.filter((job) => {
+              const q = search.toLowerCase();
+              return (
+                job.title?.toLowerCase().includes(q) ||
+                job.location?.toLowerCase().includes(q) ||
+                job.type?.toLowerCase().includes(q) ||
+                job.summary?.toLowerCase().includes(q)
+              );
+            });
+            return filtered.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -87,9 +108,13 @@ export default function JobsPage() {
               className="mt-14 rounded-[24px] border border-black/10 bg-white/74 px-8 py-12 shadow-[0_12px_28px_rgba(0,0,0,0.04)]"
             >
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-black/45">No active roles</p>
-              <h2 className="mt-3 text-2xl font-medium tracking-tight">Nothing posted right now.</h2>
+              <h2 className="mt-3 text-2xl font-medium tracking-tight">
+                {search ? 'No roles match your search.' : 'Nothing posted right now.'}
+              </h2>
               <p className="mt-3 max-w-[44ch] text-sm leading-relaxed text-black/70">
-                We post roles as searches go live. Check back soon, or book a call to discuss an upcoming hiring need.
+                {search
+                  ? 'Try a different keyword or clear your search.'
+                  : 'We post roles as searches go live. Check back soon, or book a call to discuss an upcoming hiring need.'}
               </p>
               <Link
                 href="/book-a-call"
@@ -106,7 +131,7 @@ export default function JobsPage() {
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07, delayChildren: 0.2 } } }}
               className="mt-10 grid gap-4"
             >
-              {activeJobs.map((job) => (
+              {filtered.map((job) => (
                 <motion.article
                   key={job.id}
                   variants={fadeUp}
@@ -142,7 +167,8 @@ export default function JobsPage() {
                 </motion.article>
               ))}
             </motion.div>
-          )}
+          );
+          })()}
         </div>
       </section>
     </div>
