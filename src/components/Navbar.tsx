@@ -44,7 +44,7 @@ export default function Navbar() {
           onClick={() => setMobileOpen(false)}
           className="relative flex cursor-pointer flex-row items-center gap-2.5 font-heading leading-snug tracking-tight text-[var(--color-dark)]"
         >
-          <Image src="/S-logo sf.png" alt="Staffing Solutions by Sarah Fell" width={40} height={40} className="object-contain mix-blend-multiply" />
+          <Image src="/S-logo sf.png" alt="Staffing Solutions by Sarah Fell" width={40} height={40} className="object-contain" />
           <div className="flex flex-col items-start">
             <span className="text-[10px] md:text-sm font-semibold uppercase tracking-widest">Staffing Solutions by</span>
             <span className="text-sm md:text-base font-medium italic tracking-normal text-gray-600">Sarah Fell, Inc.</span>
