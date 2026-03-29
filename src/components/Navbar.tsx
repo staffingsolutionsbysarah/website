@@ -47,14 +47,16 @@ export default function Navbar() {
           <Image src="/S-logo sf.png" alt="Staffing Solutions by Sarah Fell" width={40} height={40} className="object-contain" />
           <div className="flex flex-col items-start">
             <span className="text-[10px] md:text-sm font-semibold uppercase tracking-widest">Staffing Solutions by</span>
-            <span className="text-sm md:text-base font-medium italic tracking-normal text-gray-600">Sarah Fell, Inc.</span>
+            <span className="relative text-sm md:text-base font-medium italic tracking-normal text-gray-600">
+              Sarah Fell, Inc.
+              <span
+                className={[
+                  'absolute -bottom-1 left-0 h-px bg-[linear-gradient(90deg,#C6A64A_0%,rgba(198,166,74,0)_100%)] transition-all duration-300',
+                  isScrolled ? 'w-full opacity-100' : 'w-2/3 opacity-70',
+                ].join(' ')}
+              />
+            </span>
           </div>
-          <span
-            className={[
-              'absolute -bottom-2 left-0 h-px bg-[linear-gradient(90deg,#C6A64A_0%,rgba(198,166,74,0)_100%)] transition-all duration-300',
-              isScrolled ? 'w-20 opacity-100' : 'w-10 opacity-70',
-            ].join(' ')}
-          />
         </Link>
 
         {/* Desktop nav */}
