@@ -25,10 +25,7 @@ export default function Navbar() {
   });
 
   return (
-    <motion.nav
-      initial={shouldReduceMotion ? false : { y: -24, opacity: 0 }}
-      animate={shouldReduceMotion ? undefined : { y: 0, opacity: 1 }}
-      transition={shouldReduceMotion ? undefined : { duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+    <nav
       className="sticky top-0 z-50 border-b border-black/8 bg-[#FAFAFA]/82 backdrop-blur-xl"
     >
       {/* Main bar */}
@@ -44,7 +41,7 @@ export default function Navbar() {
           onClick={() => setMobileOpen(false)}
           className="relative flex cursor-pointer flex-row items-center gap-2.5 font-heading leading-snug tracking-tight text-[var(--color-dark)]"
         >
-          <Image src="/S-logo sf.png" alt="Staffing Solutions by Sarah Fell" width={40} height={40} className="object-contain" />
+          <Image src="/GreenS-logo.svg" alt="Staffing Solutions by Sarah Fell" width={40} height={40} className="object-contain mix-blend-multiply" />
           <div className="flex flex-col items-start">
             <span className="text-[10px] md:text-sm font-semibold uppercase tracking-widest">Staffing Solutions by</span>
             <span className="relative text-sm md:text-base font-medium italic tracking-normal text-gray-600">
@@ -163,6 +160,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 }
