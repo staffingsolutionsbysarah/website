@@ -10,11 +10,6 @@ export default function Footer() {
                     <p className="text-sm text-gray-400">
                         © 2024 Staffing Solutions by Sarah Fell Inc. <span className="hidden md:inline mx-2 text-gray-600">|</span><br className="md:hidden" /> Serving Ontario&apos;s Industrial Sector Since 2013
                     </p>
-                    <div className="flex gap-6 text-xs text-gray-400 mt-4">
-                        <a href="#" className="hover:text-white border-b border-transparent hover:border-[var(--color-primary)] pb-0.5 transition-all">Privacy Policy</a>
-                        <a href="#" className="hover:text-white border-b border-transparent hover:border-[var(--color-primary)] pb-0.5 transition-all">Terms of Service</a>
-                        <a href="#" className="hover:text-white border-b border-transparent hover:border-[var(--color-primary)] pb-0.5 transition-all">Accessibility</a>
-                    </div>
                 </div>
             </div>
         </footer>

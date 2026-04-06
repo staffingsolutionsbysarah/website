@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Briefcase, Building2, CheckCircle2, Cog, Truck, Wrench, ShieldCheck, ChevronLeft, ChevronRight, Scale, ClipboardList, Award, Zap, Hammer, Quote } from 'lucide-react';
@@ -78,6 +79,7 @@ const reviews = [
 ];
 
 export default function HomePage() {
+  const router = useRouter();
   const [carouselItems, setCarouselItems] = useState(industries);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [openServiceIndex, setOpenServiceIndex] = useState<number | null>(null);
@@ -190,7 +192,7 @@ export default function HomePage() {
                   <input type="text" placeholder="e.g. Acme Logistics" className="w-full rounded-lg border border-black/10 bg-[#FAF9F6] px-4 py-3.5 text-sm transition-colors placeholder:text-black/30 focus:border-[#C6A64A] focus:outline-none focus:ring-1 focus:ring-[#C6A64A]" />
                 </div>
 
-                <button type="button" className="mt-2 flex w-full items-center justify-center gap-2 bg-[#2C3434] py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#C6A64A]">
+                <button type="button" onClick={() => router.push('/book-a-call')} className="mt-2 flex w-full items-center justify-center gap-2 bg-[#2C3434] py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#C6A64A]">
                   See Available Times
                   <ArrowRight className="h-4 w-4" />
                 </button>
