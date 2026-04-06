@@ -17,8 +17,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'Staffing Solutions by Sarah Fell, Inc. | Skilled Trades Recruitment',
-  description: 'Fast, conversion-focused skilled trades and manufacturing recruitment in Canada. Connecting top talent with top employers.',
+  title: 'Ontario Manufacturing & Skilled Trades Recruiter | Staffing Solutions by Sarah Fell',
+  description:
+    'Ontario recruiter for manufacturing, skilled trades, operations, and industrial hiring. Reduce hiring drag with direct recruiter access, sharper screening, and stronger shortlist fit.',
 };
 
 export default function RootLayout({

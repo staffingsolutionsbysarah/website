@@ -39,6 +39,7 @@ export default function Navbar() {
         <Link
           href="/"
           onClick={() => setMobileOpen(false)}
+          data-brand-logo
           className="relative flex cursor-pointer flex-row items-center gap-2.5 font-heading leading-snug tracking-tight text-[var(--color-dark)]"
         >
           <Image src="/GreenS-logo.svg" alt="Staffing Solutions by Sarah Fell" width={40} height={40} className="object-contain mix-blend-multiply" />
