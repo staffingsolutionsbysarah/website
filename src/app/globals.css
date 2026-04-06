@@ -1,23 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --font-inter: var(--font-inter);
-  --font-poppins: var(--font-poppins);
-  --font-roboto: var(--font-roboto);
+  --font-cormorant: var(--font-cormorant);
+  --font-manrope: var(--font-manrope);
 
-  --font-heading: var(--font-poppins);
-  --font-body: var(--font-roboto);
+  --font-heading: var(--font-cormorant);
+  --font-body: var(--font-manrope);
 
   --color-primary: #C6A64A;
-  /* Dark Gold Accent */
   --color-primary-hover: #A8872F;
-  /* Darker Gold Accent */
+  --color-primary-light: #D8C78F;
   --color-dark: #2C3434;
-  /* TTTG Charcoal */
   --color-bg: #FAFAFA;
-  /* TTTG Off-White */
   --color-accent: #4B635E;
-  /* Deep Sage Green - Third Accent */
+  --color-section: #F4F2ED;
+  --color-section-soft: #FAF8F3;
+  --color-dark-panel: #1F2628;
 }
 
 @layer base {
@@ -38,6 +36,12 @@
   body {
     font-family: var(--font-body);
     background-color: var(--color-bg);
+    color: var(--color-dark);
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(198, 166, 74, 0.3);
     color: var(--color-dark);
   }
 
@@ -130,7 +134,7 @@
 
   .btn-secondary {
     background-color: var(--color-primary-light);
-    color: white;
+    color: var(--color-dark);
     font-weight: 600;
     border-radius: 4px;
     padding: 14px 28px;

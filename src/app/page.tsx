@@ -1,458 +1,688 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Briefcase, Building2, CheckCircle2, Cog, Truck, Wrench, ShieldCheck, ChevronLeft, ChevronRight, Scale, ClipboardList, Award, Zap, Hammer, Quote } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import {
+  ArrowRight,
+  BadgeCheck,
+  BriefcaseBusiness,
+  CheckCircle2,
+  ChevronRight,
+  Clock3,
+  Factory,
+  Hammer,
+  HardHat,
+  MapPinned,
+  MessageSquareMore,
+  NotebookText,
+  Search,
+  ShieldCheck,
+  Users,
+} from 'lucide-react';
 
-const fadeUp = {
+const revealUp = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0 },
 };
 
-const services = [
+const heroSlides = [
   {
-    title: 'Permanent Recruitment',
-    body: 'Targeted hiring for full-time roles where retention, reliability, and team fit are critical.',
+    image: '/images/download-2.jpg',
+    label: 'Manufacturing & Industrial',
+    title: 'Plant-floor hiring that respects downtime, coverage, and role fit.',
+    note: 'Maintenance, production, supervision, and operations coverage built for real-world urgency.',
+    signals: ['Urgent backfills', 'Supervisor hiring', 'Retention-minded shortlist'],
   },
   {
-    title: 'Temporary & Contract Staffing',
-    body: 'Fast staffing support for urgent backfills, project peaks, and fluctuating workforce demand.',
+    image: '/images/download-1.jpg',
+    label: 'Skilled Trades & Maintenance',
+    title: 'Hard-to-fill trades searches managed with tighter intake and stronger screening.',
+    note: 'Millwright, mechanic, electrician, maintenance, and field-heavy roles where weak fit gets expensive fast.',
+    signals: ['Trades-specific search', 'Shift reality considered', 'Less interview drag'],
   },
   {
-    title: 'Retained Search',
-    body: 'Dedicated, priority search for executive, specialized, or highly confidential operations roles.',
+    image: '/images/download-4.jpg',
+    label: 'Construction & Field Teams',
+    title: 'Search support for fast-moving projects, site leadership, and labour pressure.',
+    note: 'Built for hiring managers who need better candidate judgement, not a pile of unusable resumes.',
+    signals: ['Site-ready lens', 'Calibrated shortlist', 'Direct recruiter feedback'],
   },
-  {
-    title: 'RPO (Recruitment Process Outsourcing)',
-    body: 'Scalable, end-to-end recruitment management to handle volume hiring or assist in building entire teams.',
-  },
-  {
-    title: 'Supervisor & Leadership Search',
-    body: 'Focused search for hard-to-fill supervisors, managers, and specialist leadership roles.',
-  },
-];
+] as const;
 
-const industries = [
-  { label: 'Manufacturing & Industrial', icon: Cog },
-  { label: 'Skilled Trades', icon: Wrench },
-  { label: 'Construction & Field Ops', icon: Building2 },
-  { label: 'Logistics & Distribution', icon: Truck },
-  { label: 'Legal', icon: Scale },
-  { label: 'Project Management', icon: ClipboardList },
-  { label: 'Quality Production', icon: Award },
-  { label: 'Millwrights & Mechanics', icon: Hammer },
-  { label: 'Electricians', icon: Zap },
-];
-
-const steps = [
-  'Deep dive into your role requirements, team culture, and hiring timeline',
-  'Active search across targeted channels and vetted recruiter networks',
-  'Present 3-4 qualified candidates with clear fit rationale',
-  'Structured interview support with scorecards and feedback loops',
-  'Offer negotiation and onboarding assistance through acceptance',
-  '2, 4, and 8-week follow-ups to protect retention',
-];
-
-const reviews = [
+const proofStrip = [
   {
-    text: "Sarah found us three solid millwrights right when we needed them. She understands the plant environment and didn't just toss us random resumes to sift through.",
+    value: '10+ years',
+    label: 'recruitment experience',
+    detail: 'More than a decade of search work across industrial and operational hiring.',
+  },
+  {
+    value: 'Direct access',
+    label: 'to Sarah',
+    detail: 'No anonymous recruiter queue between intake, shortlist, and close.',
+  },
+  {
+    value: 'Ontario-first',
+    label: 'hiring lens',
+    detail: 'Built around plant, trade, operations, and business-side hiring pressure in Ontario.',
+  },
+  {
+    value: 'Fit over volume',
+    label: 'every shortlist',
+    detail: 'Candidates are framed around role reality, team reality, and staying power.',
+  },
+] as const;
+
+const serviceModel = [
+  {
+    title: 'Search ownership',
+    body: 'Sarah runs the search directly, from intake and calibration through shortlist, feedback, and close.',
+  },
+  {
+    title: 'Shortlist discipline',
+    body: 'Candidates arrive with fit rationale, not just a forwarded resume and a generic note.',
+  },
+  {
+    title: 'Operational awareness',
+    body: 'Hiring urgency, shift realities, reporting lines, and production impact are treated as search inputs, not afterthoughts.',
+  },
+] as const;
+
+const capabilityLanes = [
+  {
+    icon: Factory,
+    title: 'Manufacturing & Industrial',
+    summary: 'Industrial environments where productivity loss, missed shifts, and weak supervision hurt fast.',
+    roles: 'Production leaders, plant support, quality, operations, and industrial coordination.',
+  },
+  {
+    icon: Hammer,
+    title: 'Skilled Trades & Maintenance',
+    summary: 'Trades hiring where role reality matters more than title matching.',
+    roles: 'Millwrights, mechanics, electricians, technicians, and maintenance coverage.',
+  },
+  {
+    icon: HardHat,
+    title: 'Construction & Engineering',
+    summary: 'Project-driven teams that need site-aware hiring support with tighter qualification logic.',
+    roles: 'Site leadership, project support, engineering-adjacent, and field-heavy hiring.',
+  },
+  {
+    icon: BriefcaseBusiness,
+    title: 'Accounting & Finance',
+    summary: 'Business-side hiring for firms that still want a direct recruiter relationship and cleaner candidate fit.',
+    roles: 'Accounting, finance support, controllers, coordinators, and operational admin talent.',
+  },
+  {
+    icon: Users,
+    title: 'Sales & Office Support',
+    summary: 'Commercial and support roles that need better screening, better communication, and less wasted time.',
+    roles: 'Sales support, coordinators, customer-facing operations, and office-based hires.',
+  },
+  {
+    icon: MapPinned,
+    title: 'Technology & Logistics',
+    summary: 'Adjacent coverage for teams that value practical search management over volume-driven recruiting.',
+    roles: 'Logistics support, systems-adjacent roles, dispatch, planning, and execution support.',
+  },
+] as const;
+
+const processSteps = [
+  {
+    title: 'Calibrate the role properly',
+    body: 'Start with scope, pressure points, reporting line, must-haves, and what happens if the role stays open.',
+  },
+  {
+    title: 'Search the actual lane',
+    body: 'Focus the search around the right sector, title reality, compensation range, and candidate environment fit.',
+  },
+  {
+    title: 'Shortlist with context',
+    body: 'Present a smaller group of candidates with role-fit reasoning so your team can decide faster.',
+  },
+  {
+    title: 'Run a tighter feedback loop',
+    body: 'Keep interviews moving, surface concerns early, and stop good candidates from dying in slow process.',
+  },
+  {
+    title: 'Support close and retention',
+    body: 'Offer-stage support and post-placement follow-through protect the hire after acceptance.',
+  },
+] as const;
+
+const insightsCards = [
+  {
+    kicker: 'From Sarah',
+    title: 'What Ontario employers are asking for in skilled trades hires right now.',
+    body: 'Short market notes and hiring signals that help clients tighten intake before the search drifts.',
+  },
+  {
+    kicker: 'Hiring Signals',
+    title: 'Where candidate quality drops when the role brief is too loose.',
+    body: 'A future-facing module for market insight, shortlist calibration, and client education that feels current, not bolted on.',
+  },
+  {
+    kicker: 'Newsletter Ready',
+    title: 'A cleaner way to share market updates, role-family shifts, and employer guidance.',
+    body: 'Built as cards so LinkedIn posts, newsletters, and internal articles can slot in without turning the page into an embed mess.',
+  },
+] as const;
+
+const testimonials = [
+  {
+    quote:
+      'Sarah found us three solid millwrights right when we needed them. She understands the plant environment and did not send random resumes for us to sort.',
     author: 'Maintenance Manager',
     company: 'Food Processing',
   },
   {
-    text: 'We were struggling to find good mechanics for the floor. They stepped in, figured out what we actually needed, and got us reliable guys who showed up and worked hard.',
+    quote:
+      'We were struggling to find good mechanics for the floor. She stepped in, clarified what we actually needed, and brought us dependable people we could move on quickly.',
     author: 'Operations Director',
     company: 'Industrial Manufacturing',
   },
-  {
-    text: 'Even for our lower-level shop floor roles, the candidates are screened better than what we used to see. It takes a huge load off our supervisors.',
-    author: 'Plant Supervisor',
-    company: 'Packaging Facility',
-  },
-  {
-    text: 'No fluff, just straightforward recruiting. We needed a few dependable operators for the third shift and they were lined up in days.',
-    author: 'Shift Lead',
-    company: 'Automotive Assembly',
-  },
-];
+] as const;
+
+const closingProof = [
+  'Employer-first communication without the fluff.',
+  'Candidate shortlists shaped around fit, urgency, and retention.',
+  'A recruiter-led process that removes drag instead of adding admin.',
+] as const;
 
 export default function HomePage() {
-  const router = useRouter();
-  const [carouselItems, setCarouselItems] = useState(industries);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [openServiceIndex, setOpenServiceIndex] = useState<number | null>(null);
-
-  const [reviewItems, setReviewItems] = useState(reviews);
-  const [isReviewAutoPlaying, setIsReviewAutoPlaying] = useState(true);
-
-  const slideNext = useCallback(() => {
-    setCarouselItems((prev) => {
-      const newItems = [...prev];
-      const first = newItems.shift();
-      if (first) newItems.push(first);
-      return newItems;
-    });
-  }, []);
-
-  const slidePrev = () => {
-    setCarouselItems((prev) => {
-      const newItems = [...prev];
-      const last = newItems.pop();
-      if (last) newItems.unshift(last);
-      return newItems;
-    });
-  };
-
-  const slideNextReview = useCallback(() => {
-    setReviewItems((prev) => {
-      const newItems = [...prev];
-      const first = newItems.shift();
-      if (first) newItems.push(first);
-      return newItems;
-    });
-  }, []);
-
-  const slidePrevReview = () => {
-    setReviewItems((prev) => {
-      const newItems = [...prev];
-      const last = newItems.pop();
-      if (last) newItems.unshift(last);
-      return newItems;
-    });
-  };
+  const shouldReduceMotion = useReducedMotion();
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
-    if (!isAutoPlaying) return;
-    const timer = setInterval(slideNext, 4500);
-    return () => clearInterval(timer);
-  }, [isAutoPlaying, slideNext]);
+    if (shouldReduceMotion) return undefined;
 
-  useEffect(() => {
-    if (!isReviewAutoPlaying) return;
-    const timer = setInterval(slideNextReview, 6000);
-    return () => clearInterval(timer);
-  }, [isReviewAutoPlaying, slideNextReview]);
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % heroSlides.length);
+    }, 4200);
+
+    return () => window.clearInterval(timer);
+  }, [shouldReduceMotion]);
+
+  const currentSlide = heroSlides[activeSlide];
 
   return (
-    <div className="relative overflow-hidden bg-[#F4F2ED] text-[var(--color-dark)]">
-      <div className="pointer-events-none absolute -top-24 right-[-80px] h-[320px] w-[320px] rounded-full bg-[radial-gradient(circle,_rgba(198,166,74,0.3)_0%,_rgba(198,166,74,0)_70%)]" />
-      <div className="pointer-events-none absolute top-[28%] left-[-90px] h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,_rgba(120,148,146,0.2)_0%,_rgba(120,148,146,0)_72%)]" />
-      <div className="pointer-events-none absolute -bottom-28 right-[20%] h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,_rgba(44,52,52,0.13)_0%,_rgba(44,52,52,0)_70%)]" />
+    <div className="relative overflow-hidden bg-[var(--color-bg)] text-[var(--color-dark)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[540px] bg-[linear-gradient(180deg,rgba(198,166,74,0.16),rgba(198,166,74,0.02)_58%,rgba(250,249,246,0)_100%)]" />
+      <div className="pointer-events-none absolute -top-16 right-[-120px] h-[360px] w-[360px] rounded-full bg-[radial-gradient(circle,_rgba(198,166,74,0.22)_0%,_rgba(198,166,74,0)_70%)]" />
+      <div className="pointer-events-none absolute top-[28%] left-[-120px] h-[320px] w-[320px] rounded-full bg-[radial-gradient(circle,_rgba(75,99,94,0.16)_0%,_rgba(75,99,94,0)_74%)]" />
 
-      <section className="relative border-b border-black/10 px-4 pt-8 pb-12 md:px-6 md:pt-14 md:pb-24">
-        <div className="mx-auto grid max-w-[1200px] items-center gap-8 md:gap-12 lg:grid-cols-[1.15fr_1fr]">
+      <section className="relative border-b border-black/8 px-4 pb-16 pt-8 md:px-6 md:pb-22 md:pt-14 lg:pb-24">
+        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(460px,0.95fr)] lg:items-end">
           <motion.div
-            variants={fadeUp}
             initial="hidden"
             animate="show"
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
+            className="relative z-10 max-w-[640px]"
           >
-            <h1 className="max-w-[16ch] text-[2.4rem] font-medium leading-[1] tracking-[-0.03em] sm:text-5xl md:text-7xl">
-              Recruitment support for hiring managers responsible for delivering critical roles.
-            </h1>
-            <p className="mt-6 max-w-[58ch] text-base leading-relaxed text-black/70 md:text-lg">
-              You work directly with an experienced recruiter who understands industrial hiring environments and manages each search with a practical, structured process focused on role fit, reliability, and long-term success.
-            </p>
+            <motion.p
+              variants={revealUp}
+              className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[var(--color-accent)]"
+            >
+              Ontario recruitment partner
+            </motion.p>
+            <motion.h1
+              variants={revealUp}
+              className="mt-5 max-w-[12ch] text-[3.05rem] leading-[0.87] tracking-[-0.045em] md:text-[4.6rem] xl:text-[5.5rem]"
+            >
+              Recruitment support for employers who cannot afford the wrong hire.
+            </motion.h1>
+            <motion.p
+              variants={revealUp}
+              className="mt-6 max-w-[58ch] text-[1.02rem] leading-relaxed text-black/68 md:text-[1.08rem]"
+            >
+              Sarah Fell runs the search directly, helping Ontario hiring managers reduce interview drag, tighten fit,
+              and move critical roles with more confidence across manufacturing, trades, operations, and adjacent
+              business functions.
+            </motion.p>
 
+            <motion.div variants={revealUp} className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/book-a-call"
+                className="halo-button inline-flex items-center gap-2 rounded-full border border-[#2C3434] bg-[#2C3434] px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition hover:border-[#C6A64A] hover:bg-[#C6A64A] hover:text-[#1F2628]"
+              >
+                <span className="relative z-10 inline-flex items-center gap-2">
+                  Book a Hiring Call
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
+              <Link
+                href="/jobs"
+                className="inline-flex items-center gap-2 rounded-full border border-black/12 bg-white/72 px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-black/70 transition hover:border-[#C6A64A] hover:bg-white hover:text-black"
+              >
+                View Active Roles
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </motion.div>
+
+            <motion.div variants={revealUp} className="mt-10 grid gap-3 sm:grid-cols-3">
+              {[
+                'Manufacturing, skilled trades, operations',
+                'Direct recruiter ownership from intake to close',
+                'Built for urgency, clarity, and better fit',
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-[22px] border border-black/8 bg-white/68 px-4 py-4 shadow-[0_12px_30px_rgba(0,0,0,0.04)]"
+                >
+                  <p className="text-sm leading-relaxed text-black/70">{item}</p>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 32, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
-            className="w-full max-w-md mx-auto lg:ml-auto"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
+            className="relative"
           >
-            <div className="bg-white rounded-3xl p-8 shadow-[0_28px_60px_rgba(0,0,0,0.06)] border border-black/[0.04]">
-              <h2 className="text-3xl font-medium tracking-tight text-[#2C3434]">Let&apos;s talk hiring.</h2>
-              <p className="mt-2 text-[15px] leading-relaxed text-black/60">
-                Skip the back-and-forth. Grab a time directly on my calendar.
+            <div className="pointer-events-none absolute -right-6 top-[-28px] h-28 w-28 rounded-full border border-[#C6A64A]/35" />
+            <div className="pointer-events-none absolute right-12 top-12 h-20 w-20 rounded-full border border-black/10" />
+
+            <div className="relative rounded-[36px] border border-black/10 bg-white/76 p-4 shadow-[0_34px_90px_rgba(25,31,30,0.10)] md:p-5">
+              <div className="grid gap-4 md:grid-cols-[1.04fr_0.96fr]">
+                <div className="relative min-h-[420px] overflow-hidden rounded-[28px] bg-[#DBE0DB]">
+                  <Image
+                    src="/sarah-fell.png"
+                    alt="Sarah Fell portrait"
+                    fill
+                    sizes="(max-width: 767px) 100vw, 420px"
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0)_38%,rgba(31,38,40,0.62)_100%)]" />
+                  <div className="absolute inset-x-4 bottom-4 rounded-[24px] border border-white/12 bg-[#1F2628]/78 p-4 text-white backdrop-blur-sm">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#E7D08A]">
+                      Direct with Sarah
+                    </p>
+                    <p className="mt-2 text-lg tracking-tight">Recruiter-led intake, shortlist, and close.</p>
+                    <p className="mt-2 text-sm leading-relaxed text-white/72">
+                      A calmer process for employers who need search ownership, not another layer of admin.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-4">
+                  <div className="relative min-h-[250px] overflow-hidden rounded-[28px] border border-black/10 bg-[#232A2C]">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={currentSlide.image}
+                        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -16 }}
+                        transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute inset-0"
+                      >
+                        <Image
+                          src={currentSlide.image}
+                          alt={currentSlide.label}
+                          fill
+                          sizes="(max-width: 767px) 100vw, 360px"
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,38,40,0.12)_0%,rgba(31,38,40,0.5)_54%,rgba(31,38,40,0.86)_100%)]" />
+                        <div className="absolute left-4 top-4 rounded-full border border-white/14 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/88 backdrop-blur-sm">
+                          {currentSlide.label}
+                        </div>
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <p className="max-w-[19ch] text-[1.45rem] leading-[1.04] tracking-[-0.03em] text-white">
+                            {currentSlide.title}
+                          </p>
+                          <p className="mt-3 max-w-[30ch] text-sm leading-relaxed text-white/76">{currentSlide.note}</p>
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+
+                  <div className="grid gap-3">
+                    {currentSlide.signals.map((signal, index) => (
+                      <motion.div
+                        key={signal}
+                        initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 14 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.35, delay: index * 0.05 }}
+                        className="rounded-[22px] border border-black/10 bg-[#F8F6F0] px-4 py-3.5 shadow-[0_10px_24px_rgba(0,0,0,0.03)]"
+                      >
+                        <div className="flex items-start gap-3">
+                          <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#A8872F]" />
+                          <p className="text-sm leading-relaxed text-black/72">{signal}</p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center justify-between rounded-[22px] border border-black/8 bg-white/70 px-4 py-3">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/44">
+                      Current view
+                    </p>
+                    <div className="flex gap-2">
+                      {heroSlides.map((slide, index) => (
+                        <button
+                          key={slide.label}
+                          type="button"
+                          aria-label={`Show ${slide.label}`}
+                          onClick={() => setActiveSlide(index)}
+                          className={[
+                            'h-2.5 rounded-full transition-all',
+                            index === activeSlide ? 'w-8 bg-[#C6A64A]' : 'w-2.5 bg-black/15 hover:bg-black/30',
+                          ].join(' ')}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute -bottom-6 right-6 hidden max-w-[250px] rounded-[24px] border border-[#C6A64A]/20 bg-[#FAF7EF]/92 p-4 shadow-[0_20px_44px_rgba(0,0,0,0.08)] lg:block">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent)]">
+                Why employers stay
               </p>
-
-              <form className="mt-8 flex flex-col gap-5">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">First Name</label>
-                    <input type="text" placeholder="Jane" className="w-full rounded-lg border border-black/10 bg-[#FAF9F6] px-4 py-3.5 text-sm transition-colors placeholder:text-black/30 focus:border-[#C6A64A] focus:outline-none focus:ring-1 focus:ring-[#C6A64A]" />
-                  </div>
-                  <div>
-                    <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">Last Name</label>
-                    <input type="text" placeholder="Doe" className="w-full rounded-lg border border-black/10 bg-[#FAF9F6] px-4 py-3.5 text-sm transition-colors placeholder:text-black/30 focus:border-[#C6A64A] focus:outline-none focus:ring-1 focus:ring-[#C6A64A]" />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">Work Email</label>
-                  <input type="email" placeholder="jane@company.com" className="w-full rounded-lg border border-black/10 bg-[#FAF9F6] px-4 py-3.5 text-sm transition-colors placeholder:text-black/30 focus:border-[#C6A64A] focus:outline-none focus:ring-1 focus:ring-[#C6A64A]" />
-                </div>
-
-                <div>
-                  <label className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">Company / Industry</label>
-                  <input type="text" placeholder="e.g. Acme Logistics" className="w-full rounded-lg border border-black/10 bg-[#FAF9F6] px-4 py-3.5 text-sm transition-colors placeholder:text-black/30 focus:border-[#C6A64A] focus:outline-none focus:ring-1 focus:ring-[#C6A64A]" />
-                </div>
-
-                <button type="button" onClick={() => router.push('/book-a-call')} className="mt-2 flex w-full items-center justify-center gap-2 bg-[#2C3434] py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#C6A64A]">
-                  See Available Times
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-
-                <div className="mt-4 flex items-center justify-center gap-2">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-[#C6A64A]" />
-                  <span className="text-xs text-black/50 font-medium">Direct recruiter communication</span>
-                </div>
-              </form>
+              <p className="mt-2 text-sm leading-relaxed text-black/68">
+                Tighter intake, direct communication, and fewer weak interviews reduce wasted time across the process.
+              </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      <section className="bg-[#1F2628] px-4 py-14 text-white md:px-6 md:py-28">
-        <div className="mx-auto max-w-[1200px]">
-          <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
-
-            {/* Left Column: Services Accordion */}
-            <motion.div
-              initial="hidden"
-              whileInView="show"
+      <section className="border-b border-black/8 bg-[#F7F4EC] px-4 py-8 md:px-6 md:py-10">
+        <div className="mx-auto grid max-w-[1280px] gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {proofStrip.map((item) => (
+            <motion.article
+              key={item.value}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              variants={{
-                hidden: {},
-                show: { transition: { staggerChildren: 0.1 } },
-              }}
-              className="flex flex-col"
+              transition={{ duration: 0.45 }}
+              className="rounded-[24px] border border-black/8 bg-white/70 px-5 py-5 shadow-[0_10px_24px_rgba(0,0,0,0.03)]"
             >
-              <div className="mb-10">
-                <h2 className="text-4xl font-medium tracking-tight md:text-5xl text-white">Recruitment services built for real hiring pressure</h2>
-                <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#E4CF8C]">Clear. Practical. Accountable.</p>
-              </div>
+              <p className="text-[1.35rem] tracking-tight text-[var(--color-dark)]">{item.value}</p>
+              <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-accent)]">
+                {item.label}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-black/65">{item.detail}</p>
+            </motion.article>
+          ))}
+        </div>
+      </section>
 
-              <div className="flex flex-col border-t border-white/10">
-                {services.map((service, index) => {
-                  const isOpen = openServiceIndex === index;
-                  return (
-                    <motion.div
-                      variants={fadeUp}
-                      key={service.title}
-                      className="group cursor-pointer border-b border-white/10 py-6 transition-colors hover:bg-white/[0.03] px-4 -mx-4 rounded-xl"
-                      onMouseEnter={() => { if (openServiceIndex === null) setOpenServiceIndex(index); }}
-                      onMouseLeave={() => { if (openServiceIndex === index) setOpenServiceIndex(null); }}
-                      onClick={() => setOpenServiceIndex(isOpen ? null : index)}
-                    >
-                      <h3 className={`text-2xl font-medium tracking-tight transition-colors ${isOpen ? 'text-[#E4CF8C]' : 'text-white group-hover:text-[#E4CF8C]'}`}>
-                        {service.title}
-                      </h3>
-                      <AnimatePresence>
-                        {isOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                            className="overflow-hidden"
-                          >
-                            <p className="pt-4 text-sm leading-relaxed text-white/70 md:text-base">
-                              {service.body}
-                            </p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </motion.div>
+      <section className="px-4 py-16 md:px-6 md:py-22" id="services">
+        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[0.78fr_1.22fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55 }}
+            className="lg:sticky lg:top-24 lg:h-fit"
+          >
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--color-accent)]">
+              Services + industries
+            </p>
+            <h2 className="mt-4 max-w-[12ch] text-[2.6rem] leading-[0.95] tracking-[-0.04em] md:text-[3.65rem]">
+              Search support that feels more deliberate than the usual staffing site.
+            </h2>
+            <p className="mt-5 max-w-[52ch] text-base leading-relaxed text-black/66">
+              The positioning stays industrial-rooted, but the delivery supports broader business needs where direct
+              recruiter communication and better shortlist quality still matter.
+            </p>
 
-            {/* Right Column: Industries Carousel */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6 }}
-              className="flex flex-col justify-center"
-            >
-              <div className="mb-8 pl-2">
-                <h2 className="text-3xl font-medium tracking-tight md:text-4xl text-white">Industries we support</h2>
-                <p className="mt-4 max-w-[40ch] text-sm leading-relaxed text-white/60">
-                  Targeted expertise across industrial, technical, and operational sectors that need dependable hiring support.
-                </p>
-              </div>
+            <div className="mt-8 space-y-3">
+              {serviceModel.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-[24px] border border-black/8 bg-[#F8F5EE] px-5 py-5 shadow-[0_10px_24px_rgba(0,0,0,0.03)]"
+                >
+                  <p className="text-[1.28rem] tracking-tight">{item.title}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-black/66">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
-              <div
-                className="overflow-hidden px-2 py-4"
-                onMouseEnter={() => setIsAutoPlaying(false)}
-                onMouseLeave={() => setIsAutoPlaying(true)}
-                onTouchStart={() => setIsAutoPlaying(false)}
-                onTouchEnd={() => setIsAutoPlaying(true)}
+          <div className="grid gap-4 md:grid-cols-2">
+            {capabilityLanes.map((lane, index) => (
+              <motion.article
+                key={lane.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.45, delay: index * 0.04 }}
+                className="rounded-[28px] border border-black/8 bg-white/82 p-6 shadow-[0_16px_34px_rgba(0,0,0,0.04)]"
               >
-                <div className="flex flex-col gap-4">
-                  <AnimatePresence initial={false} mode="popLayout">
-                    {carouselItems.slice(0, 3).map((industry) => (
-                      <motion.div
-                        layout
-                        key={industry.label}
-                        initial={{ opacity: 0, x: -40, scale: 0.95 }}
-                        animate={{ opacity: 1, x: 0, scale: 1 }}
-                        exit={{ opacity: 0, x: 100, scale: 0.9 }}
-                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                        drag="x"
-                        dragConstraints={{ left: 0, right: 0 }}
-                        dragElastic={0.2}
-                        onDragEnd={(e, { offset }: any) => {
-                          if (offset.x < -40) slideNext();
-                          if (offset.x > 40) slidePrev();
-                        }}
-                        className="group relative flex w-full cursor-grab items-center gap-5 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-5 shadow-sm transition-colors hover:bg-white/[0.08] hover:border-[#E4CF8C]/30 active:cursor-grabbing"
-                      >
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#E4CF8C]/10 transition-colors group-hover:bg-[#E4CF8C]">
-                          <industry.icon className="h-6 w-6 text-[#E4CF8C] transition-colors group-hover:text-[#1F2628]" />
-                        </div>
-                        <p className="text-base font-bold tracking-tight text-white/90">{industry.label}</p>
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
+                <lane.icon className="h-5 w-5 text-[#A8872F]" />
+                <h3 className="mt-5 text-[1.62rem] leading-[1.05] tracking-tight">{lane.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-black/66">{lane.summary}</p>
+                <div className="mt-5 border-t border-black/8 pt-4">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/42">Role families</p>
+                  <p className="mt-2 text-sm leading-relaxed text-black/68">{lane.roles}</p>
                 </div>
-
-                <div className="mt-8 flex justify-end gap-3 pr-2">
-                  <button
-                    onClick={slidePrev}
-                    aria-label="Previous industry"
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-transparent shadow-sm transition-all hover:bg-white/10 hover:border-white/30 hover:scale-105 active:scale-95 text-white/60 hover:text-white"
-                  >
-                    <ChevronLeft className="h-5 w-5" />
-                  </button>
-                  <button
-                    onClick={slideNext}
-                    aria-label="Next industry"
-                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-transparent shadow-sm transition-all hover:bg-white/10 hover:border-white/30 hover:scale-105 active:scale-95 text-white/60 hover:text-white"
-                  >
-                    <ChevronRight className="h-5 w-5" />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-
+              </motion.article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-y border-black/10 bg-[#FAF9F6] px-6 py-16 text-[#2C3434] md:py-24">
-        <motion.div
-          className="mx-auto max-w-[1200px]"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={fadeUp}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h2 className="text-4xl font-medium tracking-tight md:text-5xl">How each search is managed</h2>
-              <p className="mt-3 text-sm text-black/60 md:text-base">A practical process designed for speed, quality, and retention.</p>
-            </div>
-            <p className="hidden text-[11px] font-semibold uppercase tracking-[0.25em] text-black/40 md:block">Rigorous. Transparent. Proven.</p>
-          </div>
+      <section className="bg-[#1F2628] px-4 py-16 text-white md:px-6 md:py-22" id="process">
+        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[0.72fr_1.28fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.55 }}
+            className="lg:sticky lg:top-24 lg:h-fit"
+          >
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#E7D08A]">Process</p>
+            <h2 className="mt-4 max-w-[12ch] text-[2.6rem] leading-[0.95] tracking-[-0.04em] text-white md:text-[3.5rem]">
+              A tighter search process for pressured hiring decisions.
+            </h2>
+            <p className="mt-5 max-w-[44ch] text-base leading-relaxed text-white/72">
+              The goal is not to impress you with activity. The goal is to reduce noise, move the right people faster,
+              and make each decision easier for the hiring team.
+            </p>
 
-          <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {steps.map((step, index) => (
-              <li key={step} className="group relative rounded-2xl border border-black/[0.08] bg-white p-6 shadow-sm transition-all hover:border-[#C6A64A]/30 hover:shadow-md">
-                <p className="text-sm font-bold tracking-[0.2em] text-[#C6A64A]">STEP 0{index + 1}</p>
-                <p className="mt-3 text-sm leading-relaxed text-black/75 md:text-base">{step}</p>
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#C6A64A]/40 transition-all group-hover:w-full" />
-              </li>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {['intake', 'search lane', 'shortlist', 'feedback', 'close'].map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-white/12 bg-white/6 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/72"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          <div className="space-y-4">
+            {processSteps.map((step, index) => (
+              <motion.article
+                key={step.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+                className="rounded-[30px] border border-white/10 bg-white/[0.05] p-6 shadow-[0_18px_40px_rgba(0,0,0,0.12)] md:p-7"
+              >
+                <div className="grid gap-5 md:grid-cols-[74px_1fr] md:items-start">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#E7D08A]/28 bg-[#E7D08A]/8 text-lg text-[#E7D08A]">
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+                  <div>
+                    <h3 className="text-[1.5rem] leading-[1.06] tracking-tight text-white">{step.title}</h3>
+                    <p className="mt-3 max-w-[56ch] text-sm leading-relaxed text-white/72 md:text-base">
+                      {step.body}
+                    </p>
+                  </div>
+                </div>
+              </motion.article>
             ))}
-          </ol>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
-      <section className="overflow-hidden bg-[#FAF9F6] py-16 pb-20 text-[#2C3434] md:py-20 border-t border-black/10">
-        <div className="mx-auto max-w-[1200px] px-6 text-center">
+      <section className="border-b border-black/8 bg-[#FAF8F3] px-4 py-16 md:px-6 md:py-22" id="insights">
+        <div className="mx-auto max-w-[1280px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-[760px]"
           >
-            <h2 className="text-4xl font-medium tracking-tight md:text-5xl">What our partners say</h2>
-            <p className="mt-4 text-base text-black/60 font-medium">Real outcomes from hiring managers under pressure.</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--color-accent)]">
+              Insights / content module
+            </p>
+            <h2 className="mt-4 text-[2.45rem] leading-[0.96] tracking-[-0.04em] md:text-[3.4rem]">
+              A site that feels informed, not frozen.
+            </h2>
+            <p className="mt-5 max-w-[56ch] text-base leading-relaxed text-black/66">
+              The homepage should show Sarah as an active recruiter with current market judgment. This module is built
+              so LinkedIn previews, newsletter issues, and short internal market notes can drop in cleanly later.
+            </p>
           </motion.div>
+
+          <div className="mt-10 grid gap-4 lg:grid-cols-3">
+            {insightsCards.map((card, index) => (
+              <motion.article
+                key={card.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+                className="rounded-[28px] border border-black/8 bg-white/84 p-6 shadow-[0_16px_36px_rgba(0,0,0,0.04)]"
+              >
+                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#A8872F]">{card.kicker}</p>
+                <h3 className="mt-5 text-[1.7rem] leading-[1.06] tracking-tight">{card.title}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-black/66">{card.body}</p>
+                <div className="mt-8 flex items-center justify-between border-t border-black/8 pt-4 text-sm text-black/54">
+                  <span>Preview-ready module</span>
+                  <ChevronRight className="h-4 w-4" />
+                </div>
+              </motion.article>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <div className="mt-14 w-full relative">
-          {/* Subtle gradient edges to mask the scrolling items */}
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-[10%] bg-gradient-to-r from-[#FAF9F6] to-transparent md:w-[15%]" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-[10%] bg-gradient-to-l from-[#FAF9F6] to-transparent md:w-[15%]" />
-
-          <div
-            className="flex cursor-grab active:cursor-grabbing w-full justify-center px-4"
-            onMouseEnter={() => setIsReviewAutoPlaying(false)}
-            onMouseLeave={() => setIsReviewAutoPlaying(true)}
-            onTouchStart={() => setIsReviewAutoPlaying(false)}
-            onTouchEnd={() => setIsReviewAutoPlaying(true)}
+      <section className="px-4 py-16 md:px-6 md:py-22">
+        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[0.78fr_1.22fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
           >
-            <AnimatePresence initial={false} mode="popLayout">
-              {reviewItems.slice(0, 3).map((review, index) => {
-                const isCenter = index === 1;
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--color-accent)]">
+              Testimonials + proof
+            </p>
+            <h2 className="mt-4 max-w-[12ch] text-[2.45rem] leading-[0.96] tracking-[-0.04em] md:text-[3.35rem]">
+              Fewer promises. Stronger signals.
+            </h2>
+            <p className="mt-5 max-w-[50ch] text-base leading-relaxed text-black/66">
+              This should feel like a hiring partner who understands role pressure, communication drag, and what a good
+              shortlist is supposed to do for the business.
+            </p>
 
-                return (
-                  <motion.div
-                    layout
-                    key={review.text}
-                    initial={{ opacity: 0, x: 100, scale: 0.8 }}
-                    animate={{
-                      opacity: isCenter ? 1 : 0.4,
-                      x: 0,
-                      scale: isCenter ? 1 : 0.85,
-                    }}
-                    exit={{ opacity: 0, x: -100, scale: 0.8 }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    drag="x"
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={0.2}
-                    onDragEnd={(e, { offset }: any) => {
-                      if (offset.x < -50) slideNextReview();
-                      if (offset.x > 50) slidePrevReview();
-                    }}
-                    className={`relative mx-2 flex w-[85vw] max-w-[420px] shrink-0 flex-col justify-between rounded-3xl border border-black/10 bg-white p-7 shadow-[0_22px_40px_rgba(0,0,0,0.04)] md:mx-4 md:w-[500px] md:p-8 transition-shadow ${isCenter ? 'z-20 shadow-xl' : 'z-0'}`}
-                  >
-                    <div>
-                      <Quote className={`mb-5 h-7 w-7 transition-colors ${isCenter ? 'text-[#C6A64A]' : 'text-black/15'}`} />
-                      <p className={`text-base leading-relaxed md:text-lg md:leading-[1.6] transition-colors ${isCenter ? 'text-black/80' : 'text-black/40'}`}>
-                        &quot;{review.text}&quot;
-                      </p>
-                    </div>
+            <div className="mt-8 space-y-3">
+              {closingProof.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-3 rounded-[22px] border border-black/8 bg-[#F7F4EC] px-4 py-4"
+                >
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#A8872F]" />
+                  <p className="text-sm leading-relaxed text-black/68">{item}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
-                    <div className="mt-8 border-t border-black/5 pt-5">
-                      <p className={`font-semibold tracking-tight transition-colors ${isCenter ? 'text-black' : 'text-black/50'}`}>
-                        {review.author}
-                      </p>
-                      <p className={`mt-1 text-sm font-medium transition-colors ${isCenter ? 'text-[#C6A64A]' : 'text-black/30'}`}>
-                        {review.company}
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
-
-          <div className="mt-12 flex justify-center gap-4">
-            <button
-              onClick={slidePrevReview}
-              aria-label="Previous review"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white shadow-sm transition-all hover:bg-[#F4F2ED] hover:scale-105 active:scale-95 text-black/60 hover:text-black"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </button>
-            <button
-              onClick={slideNextReview}
-              aria-label="Next review"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white shadow-sm transition-all hover:bg-[#F4F2ED] hover:scale-105 active:scale-95 text-black/60 hover:text-black"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </button>
+          <div className="space-y-4">
+            {testimonials.map((testimonial, index) => (
+              <motion.article
+                key={testimonial.quote}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+                className="rounded-[30px] border border-black/8 bg-white/84 p-6 shadow-[0_16px_34px_rgba(0,0,0,0.04)] md:p-7"
+              >
+                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent)]">
+                  Hiring manager perspective
+                </p>
+                <p className="mt-5 text-[1.16rem] leading-[1.65] text-black/78 md:text-[1.22rem]">
+                  &quot;{testimonial.quote}&quot;
+                </p>
+                <div className="mt-6 border-t border-black/8 pt-4">
+                  <p className="text-base tracking-tight">{testimonial.author}</p>
+                  <p className="mt-1 text-sm text-black/52">{testimonial.company}</p>
+                </div>
+              </motion.article>
+            ))}
           </div>
         </div>
+      </section>
+
+      <section className="px-4 pb-18 md:px-6 md:pb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-[1280px] rounded-[34px] border border-[#D6C58E]/32 bg-[linear-gradient(135deg,#F8F4EA_0%,#F6F3EC_50%,#E9EFEC_100%)] px-6 py-8 shadow-[0_24px_60px_rgba(0,0,0,0.06)] md:px-10 md:py-10"
+        >
+          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--color-accent)]">
+                Final step
+              </p>
+              <h2 className="mt-4 max-w-[14ch] text-[2.3rem] leading-[0.98] tracking-[-0.04em] md:text-[3.2rem]">
+                Talk through the role. Leave with a clearer search plan.
+              </h2>
+              <p className="mt-4 max-w-[48ch] text-base leading-relaxed text-black/66">
+                Whether the need is urgent coverage or a harder-to-fill long-term role, the next step should feel
+                direct, calm, and useful.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3 lg:justify-end">
+              <Link
+                href="/book-a-call"
+                className="inline-flex items-center gap-2 rounded-full border border-[#2C3434] bg-[#2C3434] px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition hover:border-[#C6A64A] hover:bg-[#C6A64A] hover:text-[#1F2628]"
+              >
+                <Clock3 className="h-4 w-4" />
+                Book a Call
+              </Link>
+              <Link
+                href="/jobs"
+                className="inline-flex items-center gap-2 rounded-full border border-black/12 bg-white/78 px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-black/70 transition hover:border-[#C6A64A] hover:bg-white hover:text-black"
+              >
+                <Search className="h-4 w-4" />
+                Browse Roles
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-3 border-t border-black/8 pt-6 md:grid-cols-3">
+            <div className="flex items-start gap-3 rounded-[20px] bg-white/58 px-4 py-4">
+              <MessageSquareMore className="mt-0.5 h-4 w-4 shrink-0 text-[#A8872F]" />
+              <p className="text-sm leading-relaxed text-black/66">Start with the real hiring problem, not generic recruiter talk.</p>
+            </div>
+            <div className="flex items-start gap-3 rounded-[20px] bg-white/58 px-4 py-4">
+              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#A8872F]" />
+              <p className="text-sm leading-relaxed text-black/66">Protect fit, speed, and communication without making the process feel heavier.</p>
+            </div>
+            <div className="flex items-start gap-3 rounded-[20px] bg-white/58 px-4 py-4">
+              <NotebookText className="mt-0.5 h-4 w-4 shrink-0 text-[#A8872F]" />
+              <p className="text-sm leading-relaxed text-black/66">Give candidates a cleaner path too, without letting the homepage stop serving employers first.</p>
+            </div>
+          </div>
+        </motion.div>
       </section>
     </div>
   );
