@@ -1,0 +1,14 @@
+## 2026-04-09 - Claude - frontend
+- Task: Full REDESIGN prototype pass — all 4 pages + design system + audit
+- Changed files:
+  - `REDESIGN/homepage.html` — full homepage redesign with scroll reveal, corrected brand green #3D7A65, #FAF9F6 canvas, GreenS logo
+  - `REDESIGN/about.html` — portrait hero, full-bleed green values panel, dark CTA
+  - `REDESIGN/jobs.html` — live search filter, job cards with sector tags, employer nudge
+  - `REDESIGN/book-a-call.html` — intent-focused hero, call detail stats, Calendly embed, 3-step flow
+  - `REDESIGN/DESIGN.md` — design system spec
+  - `REDESIGN/audit-notes.md` — 15 production issues logged across About, Jobs, Book a Call
+  - `public/SF - SS - Logo.svg` — new logo asset
+  - `public/GreenS-logo.svg` — referenced in all REDESIGN pages (existing file)
+- Status: Prototypes complete. Production src/ pages untouched.
+- Blocker: None
+- Next: Apply audit-notes.md fixes to production src/ pages
