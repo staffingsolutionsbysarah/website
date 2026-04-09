@@ -1,3 +1,21 @@
+## 2026-04-09 (session 2) - Claude - frontend
+- Task: Cinematic CN Tower preloader — full rebuild of #preloader block in homepage-cinematic.html
+- Changed files:
+  - `REDESIGN/homepage-cinematic.html` — complete preloader replacement:
+    - Full-bleed CN Tower background image (Stitch export URL) with slow scale-in
+    - Three-layer twilight overlay (radial gradients, rgba(15,21,20,0.68) base)
+    - Staggered animation: bg (0ms) → logo (300ms) → headline (700ms) → marquee (1100ms) → progress+enter (1400ms) → auto-dismiss (3600ms)
+    - Green circle logo mark (#3D7A65) with white SS SVG — brand anchor
+    - Italic Newsreader headline "Recruitment built for the work."
+    - Ontario city marquee (barely visible at 0.28 opacity, 22s scroll)
+    - 2px progress bar, #3D7A65 gradient fill, 2.2s linear
+    - prefers-reduced-motion: skip sequence, dismiss at 100ms
+    - Fixed all asset paths: /GreenS-logo.svg → ../public/GreenS-logo.svg, /sarah-fell.png → ../public/sarah-fell.png
+  - `.claude/launch.json` — added "REDESIGN Preview" server (port 4174)
+- Status: Preloader complete and verified in browser. Hero portrait rendering correctly.
+- Blocker: None
+- Next: Integrate booking API endpoints from Codex (see backend-log 2026-04-09) into book-a-call page
+
 ## 2026-04-09 - Claude - frontend
 - Task: Full REDESIGN prototype pass — all 4 pages + design system + audit
 - Changed files:

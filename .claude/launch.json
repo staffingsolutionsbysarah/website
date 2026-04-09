@@ -13,5 +13,11 @@
       "runtimeArgs": ["-m", "http.server", "4173", "--directory", "out"],
       "port": 4173
     }
+  ,{
+      "name": "REDESIGN Preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4174", "--directory", "."],
+      "port": 4174
+    }
   ]
 }
