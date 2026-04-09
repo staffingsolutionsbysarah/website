@@ -1,0 +1,3 @@
+[      62ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:4174/GreenS-logo.svg:0
+[      63ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:4174/sarah-fell.png:0
+[     314ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:4174/favicon.ico:0
