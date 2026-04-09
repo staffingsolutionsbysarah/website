@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { motion, useMotionValueEvent, useReducedMotion, useScroll, AnimatePresence } from 'framer-motion';
+import { useMotionValueEvent, useScroll, AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
@@ -15,7 +15,6 @@ const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const shouldReduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -64,19 +63,18 @@ export default function Navbar() {
 
             if (item.cta) {
               return (
-                <motion.div key={item.href} whileHover={shouldReduceMotion ? undefined : { y: -2 }} whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}>
-                  <Link
-                    href={item.href}
-                    className={[
-                      'inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] transition',
-                      active
-                        ? 'border-[#C6A64A] bg-[#C6A64A] text-[#1F2628] shadow-[0_10px_26px_rgba(198,166,74,0.28)]'
-                        : 'border-[#2C3434] bg-[#2C3434] text-white hover:border-[#C6A64A] hover:bg-[#C6A64A] hover:text-[#1F2628]',
-                    ].join(' ')}
-                  >
-                    <span className="relative z-10">Book a Call</span>
-                  </Link>
-                </motion.div>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={[
+                    'inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] transition',
+                    active
+                      ? 'border-[#C6A64A] bg-[#C6A64A] text-[#1F2628] shadow-[0_10px_26px_rgba(198,166,74,0.28)]'
+                      : 'border-[#2C3434] bg-[#2C3434] text-white hover:border-[#C6A64A] hover:bg-[#C6A64A] hover:text-[#1F2628]',
+                  ].join(' ')}
+                >
+                  <span className="relative z-10">Book a Call</span>
+                </Link>
               );
             }
 

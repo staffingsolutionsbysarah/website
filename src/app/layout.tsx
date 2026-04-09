@@ -4,7 +4,6 @@ import './globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import PageTransition from '../components/PageTransition';
-import IntroOverlay from '../components/IntroOverlay';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -32,7 +31,6 @@ export default function RootLayout({
       <body
         className={`${cormorant.variable} ${manrope.variable} font-body flex min-h-screen flex-col bg-[var(--color-bg)] text-[var(--color-dark)] antialiased`}
       >
-        <IntroOverlay />
         <Navbar />
         <main className="flex-grow">
           <PageTransition>{children}</PageTransition>

@@ -55,7 +55,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/#book"
+                href="/book-a-call"
                 className="inline-flex items-center gap-2 border border-black/20 bg-transparent px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-black/75 transition hover:border-[#C6A64A] hover:text-black"
               >
                 Book a Call

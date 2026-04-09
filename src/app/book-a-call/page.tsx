@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { InlineWidget } from 'react-calendly';
 import { ArrowRight, CalendarClock, ClipboardList, Mail, ShieldCheck } from 'lucide-react';
 
@@ -40,8 +40,6 @@ const fadeUp = {
 };
 
 export default function BookACallPage() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <div className="relative overflow-hidden bg-[#F3EFE6] text-[var(--color-dark)]">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[linear-gradient(180deg,rgba(198,166,74,0.22),rgba(198,166,74,0))]" />
@@ -69,9 +67,9 @@ export default function BookACallPage() {
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#calendar"
-                className="halo-button inline-flex items-center gap-2 border border-[#2C3434] bg-[#2C3434] px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-[#C6A64A] hover:bg-[#C6A64A] hover:text-[#1F2628]"
+                className="inline-flex items-center gap-2 rounded-full border border-[#2C3434] bg-[#2C3434] px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-[#C6A64A] hover:bg-[#C6A64A] hover:text-[#1F2628]"
               >
-                <span className="relative z-10 inline-flex items-center gap-2">
+                <span className="inline-flex items-center gap-2">
                   See Available Times
                   <ArrowRight className="h-4 w-4" />
                 </span>
@@ -91,12 +89,7 @@ export default function BookACallPage() {
             transition={{ duration: 0.78, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            <div className="orbital-ring left-[8%] top-[6%] h-[84%] w-[84%]" />
-            <div className="orbital-ring right-[-5%] top-[24%] h-[46%] w-[46%]" />
-
             <motion.div
-              animate={shouldReduceMotion ? undefined : { y: [0, -9, 0] }}
-              transition={shouldReduceMotion ? undefined : { duration: 7.5, repeat: Infinity, ease: 'easeInOut' }}
               className="motion-panel overflow-hidden rounded-[32px] border border-black/10 bg-[linear-gradient(160deg,#fcf8ef_0%,#ece2cb_54%,#dfe8e4_100%)] p-6 shadow-[0_28px_65px_rgba(0,0,0,0.14)]"
             >
               <div className="grid gap-3 sm:grid-cols-2">
@@ -232,11 +225,6 @@ export default function BookACallPage() {
                   hidden: { opacity: 0, y: 24, rotate: index === 1 ? 0 : index % 2 === 0 ? -1.2 : 1.2 },
                   show: { opacity: 1, y: 0, rotate: 0 },
                 }}
-                whileHover={
-                  shouldReduceMotion
-                    ? undefined
-                    : { y: -10, transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] } }
-                }
                 className="motion-panel rounded-[24px] border border-white/15 bg-white/[0.04] p-6 shadow-[0_14px_28px_rgba(0,0,0,0.2)]"
               >
                 <p className="text-[10px] uppercase tracking-[0.22em] text-[#E7D08A]">0{index + 1}</p>
