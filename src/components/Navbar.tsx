@@ -24,43 +24,58 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
-    setIsScrolled(latest > 24);
+    setIsScrolled(latest > 20);
   });
+
+  const isHome = pathname === '/';
 
   return (
     <nav
-      className="sticky top-0 z-50 border-b border-black/8 bg-[#FAFAFA]/82 backdrop-blur-xl"
+      className={[
+        'sticky top-0 z-50 transition-all duration-500',
+        isScrolled 
+          ? 'border-b border-black/5 bg-white/95 backdrop-blur-2xl shadow-sm' 
+          : isHome 
+            ? 'border-transparent bg-transparent shadow-none backdrop-blur-none' 
+            : 'border-b border-black/5 bg-[#FAFAFA]/90 backdrop-blur-md',
+      ].join(' ')}
     >
-      <div
-        className={[
-          'mx-auto flex max-w-[1380px] items-center justify-between px-4 md:px-6 transition-all duration-300',
-          isScrolled ? 'h-14 md:h-16' : 'h-16 md:h-20',
-        ].join(' ')}
-      >
+      <div className="mx-auto flex max-w-[1380px] items-center justify-between px-4 md:px-6 h-16 md:h-20 transition-all duration-500">
+        {/* Logo Lockup */}
         <Link
           href="/"
           onClick={() => setMobileOpen(false)}
-          data-brand-logo
-          className="relative flex cursor-pointer flex-row items-center gap-2.5 font-heading leading-snug tracking-tight text-[var(--color-dark)]"
+          className="group relative flex items-center gap-3"
         >
-          <Image src="/GreenS-logo.svg" alt="Staffing Solutions by Sarah Fell" width={40} height={40} className="object-contain mix-blend-multiply" />
-          <div className="flex flex-col items-start">
-            <span className="text-[10px] md:text-sm font-semibold uppercase tracking-widest">Staffing Solutions by</span>
-            <span className="relative text-sm md:text-base font-medium italic tracking-normal text-gray-600">
-              Sarah Fell, Inc.
-              <span
-                className={[
-                  'absolute -bottom-1 left-0 h-px bg-[linear-gradient(90deg,#C6A64A_0%,rgba(198,166,74,0)_100%)] transition-all duration-300',
-                  isScrolled ? 'w-full opacity-100' : 'w-2/3 opacity-70',
-                ].join(' ')}
-              />
+          <div className="relative h-9 w-9 md:h-10 md:w-10 transition-transform duration-300 group-hover:scale-105">
+            <Image 
+              src="/GreenS-logo.svg" 
+              alt="SF" 
+              fill 
+              className="object-contain transition-all duration-500"
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className={[
+              'text-[9px] md:text-[10px] font-bold uppercase tracking-[0.25em] leading-none transition-colors duration-500',
+              !isScrolled && isHome ? 'text-white' : 'text-[#2C3434]'
+            ].join(' ')}>
+              Staffing Solutions
+            </span>
+            <span className={[
+              'mt-1 text-xs md:text-sm font-medium italic tracking-tight leading-none transition-colors duration-500',
+              !isScrolled && isHome ? 'text-white/80' : 'text-gray-500'
+            ].join(' ')}>
+              by Sarah Fell, Inc.
             </span>
           </div>
         </Link>
 
-        <div className="hidden lg:flex items-center gap-4 md:gap-5">
+        {/* Desktop Nav */}
+        <div className="hidden lg:flex items-center gap-6">
           {navItems.map((item) => {
             const active = pathname === item.href;
+            const useLightText = !isScrolled && isHome;
 
             if (item.cta) {
               return (
@@ -68,13 +83,15 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={[
-                    'inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] transition',
+                    'inline-flex items-center rounded-full px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300',
                     active
-                      ? 'border-[#C6A64A] bg-[#C6A64A] text-[#1F2628] shadow-[0_10px_26px_rgba(198,166,74,0.28)]'
-                      : 'border-[#2C3434] bg-[#2C3434] text-white hover:border-[#C6A64A] hover:bg-[#C6A64A] hover:text-[#1F2628]',
+                      ? 'bg-[#C6A64A] text-[#1F2628]'
+                      : useLightText
+                        ? 'bg-white text-[#2C3434] hover:bg-[#C6A64A] hover:text-[#1F2628]'
+                        : 'bg-[#2C3434] text-white hover:bg-[#C6A64A]'
                   ].join(' ')}
                 >
-                  <span className="relative z-10">{item.label}</span>
+                  {item.label}
                 </Link>
               );
             }
@@ -84,76 +101,60 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 className={[
-                  'relative px-1 pb-1 pt-1 text-[11px] font-semibold uppercase tracking-widest transition',
-                  active ? 'text-gray-950' : 'text-gray-500 hover:text-gray-900',
+                  'relative text-[10px] font-bold uppercase tracking-[0.18em] transition-colors duration-300',
+                  active 
+                    ? useLightText ? 'text-[#E7D08A]' : 'text-[#2C3434]'
+                    : useLightText ? 'text-white/70 hover:text-white' : 'text-gray-500 hover:text-[#2C3434]',
                 ].join(' ')}
               >
                 {item.label}
-                <span
-                  className={[
-                    'absolute bottom-0 left-0 h-[2px] rounded-full bg-[#C6A64A] transition-all duration-300',
-                    active ? 'w-full opacity-100' : 'w-0 opacity-0',
-                  ].join(' ')}
-                />
+                <span className={[
+                  'absolute -bottom-1 left-0 h-[1.5px] transition-all duration-300',
+                  active ? 'w-full opacity-100' : 'w-0 opacity-0',
+                  useLightText ? 'bg-[#E7D08A]' : 'bg-[#C6A64A]'
+                ].join(' ')} />
               </Link>
             );
           })}
         </div>
 
+        {/* Mobile Toggle */}
         <button
-          className="flex lg:hidden items-center justify-center h-9 w-9 text-[#2C3434]"
-          onClick={() => setMobileOpen((o) => !o)}
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          className={[
+            'flex lg:hidden items-center justify-center h-10 w-10 rounded-full transition-colors',
+            !isScrolled && isHome ? 'text-white hover:bg-white/10' : 'text-[#2C3434] hover:bg-black/5'
+          ].join(' ')}
+          onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-black/8 bg-[#FAFAFA]/95 backdrop-blur-xl lg:hidden"
+            className="absolute inset-x-0 top-full overflow-hidden border-b border-black/5 bg-white shadow-xl lg:hidden"
           >
-            <div className="flex flex-col px-4 py-4 gap-1">
-              {navItems.map((item) => {
-                const active = pathname === item.href;
-
-                if (item.cta) {
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={[
-                        'mt-2 flex items-center justify-center rounded-full border px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] transition',
-                        active
-                          ? 'border-[#C6A64A] bg-[#C6A64A] text-[#1F2628]'
-                          : 'border-[#2C3434] bg-[#2C3434] text-white',
-                      ].join(' ')}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                }
-
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={[
-                      'px-2 py-3 text-sm uppercase tracking-widest border-b border-black/6 transition',
-                      active ? 'text-gray-950' : 'text-gray-600',
-                    ].join(' ')}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
+            <div className="flex flex-col p-6 gap-4">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={[
+                    'text-[11px] font-bold uppercase tracking-[0.15em] transition-colors',
+                    item.cta 
+                      ? 'mt-2 rounded-xl bg-[#2C3434] p-4 text-center text-white active:bg-[#C6A64A]' 
+                      : 'border-b border-black/5 pb-4 text-gray-600 active:text-[#2C3434]'
+                  ].join(' ')}
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </motion.div>
         )}
