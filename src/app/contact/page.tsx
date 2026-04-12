@@ -5,7 +5,7 @@ const contactOptions = [
   {
     title: 'General inquiries',
     body: 'Use this route when the right next step is not obvious yet and you need to reach Sarah directly.',
-    detail: 'sarah@staffingsolutionsbysarah.com',
+    detail: 'Direct inquiry route',
   },
   {
     title: 'Hiring conversations',

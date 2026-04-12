@@ -13,11 +13,11 @@ export type LegalDocument = {
 };
 
 const dateLabel = 'April 12, 2026';
-const contactEmail = 'sarah@staffingsolutionsbysarah.com';
+const contactEmail = 'Sarah.fell@staffingsolutionsbysarah.com';
 
 export const legalDocuments: LegalDocument[] = [
   {
-    href: '/privacy-policy',
+    href: '/privacy',
     title: 'Privacy Policy',
     effectiveDate: dateLabel,
     updatedDate: dateLabel,
@@ -82,7 +82,7 @@ export const legalDocuments: LegalDocument[] = [
     ],
   },
   {
-    href: '/terms-of-use',
+    href: '/terms',
     title: 'Terms of Use',
     effectiveDate: dateLabel,
     updatedDate: dateLabel,
@@ -142,7 +142,7 @@ export const legalDocuments: LegalDocument[] = [
     ],
   },
   {
-    href: '/recruitment-disclaimer',
+    href: '/disclaimer',
     title: 'Recruitment Disclaimer',
     effectiveDate: dateLabel,
     updatedDate: dateLabel,

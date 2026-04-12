@@ -1,7 +1,7 @@
 # Staffing Solutions by Sarah Fell Incorporated — Legal Copy Draft
 
 Status: Drafted based on current setup
-Privacy/contact email currently set to: Sarah.fell@staffingsolutonsbysarah.com (temporary)
+Privacy/contact email currently set to: Sarah.fell@staffingsolutionsbysarah.com (confirmed)
 Province: Ontario
 Current site functions: booking inquiries now; resumes may be collected later
 Email marketing/newsletters: not active now
@@ -152,7 +152,7 @@ We may update this Privacy Policy from time to time. The updated version will be
 For privacy questions, access requests, correction requests, or consent withdrawal, contact:
 
 **Staffing Solutions by Sarah Fell Incorporated**  
-Sarah.fell@staffingsolutonsbysarah.com  
+Sarah.fell@staffingsolutionsbysarah.com  
 [Insert Phone Number, if desired]
 
 ---
@@ -212,7 +212,7 @@ These Terms of Use are governed by the laws of the Province of Ontario and the l
 Questions about these Terms of Use may be directed to:
 
 **Staffing Solutions by Sarah Fell Incorporated**  
-Sarah.fell@staffingsolutonsbysarah.com
+Sarah.fell@staffingsolutionsbysarah.com
 
 ---
 
@@ -264,7 +264,7 @@ This website may rely on third-party tools or platforms, including scheduling or
 Questions about this Disclaimer may be directed to:
 
 **Staffing Solutions by Sarah Fell Incorporated**  
-Sarah.fell@staffingsolutonsbysarah.com
+Sarah.fell@staffingsolutionsbysarah.com
 
 ---
 
@@ -285,7 +285,6 @@ Sarah.fell@staffingsolutonsbysarah.com
 - Keep the legal content in a readable overlay or full-page panel.
 - Use the liquid-glass style for shell, tabs, and controls, not behind long blocks of legal text.
 - Use a sticky internal tab navigation: Privacy Policy / Terms of Use / Disclaimer.
-- Once the privacy/contact email is confirmed, replace all placeholder email fields.
+- Confirmed privacy/contact email: `Sarah.fell@staffingsolutionsbysarah.com`.
 - If resume upload goes live later, revisit the Privacy Policy and expand the candidate-information section before launch.
 - If newsletters or automated marketing emails are ever introduced, add explicit consent wording to forms and review CASL compliance in the email flow.
-

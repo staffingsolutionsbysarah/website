@@ -2,54 +2,96 @@
 
 import { industries } from '@/data/industries';
 import { motion } from 'framer-motion';
-import { Factory, Hammer, HardHat, BriefcaseBusiness, Users, MapPinned, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
-const iconMap: Record<string, any> = {
-  'manufacturing-skilled-trades': Factory,
-  'food-grocery-retail': MapPinned,
-  'construction': HardHat,
-  'finance-accounting': BriefcaseBusiness,
-  'it-technology': MapPinned,
-  'sales-marketing': Users,
-  'administrative-support': Users,
+const industryImages: Record<string, string> = {
+  'manufacturing-skilled-trades': '/images/download-2.jpg',
+  'food-grocery-retail': '/images/download-3.jpg',
+  'construction': '/images/download-4.jpg',
+  'finance-accounting': '/images/download.jpg',
+  'it-technology': '/images/download-4.jpg',
+  'sales-marketing': '/images/download-3.jpg',
+  'administrative-support': '/images/download-1.jpg',
 };
 
 export default function IndustriesHub() {
   return (
-    <div className="depth-canvas bg-[var(--color-bg)] text-[var(--color-dark)]">
-      <section className="px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-[1200px]">
+    <div className="depth-canvas bg-[#FAFAFA] text-[var(--color-dark)]">
+      <section className="px-6 pb-20 pt-24 md:pt-40">
+        <div className="mx-auto max-w-[1380px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-[800px]"
+            className="max-w-[900px]"
           >
-            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[var(--color-accent)]">Specialization</p>
-            <h1 className="mt-6 text-[3.2rem] leading-[0.92] tracking-[-0.04em] md:text-[4.5rem]">Industry Coverage</h1>
-            <p className="mt-8 text-lg leading-relaxed text-black/70">
-              We focus on the sectors where recruiter judgment and sector-specific experience directly impact hiring quality. Our primary coverage includes industrial, technical, and professional operations across Ontario.
+            <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#C6A64A]">Industries</p>
+            <h1 className="mt-8 text-[3.5rem] leading-[0.88] tracking-[-0.05em] md:text-[6rem] lg:text-[7.5rem]">
+              Ontario Sector <br />Coverage.
+            </h1>
+            <p className="mt-8 max-w-[34rem] text-lg leading-relaxed text-black/60">
+              Separate industry pages keep sector relevance, hiring pressure, and search context clearer for both employers and candidates.
             </p>
           </motion.div>
+        </div>
+      </section>
 
-          <div className="mt-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {industries.map((industry) => {
-              const Icon = iconMap[industry.slug] || Factory;
-              return (
-                <Link key={industry.slug} href={`/industries/${industry.slug}`} className="group depth-plane p-8 block transition hover:border-[var(--color-accent)]/40">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent)] transition group-hover:bg-[var(--color-accent)] group-hover:text-white">
-                    <Icon className="h-5 w-5" />
+      {/* Editorial List Hub */}
+      <section className="px-6 pb-32">
+        <div className="mx-auto max-w-[1380px]">
+          <div className="border-t border-black/10">
+            {industries.map((industry) => (
+              <Link 
+                key={industry.slug} 
+                href={`/industries/${industry.slug}`}
+                className="group relative block border-b border-black/10 px-4 py-12 transition-all hover:bg-white/70 md:px-8 md:py-16"
+              >
+                <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-center">
+                  <div className="max-w-[800px]">
+                    <h2 className="text-3xl font-medium tracking-tight transition-transform duration-500 group-hover:translate-x-2 md:text-5xl lg:text-6xl">
+                      {industry.title}
+                    </h2>
+                    <p className="mt-6 max-w-[620px] text-base leading-relaxed text-black/58 transition-colors duration-300 group-hover:text-black/74 md:text-lg">
+                      {industry.summary}
+                    </p>
                   </div>
-                  <h2 className="mt-6 text-2xl font-medium tracking-tight group-hover:text-[var(--color-accent)] transition">{industry.title}</h2>
-                  <p className="mt-4 text-sm leading-relaxed text-black/64">{industry.summary}</p>
-                  <div className="mt-8 editorial-rule" />
-                  <div className="mt-6 flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">
-                    View Sector
-                    <ArrowRight className="h-4 w-4" />
+                  
+                  <div className="flex items-center gap-6 lg:justify-end">
+                    <div className="relative hidden h-40 w-60 overflow-hidden rounded-[28px] border border-black/6 shadow-[0_18px_42px_rgba(0,0,0,0.08)] lg:block">
+                      <Image 
+                        src={industryImages[industry.slug] || '/images/download-2.jpg'} 
+                        alt={industry.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+                    </div>
+                    <ArrowRight className="h-6 w-6 text-[#C6A64A] transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
-                </Link>
-              );
-            })}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Narrative Footer */}
+      <section className="px-6 pb-32 pt-16">
+        <div className="mx-auto max-w-[1380px] grid lg:grid-cols-2 gap-20 border-t border-black/5 pt-32">
+          <div>
+            <h3 className="text-3xl font-medium tracking-tight">Depth over breadth.</h3>
+            <p className="mt-8 text-xl leading-relaxed text-black/60 max-w-[540px]">
+              We focus on the sectors where recruiter judgment directly impacts hiring quality. By specializing in Ontario’s industrial, technical, and professional operations, we provide a search process built on actual sector relevance.
+            </p>
+          </div>
+          <div className="flex flex-col justify-end items-start lg:items-end">
+            <Link href="/book-a-call" className="group flex items-center gap-6 text-3xl font-medium tracking-tight hover:text-[#C6A64A] transition-colors">
+              Discuss requirements
+              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-black/10 group-hover:border-[#C6A64A] group-hover:bg-[#C6A64A] group-hover:text-white transition-all">
+                <ArrowRight className="h-6 w-6" />
+              </div>
+            </Link>
           </div>
         </div>
       </section>

@@ -115,7 +115,7 @@ export function getBookingConfig(): BookingConfig {
     bookingFromEmail: process.env.BOOKING_FROM_EMAIL,
     bookingReplyToEmail: process.env.BOOKING_REPLY_TO_EMAIL,
     bookingNotificationTo:
-      process.env.BOOKING_NOTIFICATION_TO || 'sarah@staffingsolutionsbysarah.com',
+      process.env.BOOKING_NOTIFICATION_TO || 'Sarah.fell@staffingsolutionsbysarah.com',
     allowLogOnly:
       process.env.BOOKING_ALLOW_LOG_ONLY === 'true' || process.env.NODE_ENV !== 'production',
   };

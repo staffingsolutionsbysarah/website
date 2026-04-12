@@ -1,40 +1,15 @@
-import Image from 'next/image';
-import Link from 'next/link';
+'use client';
+
 import {
   ArrowRight,
-  BriefcaseBusiness,
   CheckCircle2,
   Clock3,
-  Factory,
-  Hammer,
-  HardHat,
-  MapPinned,
-  Users,
 } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-const heroMoments = [
-  {
-    image: '/images/download-2.jpg',
-    eyebrow: 'Manufacturing hiring support',
-    title: 'Plant, production, and operations hiring handled with tighter intake and less drag.',
-    body: 'Built for employers who need better fit, faster decisions, and fewer weak interviews when downtime matters.',
-    note: 'Urgent coverage. Better fit. Direct recruiter ownership.',
-  },
-  {
-    image: '/images/download-1.jpg',
-    eyebrow: 'Skilled trades recruitment',
-    title: 'Trades searches run against shift reality, technical credibility, and actual plant fit.',
-    body: 'Millwright, mechanic, electrician, maintenance, and field-heavy roles where title matching is not enough.',
-    note: 'Ontario-first trades lens with sharper qualification.',
-  },
-  {
-    image: '/images/download-4.jpg',
-    eyebrow: 'Operations and project pressure',
-    title: 'Search support for fast-moving teams that cannot afford a slow or noisy process.',
-    body: 'Useful when the role brief is messy, the hiring team is stretched, and the shortlist still needs to be strong.',
-    note: 'Cleaner process. Stronger shortlist. Better communication.',
-  },
-] as const;
+// Components
+import HeroStage from '@/components/home/HeroStage';
 
 const proofStrip = [
   {
@@ -69,6 +44,8 @@ const serviceModel = [
     body: 'Clearer search direction and tighter feedback loops help employers move faster without lowering judgment.',
   },
 ] as const;
+
+import { Factory, Hammer, HardHat, BriefcaseBusiness, Users, MapPinned } from 'lucide-react';
 
 const capabilityLanes = [
   {
@@ -189,134 +166,24 @@ const closingProof = [
 ] as const;
 
 export default function HomePage() {
-  const heroMoment = heroMoments[0];
-
   return (
     <div className="depth-canvas bg-[var(--color-bg)] text-[var(--color-dark)]">
-      <section className="relative px-4 pb-20 pt-10 md:px-6 md:pb-28 md:pt-14">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[54vh] bg-[radial-gradient(circle_at_top_left,rgba(198,166,74,0.18),transparent_38%),radial-gradient(circle_at_80%_18%,rgba(75,99,94,0.14),transparent_28%)]" />
-        <div className="mx-auto max-w-[1380px]">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(620px,1.22fr)] lg:items-end">
-            <div className="relative z-10 max-w-[42rem] pb-6 lg:pb-18">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-[var(--color-accent)]">
-                Ontario recruitment partner
-              </p>
-              <h1 className="mt-5 max-w-[12ch] text-[3.2rem] leading-[0.86] tracking-[-0.05em] md:text-[4.8rem] xl:text-[5.6rem]">
-                Recruitment support for employers who cannot afford the wrong hire.
-              </h1>
-              <p className="mt-6 max-w-[58ch] text-[1.02rem] leading-relaxed text-black/68 md:text-[1.08rem]">
-                Sarah Fell works with Ontario employers hiring into manufacturing, skilled trades, operations,
-                construction, and related business functions. The value is direct recruiter access, tighter shortlist
-                logic, less hiring drag, and stronger fit.
-              </p>
+      <HeroStage />
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/hire-talent" className="btn-primary">
-                  Book a Hiring Call
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link href="/find-work" className="btn-secondary">
-                  View Active Roles
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-
-              <div className="mt-12 max-w-[34rem] border-l border-black/10 pl-5">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black/42">Employer view</p>
-                <p className="mt-3 text-base leading-relaxed text-black/62">
-                  Manufacturing, skilled trades, operations, and industrial hiring handled with more judgment and less
-                  drag.
+      <div className="mx-auto max-w-[1380px] px-4 md:px-6">
+        <div className="relative z-20 -mt-10 md:-mt-16">
+          <div className="depth-plane mx-auto grid max-w-[1220px] gap-6 px-6 py-6 md:grid-cols-4 md:px-8">
+            {proofStrip.map((item) => (
+              <div key={item.value}>
+                <p className="text-[1.35rem] tracking-tight text-[var(--color-dark)]">{item.value}</p>
+                <p className="mt-3 max-w-[18ch] text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent)]">
+                  {item.label}
                 </p>
               </div>
-            </div>
-
-            <div className="relative lg:pl-6">
-              <div className="depth-plane relative min-h-[680px] rounded-[36px]">
-                <div className="absolute inset-0">
-                  <Image
-                    src={heroMoment.image}
-                    alt={heroMoment.eyebrow}
-                    fill
-                    priority
-                    sizes="(max-width: 1023px) 100vw, 760px"
-                    className="object-cover"
-                  />
-                  <div className="depth-veil" />
-                </div>
-
-                <div className="absolute left-5 top-5 max-w-[18rem] rounded-[22px] px-4 py-4 depth-caption md:left-7 md:top-7">
-                  <div className="flex items-center gap-3">
-                    <Image
-                      src="/sarah-fell.png"
-                      alt="Sarah Fell"
-                      width={48}
-                      height={48}
-                      className="h-12 w-12 rounded-full object-cover"
-                    />
-                    <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/42">
-                        Direct with Sarah
-                      </p>
-                      <p className="mt-1 text-sm leading-relaxed text-black/70">
-                        Recruiter-led search ownership from intake through close.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute inset-x-0 bottom-0 grid gap-6 p-6 md:grid-cols-[minmax(0,1fr)_180px] md:items-end md:p-8">
-                  <div className="max-w-[38rem]">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#E7D08A]">
-                      {heroMoment.eyebrow}
-                    </p>
-                    <h2 className="mt-3 max-w-[15ch] text-[2rem] leading-[0.96] tracking-[-0.04em] text-white md:text-[2.65rem]">
-                      {heroMoment.title}
-                    </h2>
-                    <p className="mt-4 max-w-[36ch] text-sm leading-relaxed text-white/78 md:text-[0.98rem]">
-                      {heroMoment.body}
-                    </p>
-                  </div>
-
-                  <div className="rounded-[24px] px-4 py-4 depth-caption-dark">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/58">Field note</p>
-                    <p className="mt-3 text-sm leading-relaxed text-white/84">{heroMoment.note}</p>
-                  </div>
-                </div>
-
-                <div className="absolute right-5 top-1/2 hidden w-[190px] -translate-y-1/2 gap-4 rounded-[28px] px-5 py-5 depth-caption lg:grid">
-                  {heroMoments.map((moment, index) => (
-                    <div
-                      key={moment.eyebrow}
-                      className={[
-                        'border-b border-black/8 pb-4 last:border-b-0 last:pb-0',
-                        index === 0 ? '' : 'opacity-68',
-                      ].join(' ')}
-                    >
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/34">
-                        {String(index + 1).padStart(2, '0')}
-                      </p>
-                      <p className="mt-2 text-sm leading-snug text-black/76">{moment.eyebrow}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative z-20 -mt-10 md:-mt-16">
-            <div className="depth-plane mx-auto grid max-w-[1220px] gap-6 px-6 py-6 md:grid-cols-4 md:px-8">
-              {proofStrip.map((item) => (
-                <div key={item.value}>
-                  <p className="text-[1.35rem] tracking-tight text-[var(--color-dark)]">{item.value}</p>
-                  <p className="mt-3 max-w-[18ch] text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent)]">
-                    {item.label}
-                  </p>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
 
       <section className="relative -mt-6 px-4 py-18 md:px-6 md:py-24" id="services">
         <div className="mx-auto grid max-w-[1380px] gap-10 lg:grid-cols-[minmax(280px,0.34fr)_minmax(0,0.66fr)]">
@@ -336,7 +203,8 @@ export default function HomePage() {
               <Link href="/industries" className="btn-primary">
                 View Industries
                 <ArrowRight className="h-4 w-4" />
-              </Link>              <Link href="/hire-talent" className="btn-secondary">
+              </Link>
+              <Link href="/hire-talent" className="btn-secondary">
                 Hire Talent
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -422,17 +290,6 @@ export default function HomePage() {
               sequence, not through aggressive animation.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/our-process" className="btn-primary">
-                View Full Process
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href="/request-talent-profile" className="btn-secondary">
-                Request Talent Profile
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-
             <div className="mt-8 depth-plane-dark rounded-[30px] px-6 py-6">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/55">Outcome focus</p>
               <p className="mt-4 text-[1.35rem] leading-[1.45] tracking-tight text-white">
@@ -486,17 +343,6 @@ export default function HomePage() {
               The site can feel expansive without becoming noisy. This section keeps market notes and recruiter
               perspective visible without turning the homepage into a content feed.
             </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/locations" className="btn-primary">
-                Explore Locations
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href="/contact" className="btn-secondary">
-                Contact Sarah
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
 
             <div className="mt-10 editorial-rule" />
 
