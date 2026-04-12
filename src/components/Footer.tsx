@@ -61,7 +61,7 @@ export default function Footer() {
             <Link href="/disclaimer" className="text-[10px] uppercase tracking-[0.18em] text-white/42 hover:text-[#E7D08A] transition-colors">Disclaimer</Link>
           </div>
           <p className="text-[10px] uppercase tracking-[0.18em] text-white/42">
-            © 2024 Staffing Solutions by Sarah Fell Inc.
+            © 2026 Staffing Solutions by Sarah Fell Inc.
           </p>
         </div>
       </div>

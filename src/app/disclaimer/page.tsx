@@ -69,7 +69,8 @@ export default function DisclaimerPage() {
                 This website may rely on third-party tools or platforms, including scheduling or analytics providers. We are not responsible for outages, delays, errors, or privacy practices relating to third-party services.
               </p>
               <p className="mt-4">
-                Questions about this disclaimer may be directed to Staffing Solutions by Sarah Fell Incorporated through the website contact path.
+                Questions about this Disclaimer may be directed to Staffing Solutions by Sarah Fell Incorporated at{' '}
+                <a href="mailto:Sarah.fell@staffingsolutionsbysarah.com" className="underline hover:text-[var(--color-primary)]">Sarah.fell@staffingsolutionsbysarah.com</a>.
               </p>
             </section>
           </div>

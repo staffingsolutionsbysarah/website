@@ -83,7 +83,8 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">8. Contact</h2>
               <p>
-                Questions about these Terms of Use may be directed to Staffing Solutions by Sarah Fell Incorporated through the website contact path.
+                Questions about these Terms of Use may be directed to Staffing Solutions by Sarah Fell Incorporated at{' '}
+                <a href="mailto:Sarah.fell@staffingsolutionsbysarah.com" className="underline hover:text-[var(--color-primary)]">Sarah.fell@staffingsolutionsbysarah.com</a>.
               </p>
             </section>
           </div>

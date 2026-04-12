@@ -108,7 +108,8 @@ export default function PrivacyPage() {
                 At present, the website is primarily used for inquiries and booking requests. If resume uploads, candidate profiles, or job application features are expanded later, this policy may be updated to describe those practices in more detail.
               </p>
               <p className="mt-4">
-                We may update this Privacy Policy from time to time. Questions about privacy, access, correction, or consent withdrawal should be directed through the website contact path.
+                We may update this Privacy Policy from time to time. For privacy questions, access requests, correction requests, or consent withdrawal, contact Staffing Solutions by Sarah Fell Incorporated at{' '}
+                <a href="mailto:Sarah.fell@staffingsolutionsbysarah.com" className="underline hover:text-[var(--color-primary)]">Sarah.fell@staffingsolutionsbysarah.com</a>.
               </p>
             </section>
           </div>

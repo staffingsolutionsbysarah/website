@@ -72,14 +72,14 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
 
       <LinkCardGrid
         title="Related industry pages"
-        description="Regional pages should connect back into the specialization structure so the silo logic stays intact."
+        description="Industries active in this region. Explore the sector coverage most relevant to your hiring needs."
         cards={relatedIndustries}
       />
 
       <CallToActionPanel
-        eyebrow="Route forward"
-        title="Use the local market page, then move into the right action."
-        body="Regional trust is useful only if the next step is obvious. From here, that means booking, contact, intake, or browsing active jobs."
+        eyebrow="Next step"
+        title="Ready to talk through a role in this area?"
+        body="Local market knowledge is only useful when the next step is clear. Book a call to discuss the role, or browse active jobs in the region."
         actions={[
           { href: '/book-a-call', label: 'Book a Call' },
           { href: '/jobs', label: 'Browse Jobs', variant: 'secondary' },

@@ -138,9 +138,9 @@ const insightCards = [
     body: 'Short commercial observations designed to help employers calibrate earlier and hire with less drag.',
   },
   {
-    kicker: 'Newsletter-ready',
-    title: 'A cleaner place for market notes, hiring commentary, and LinkedIn-adjacent thought leadership.',
-    body: 'Built to keep the site feeling current without turning the homepage into a generic blog grid.',
+    kicker: 'Perspective',
+    title: 'What hiring managers are getting wrong about candidate availability right now.',
+    body: 'Strong candidates move faster than most hiring timelines expect. The employers closing roles in this market are calibrated earlier — not lower.',
   },
 ] as const;
 
@@ -195,8 +195,7 @@ export default function HomePage() {
               Specialist coverage with stronger search judgment.
             </h2>
             <p className="mt-5 max-w-[34rem] text-base leading-relaxed text-black/66">
-              The page still reads like a one-pager, but this section opens sideways into different hiring lanes.
-              Trackpad, swipe, or drag through the sector chapters without breaking the overall flow.
+              Six hiring lanes. Each sector operates with the same direct recruiter ownership and qualification logic — applied to the specific pressures of that industry and role environment.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -286,8 +285,7 @@ export default function HomePage() {
               A guided search process instead of a vague recruiter pitch.
             </h2>
             <p className="mt-5 max-w-[34rem] text-base leading-relaxed text-white/72">
-              The process section is treated like a recessed chamber in the page. The content moves forward through
-              sequence, not through aggressive animation.
+              Five steps with no hand-offs between intake and close. Scope, search, shortlist, feedback, and offer-stage communication stay connected so judgment does not get lost between stages.
             </p>
 
             <div className="mt-8 depth-plane-dark rounded-[30px] px-6 py-6">
@@ -340,8 +338,7 @@ export default function HomePage() {
               Current enough to feel alive. Focused enough to stay credible.
             </h2>
             <p className="mt-5 max-w-[48ch] text-base leading-relaxed text-black/66">
-              The site can feel expansive without becoming noisy. This section keeps market notes and recruiter
-              perspective visible without turning the homepage into a content feed.
+              Periodic notes from Sarah on what is affecting industrial and trades hiring across Ontario. Commercial perspective from a working recruiter, not a content calendar.
             </p>
 
             <div className="mt-10 editorial-rule" />
@@ -375,8 +372,7 @@ export default function HomePage() {
               Stronger trust signals without agency fluff.
             </h2>
             <p className="mt-5 max-w-[34rem] text-base leading-relaxed text-black/66">
-              Employers need to feel quickly that Sarah understands hiring pressure, communicates directly, and improves
-              the quality of decision-making around the shortlist.
+              Shorter review cycles. Stronger shortlists. Fewer interviews wasted on candidates who looked right on paper but were not the right fit for the actual role and team.
             </p>
 
             <div className="mt-8 space-y-3">
