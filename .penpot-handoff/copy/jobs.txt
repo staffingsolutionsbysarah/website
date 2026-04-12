@@ -1,0 +1,30 @@
+JOBS PAGE
+
+Headline:
+- Active positions we are currently recruiting.
+
+Body:
+- Each role below is an active public search. If you are a hiring manager looking to fill a similar position, book a call.
+
+Search label:
+- Search roles
+
+Search placeholder:
+- Search roles…
+
+Current empty state:
+- No active roles
+- Nothing posted right now.
+- We post roles as searches go live. Check back soon, or book a call to discuss an upcoming hiring need.
+
+CTA:
+- Book a Call
+
+Candidate path note:
+- If future active roles are added, each role card should show:
+  title
+  type
+  location
+  salary if present
+  summary
+  View Role

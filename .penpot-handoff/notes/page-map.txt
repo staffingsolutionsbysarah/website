@@ -1,0 +1,27 @@
+PAGE MAP
+
+Pages included in reference screenshots:
+- Homepage
+- About
+- Jobs
+- Book a Call
+
+Recommended Penpot rebuild order:
+1. Import reference screenshots into Penpot
+2. Place editable logos and images
+3. Rebuild homepage layout first
+4. Rebuild About
+5. Rebuild Jobs
+6. Rebuild Book a Call
+7. Add prototype links between pages
+
+Prototype path suggestion:
+- Home -> About
+- Home -> Jobs
+- Home -> Book a Call
+- About -> Book a Call
+- Jobs -> Book a Call
+
+Note:
+- The screenshots were generated from the local app and are suitable as visual references.
+- Rebuild interactions in Penpot rather than trying to treat screenshots as source design files.
