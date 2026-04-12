@@ -8,8 +8,12 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const navItems = [
-  { href: '/about', label: 'About Us' },
-  { href: '/jobs', label: 'Jobs' },
+  { href: '/hire-talent', label: 'Hire Talent' },
+  { href: '/find-work', label: 'Find Work' },
+  { href: '/services', label: 'Services' },
+  { href: '/industries', label: 'Industries' },
+  { href: '/locations', label: 'Locations' },
+  { href: '/about', label: 'About' },
   { href: '/book-a-call', label: 'Book a Call', cta: true },
 ];
 
@@ -27,14 +31,12 @@ export default function Navbar() {
     <nav
       className="sticky top-0 z-50 border-b border-black/8 bg-[#FAFAFA]/82 backdrop-blur-xl"
     >
-      {/* Main bar */}
       <div
         className={[
-          'mx-auto flex max-w-[1200px] items-center justify-between px-4 md:px-6 transition-all duration-300',
+          'mx-auto flex max-w-[1380px] items-center justify-between px-4 md:px-6 transition-all duration-300',
           isScrolled ? 'h-14 md:h-16' : 'h-16 md:h-20',
         ].join(' ')}
       >
-        {/* Logo */}
         <Link
           href="/"
           onClick={() => setMobileOpen(false)}
@@ -56,8 +58,7 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-3 md:gap-6">
+        <div className="hidden lg:flex items-center gap-4 md:gap-5">
           {navItems.map((item) => {
             const active = pathname === item.href;
 
@@ -73,7 +74,7 @@ export default function Navbar() {
                       : 'border-[#2C3434] bg-[#2C3434] text-white hover:border-[#C6A64A] hover:bg-[#C6A64A] hover:text-[#1F2628]',
                   ].join(' ')}
                 >
-                  <span className="relative z-10">Book a Call</span>
+                  <span className="relative z-10">{item.label}</span>
                 </Link>
               );
             }
@@ -83,15 +84,15 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 className={[
-                  'relative px-2 pb-1 pt-1 text-sm uppercase tracking-widest transition',
-                  active ? 'text-gray-950' : 'text-gray-600 hover:text-gray-900',
+                  'relative px-1 pb-1 pt-1 text-[11px] font-semibold uppercase tracking-widest transition',
+                  active ? 'text-gray-950' : 'text-gray-500 hover:text-gray-900',
                 ].join(' ')}
               >
                 {item.label}
                 <span
                   className={[
-                    'absolute bottom-0 left-2 h-[2px] rounded-full bg-[#C6A64A] transition-all duration-300',
-                    active ? 'w-[calc(100%-16px)] opacity-100' : 'w-0 opacity-0',
+                    'absolute bottom-0 left-0 h-[2px] rounded-full bg-[#C6A64A] transition-all duration-300',
+                    active ? 'w-full opacity-100' : 'w-0 opacity-0',
                   ].join(' ')}
                 />
               </Link>
@@ -99,9 +100,8 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Mobile hamburger */}
         <button
-          className="flex md:hidden items-center justify-center h-9 w-9 text-[#2C3434]"
+          className="flex lg:hidden items-center justify-center h-9 w-9 text-[#2C3434]"
           onClick={() => setMobileOpen((o) => !o)}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
         >
@@ -109,7 +109,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -117,7 +116,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-black/8 bg-[#FAFAFA]/95 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-t border-black/8 bg-[#FAFAFA]/95 backdrop-blur-xl lg:hidden"
           >
             <div className="flex flex-col px-4 py-4 gap-1">
               {navItems.map((item) => {
@@ -136,7 +135,7 @@ export default function Navbar() {
                           : 'border-[#2C3434] bg-[#2C3434] text-white',
                       ].join(' ')}
                     >
-                      Book a Call
+                      {item.label}
                     </Link>
                   );
                 }

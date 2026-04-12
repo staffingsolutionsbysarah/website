@@ -1,0 +1,66 @@
+import PageHero from '@/components/site/PageHero';
+import CallToActionPanel from '@/components/site/CallToActionPanel';
+
+const intakeItems = [
+  'Role title and scope',
+  'Location, schedule, and on-site expectations',
+  'Compensation range and timing',
+  'Why the role is open and what happens if it stays open',
+];
+
+export default function RequestTalentProfilePage() {
+  return (
+    <div className="relative overflow-hidden bg-[#F4F2ED] text-[var(--color-dark)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[linear-gradient(180deg,rgba(198,166,74,0.18),rgba(198,166,74,0))]" />
+
+      <PageHero
+        eyebrow="Employer Support"
+        title="Request Talent Profile"
+        description="This page is the employer intake support layer. It is in place so the employer CTA path is real even before a fuller form system is finalized."
+        breadcrumbs={[
+          { href: '/', label: 'Home' },
+          { label: 'Request Talent Profile' },
+        ]}
+        actions={[
+          { href: '/book-a-call', label: 'Book a Call' },
+          { href: '/contact', label: 'Contact', variant: 'secondary' },
+        ]}
+      />
+
+      <section className="px-4 py-8 md:px-6 md:py-12">
+        <div className="mx-auto grid max-w-[1280px] gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.6fr)]">
+          <article className="depth-plane px-7 py-8 md:px-10 md:py-10">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent)]">
+              Current path
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-black/72 md:text-lg">
+              Talent profile requests are still handled through direct intake rather than a custom backend. That keeps
+              the implementation honest and avoids inventing a new system before the workflow is ready.
+            </p>
+          </article>
+
+          <article className="depth-inset rounded-[30px] px-6 py-7 md:px-7">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/42">Helpful intake details</p>
+            <ul className="mt-4 space-y-3">
+              {intakeItems.map((item) => (
+                <li key={item} className="rounded-[20px] border border-black/8 bg-white/70 px-4 py-3 text-sm text-black/70">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <CallToActionPanel
+        eyebrow="Employer next step"
+        title="Move into the direct intake route."
+        body="Use booking for an active hiring discussion or contact if the conversation needs a different entry point first."
+        actions={[
+          { href: '/book-a-call', label: 'Book a Call' },
+          { href: '/contact', label: 'Contact', variant: 'secondary' },
+        ]}
+      />
+    </div>
+  );
+}

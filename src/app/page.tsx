@@ -211,11 +211,11 @@ export default function HomePage() {
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/book-a-call" className="btn-primary">
+                <Link href="/hire-talent" className="btn-primary">
                   Book a Hiring Call
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/jobs" className="btn-secondary">
+                <Link href="/find-work" className="btn-secondary">
                   View Active Roles
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -332,6 +332,16 @@ export default function HomePage() {
               Trackpad, swipe, or drag through the sector chapters without breaking the overall flow.
             </p>
 
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/industries" className="btn-primary">
+                View Industries
+                <ArrowRight className="h-4 w-4" />
+              </Link>              <Link href="/hire-talent" className="btn-secondary">
+                Hire Talent
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
             <div className="mt-8 depth-inset rounded-[28px] px-5 py-6">
               {serviceModel.map((item, index) => (
                 <div
@@ -412,6 +422,17 @@ export default function HomePage() {
               sequence, not through aggressive animation.
             </p>
 
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/our-process" className="btn-primary">
+                View Full Process
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/request-talent-profile" className="btn-secondary">
+                Request Talent Profile
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
             <div className="mt-8 depth-plane-dark rounded-[30px] px-6 py-6">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/55">Outcome focus</p>
               <p className="mt-4 text-[1.35rem] leading-[1.45] tracking-tight text-white">
@@ -465,6 +486,17 @@ export default function HomePage() {
               The site can feel expansive without becoming noisy. This section keeps market notes and recruiter
               perspective visible without turning the homepage into a content feed.
             </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/locations" className="btn-primary">
+                Explore Locations
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/contact" className="btn-secondary">
+                Contact Sarah
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
 
             <div className="mt-10 editorial-rule" />
 
@@ -575,14 +607,14 @@ export default function HomePage() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-black/42">Candidate path</p>
               <h3 className="mt-4 text-[1.8rem] leading-[1.04] tracking-tight">Looking for an active role?</h3>
               <p className="mt-4 text-sm leading-relaxed text-black/66">
-                Browse current public openings or use the jobs page as the cleanest route into the candidate side of the site.
+                Browse current public openings or use the candidate hub as the cleanest route into the recruitment side of the site.
               </p>
 
               <Link
-                href="/jobs"
+                href="/find-work"
                 className="mt-8 inline-flex items-center justify-between border border-black/10 bg-white/72 px-5 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-black/70 transition hover:border-[#C6A64A] hover:text-black"
               >
-                View Active Roles
+                Find Your Next Role
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
