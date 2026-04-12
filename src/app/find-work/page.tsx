@@ -1,5 +1,12 @@
+import type { Metadata } from 'next';
 import PageHero from '@/components/site/PageHero';
 import CallToActionPanel from '@/components/site/CallToActionPanel';
+
+export const metadata: Metadata = {
+  title: 'Find Work — Active Industrial & Trades Roles in Ontario',
+  description:
+    'Browse active industrial, trades, and operations roles in Ontario. Submit your resume for future-fit opportunities with Staffing Solutions by Sarah Fell.',
+};
 
 const candidateSteps = [
   {

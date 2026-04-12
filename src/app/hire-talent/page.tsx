@@ -1,5 +1,12 @@
+import type { Metadata } from 'next';
 import PageHero from '@/components/site/PageHero';
 import CallToActionPanel from '@/components/site/CallToActionPanel';
+
+export const metadata: Metadata = {
+  title: 'Hire Talent — Ontario Industrial & Trades Recruitment',
+  description:
+    'Employer hub for manufacturing, skilled trades, and operations hiring in Ontario. Direct recruiter intake, sharper screening, and stronger shortlist fit.',
+};
 
 const valueCards = [
   {

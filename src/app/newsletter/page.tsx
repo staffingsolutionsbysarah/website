@@ -57,33 +57,22 @@ export default function NewsletterPage() {
                 <h2 className="text-3xl font-medium tracking-tight">Join the network</h2>
               </div>
               
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                <div>
-                  <label htmlFor="email" className="block text-[10px] font-bold uppercase tracking-[0.1em] text-black/40 mb-2 ml-1">
-                    Email Address
-                  </label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    placeholder="you@company.ca"
-                    className="w-full rounded-2xl border border-black/10 bg-white/50 px-5 py-4 text-sm focus:border-[#C6A64A] focus:outline-none transition-colors"
-                  />
-                </div>
-                <button 
-                  type="submit"
-                  className="btn-primary w-full py-5 text-sm"
-                >
-                  Subscribe
-                </button>
-                <p className="text-[10px] text-center text-black/40 mt-4 leading-relaxed">
-                  By subscribing, you agree to receive marketing communications from Staffing Solutions by Sarah Fell.
+              <div className="space-y-4">
+                <p className="text-sm leading-relaxed text-black/60">
+                  The newsletter subscription form is being set up. To be added to the list in the meantime, email directly:
                 </p>
-              </form>
-              
+                <a
+                  href="mailto:Sarah.fell@staffingsolutionsbysarah.com?subject=Newsletter%20Subscription"
+                  className="btn-primary w-full justify-center py-5 text-sm"
+                >
+                  Email to Subscribe
+                </a>
+                <p className="text-[10px] text-center text-black/40 mt-4 leading-relaxed">
+                  You will receive occasional market notes and hiring commentary for Ontario industrial leaders.
+                </p>
+              </div>
+
               <div className="mt-10 editorial-rule" />
-              <p className="mt-6 text-center text-xs text-black/50 italic">
-                TODO: Connect to Mailchimp, ConvertKit, or similar ESP.
-              </p>
             </motion.div>
           </div>
         </div>

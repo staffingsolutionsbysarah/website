@@ -7,19 +7,19 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react';
 const placeholderInsights = [
   {
     title: 'Where industrial hiring processes lose good candidates first.',
-    date: 'April 10, 2024',
+    date: 'April 2026',
     readTime: '5 min read',
     summary: 'A recruiter-led note on vague briefs, slow interview movement, and why good people disappear faster than teams expect.',
   },
   {
     title: 'What Ontario employers are tightening in skilled trades hiring right now.',
-    date: 'March 28, 2024',
+    date: 'March 2026',
     readTime: '4 min read',
-    summary: 'Short commercial observations designed to help employers calibrate earlier and hire with less drag.',
+    summary: 'Short commercial observations to help employers calibrate earlier and hire with less drag.',
   },
   {
     title: 'Calibration over volume: Why the massive resume dump is failing.',
-    date: 'March 15, 2024',
+    date: 'February 2026',
     readTime: '6 min read',
     summary: 'How hiring managers can regain control of their schedule by insisting on tighter shortlist logic.',
   },
@@ -63,7 +63,7 @@ export default function InsightsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="depth-plane group cursor-pointer"
+                className="depth-plane"
               >
                 <div className="p-8 flex flex-col h-full">
                   <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.1em] text-black/40 mb-6">
@@ -76,21 +76,14 @@ export default function InsightsPage() {
                       {post.readTime}
                     </div>
                   </div>
-                  
-                  <h3 className="text-2xl font-medium tracking-tight mb-4 group-hover:text-[#A8872F] transition-colors leading-tight">
+
+                  <h3 className="text-2xl font-medium tracking-tight mb-4 leading-tight">
                     {post.title}
                   </h3>
-                  
-                  <p className="text-sm leading-relaxed text-black/60 mb-10 flex-grow">
+
+                  <p className="text-sm leading-relaxed text-black/60 flex-grow">
                     {post.summary}
                   </p>
-                  
-                  <div className="editorial-rule mb-6" />
-                  
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C6A64A]">Read article</span>
-                    <ArrowRight className="h-4 w-4 text-[#C6A64A] transform transition-transform group-hover:translate-x-1" />
-                  </div>
                 </div>
               </motion.article>
             ))}
@@ -98,7 +91,7 @@ export default function InsightsPage() {
           
           <div className="mt-20 text-center">
             <p className="text-sm text-black/40 italic">
-              TODO: Integrate with CMS or Markdown for dynamic content loading.
+              More field notes coming. Subscribe below to receive them directly.
             </p>
           </div>
         </div>

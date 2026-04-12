@@ -16,7 +16,10 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'Ontario Manufacturing & Skilled Trades Recruiter | Staffing Solutions by Sarah Fell',
+  title: {
+    template: '%s | Staffing Solutions by Sarah Fell',
+    default: 'Ontario Industrial & Trades Recruiter | Staffing Solutions by Sarah Fell',
+  },
   description:
     'Ontario recruiter for manufacturing, skilled trades, operations, and industrial hiring. Reduce hiring drag with direct recruiter access, sharper screening, and stronger shortlist fit.',
 };

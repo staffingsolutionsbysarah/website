@@ -1,5 +1,12 @@
+import type { Metadata } from 'next';
 import PageHero from '@/components/site/PageHero';
 import CallToActionPanel from '@/components/site/CallToActionPanel';
+
+export const metadata: Metadata = {
+  title: 'Request Talent Profile — Employer Intake',
+  description:
+    'Start an employer intake conversation with Staffing Solutions by Sarah Fell. Book a call or contact directly to discuss an active hiring requirement.',
+};
 
 const intakeItems = [
   'Role title and scope',
@@ -16,7 +23,7 @@ export default function RequestTalentProfilePage() {
       <PageHero
         eyebrow="Employer Support"
         title="Request Talent Profile"
-        description="This page is the employer intake support layer. It is in place so the employer CTA path is real even before a fuller form system is finalized."
+        description="Talent profile requests are handled through direct intake. Start with a call or send a brief outline of the role — we will respond with the right next step."
         breadcrumbs={[
           { href: '/', label: 'Home' },
           { label: 'Request Talent Profile' },

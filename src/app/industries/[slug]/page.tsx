@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { industries } from '@/data/industries';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
@@ -17,6 +18,16 @@ const industryImages: Record<string, string> = {
 type IndustryPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateMetadata({ params }: IndustryPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const industry = industries.find((i) => i.slug === slug);
+  if (!industry) return {};
+  return {
+    title: `${industry.title} Recruitment in Ontario`,
+    description: industry.summary,
+  };
+}
 
 export default async function IndustryPage({ params }: IndustryPageProps) {
   const { slug } = await params;

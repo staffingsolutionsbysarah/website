@@ -1,5 +1,12 @@
+import type { Metadata } from 'next';
 import PageHero from '@/components/site/PageHero';
 import CallToActionPanel from '@/components/site/CallToActionPanel';
+
+export const metadata: Metadata = {
+  title: 'Submit Resume — Candidate Intake',
+  description:
+    'Submit your resume for current and future industrial and trades roles in Ontario. Resume intake is handled manually by Staffing Solutions by Sarah Fell.',
+};
 
 const resumeGuidance = [
   'Use the jobs page first if you want to see active public roles.',
@@ -33,8 +40,7 @@ export default function SubmitResumePage() {
               Manual intake
             </p>
             <p className="mt-4 text-base leading-relaxed text-black/72 md:text-lg">
-              Resume review is handled manually right now. That fits the current repo state and keeps the candidate path
-              clear while a broader submission flow is still pending.
+              Resume review is handled manually. That keeps the candidate path honest — no automated system that collects your details and goes nowhere.
             </p>
           </article>
 
@@ -54,10 +60,10 @@ export default function SubmitResumePage() {
       <CallToActionPanel
         eyebrow="Candidate next step"
         title="Start with active roles, then use resume submission when needed."
-        body="That keeps the candidate path aligned with the current site logic and avoids adding a fake application system."
+        body="Start with active roles. If nothing fits right now, reach out directly at Sarah.fell@staffingsolutionsbysarah.com — resume intake is handled manually and responses are honest."
         actions={[
           { href: '/jobs', label: 'Browse Jobs' },
-          { href: '/find-work', label: 'Find Work', variant: 'secondary' },
+          { href: '/contact', label: 'Contact', variant: 'secondary' },
         ]}
       />
     </div>

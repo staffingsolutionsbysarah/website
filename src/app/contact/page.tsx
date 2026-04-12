@@ -1,5 +1,12 @@
+import type { Metadata } from 'next';
 import PageHero from '@/components/site/PageHero';
 import CallToActionPanel from '@/components/site/CallToActionPanel';
+
+export const metadata: Metadata = {
+  title: 'Contact — Staffing Solutions by Sarah Fell',
+  description:
+    'Get in touch with Staffing Solutions by Sarah Fell for employer and candidate inquiries, hiring discussions, and direct intake.',
+};
 
 const contactOptions = [
   {
@@ -27,7 +34,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Direct contact without adding unnecessary friction."
-        description="This page covers general inquiry routing while keeping employer and candidate conversion paths separate. It exists so the utility layer is complete and the footer links resolve properly."
+        description="Use this page for general inquiries, or route directly to booking when the hiring conversation is ready to start. For a direct line, email Sarah.fell@staffingsolutionsbysarah.com."
         breadcrumbs={[
           { href: '/', label: 'Home' },
           { label: 'Contact' },
@@ -55,7 +62,7 @@ export default function ContactPage() {
       <CallToActionPanel
         eyebrow="Utility path"
         title="Use contact when you need a direct routing layer."
-        body="The site now has a clear contact page for footer, support, and legal references without inventing a new form system."
+        body="If the role is ready to discuss, booking is the fastest route. For everything else, reach Sarah directly at Sarah.fell@staffingsolutionsbysarah.com."
         actions={[
           { href: '/book-a-call', label: 'Book a Call' },
           { href: '/find-work', label: 'Find Work', variant: 'secondary' },

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import PageHero from '@/components/site/PageHero';
 import LinkCardGrid from '@/components/site/LinkCardGrid';
@@ -10,6 +11,16 @@ type LocationPageProps = {
 
 export async function generateStaticParams() {
   return locations.map((location) => ({ slug: location.slug }));
+}
+
+export async function generateMetadata({ params }: LocationPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const location = getLocation(slug);
+  if (!location) return {};
+  return {
+    title: `${location.title} — Ontario Recruitment`,
+    description: location.summary,
+  };
 }
 
 export default async function LocationDetailPage({ params }: LocationPageProps) {
