@@ -47,11 +47,11 @@ export default function Navbar() {
           onClick={() => setMobileOpen(false)}
           className="group relative flex items-center gap-3"
         >
-          <div className="relative h-9 w-9 md:h-10 md:w-10 transition-transform duration-300 group-hover:scale-105">
-            <Image 
-              src="/GreenS-logo.svg" 
-              alt="SF" 
-              fill 
+          <div className="relative h-10 w-[26px] md:h-11 md:w-[28px] transition-transform duration-300 group-hover:scale-105">
+            <Image
+              src="/logo-mark.svg"
+              alt="Staffing Solutions by Sarah Fell logo mark"
+              fill
               className="object-contain transition-all duration-500"
             />
           </div>
