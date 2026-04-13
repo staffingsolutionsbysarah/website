@@ -52,7 +52,7 @@ export default function Navbar() {
               src="/logo-mark.svg"
               alt="Staffing Solutions by Sarah Fell logo mark"
               fill
-              className="object-contain transition-all duration-500"
+              className={`object-contain transition-all duration-500 ${!isScrolled && isHome ? 'brightness-0 invert' : ''}`}
             />
           </div>
           <div className="flex flex-col">
