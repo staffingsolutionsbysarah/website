@@ -218,7 +218,7 @@ export const locationHubCards: LinkCard[] = locations.map((location) => ({
   href: `/locations/${location.slug}`,
   title: location.title.replace(' Recruitment Support', ''),
   description: location.summary,
-  eyebrow: 'Location page',
+  eyebrow: 'Area served',
 }));
 
 export function getIndustry(slug: string) {
