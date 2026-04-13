@@ -34,7 +34,7 @@ export default function AboutPage() {
             className="relative aspect-[4/5] overflow-hidden rounded-[30px] border border-black/10 bg-[#ECE7DB] p-3 shadow-[0_22px_60px_rgba(0,0,0,0.14)]"
           >
             <div className="relative h-full w-full overflow-hidden rounded-[22px]">
-              <Image src="/sarah-fell.png" alt="Sarah Fell portrait" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 500px" />
+              <Image src="/sarah-fell-recruitment-consultant.png" alt="Sarah Fell — Ontario industrial and trades recruitment consultant" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 500px" />
             </div>
           </motion.div>
 
