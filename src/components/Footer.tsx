@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Linkedin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -19,6 +20,15 @@ export default function Footer() {
             <div className="mt-8 flex gap-4 text-sm text-white/58">
               <p>Serving Ontario&apos;s Industrial Sector Since 2013</p>
             </div>
+            <a
+              href="https://www.linkedin.com/in/sarah-fell-3b8a5810"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 text-xs text-white/42 hover:text-[#E7D08A] transition-colors"
+            >
+              <Linkedin className="h-4 w-4" />
+              <span>LinkedIn</span>
+            </a>
           </div>
 
           <div>

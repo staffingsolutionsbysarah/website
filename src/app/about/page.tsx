@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import PartnershipIntro from '@/components/about/PartnershipIntro';
 
 const values = [
   {
@@ -21,8 +23,23 @@ const values = [
 ];
 
 export default function AboutPage() {
+  const [showIntro, setShowIntro] = useState(true);
+
+  useEffect(() => {
+    const seen = sessionStorage.getItem('sf-about-intro-seen');
+    if (seen) {
+      setShowIntro(false);
+    }
+  }, []);
+
+  const handleIntroComplete = () => {
+    sessionStorage.setItem('sf-about-intro-seen', 'true');
+    setShowIntro(false);
+  };
+
   return (
     <div className="relative overflow-hidden bg-[#F4F2ED] text-[var(--color-dark)]">
+      {showIntro && <PartnershipIntro onComplete={handleIntroComplete} />}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[linear-gradient(180deg,rgba(198,166,74,0.18),rgba(198,166,74,0))]" />
 
       <section className="px-6 pb-14 pt-16 md:pb-20 md:pt-24">

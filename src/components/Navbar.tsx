@@ -40,14 +40,14 @@ export default function Navbar() {
             : 'border-b border-black/5 bg-[#FAFAFA]/90 backdrop-blur-md',
       ].join(' ')}
     >
-      <div className="mx-auto flex max-w-[1380px] items-center justify-between px-4 md:px-6 h-16 md:h-20 transition-all duration-500">
+      <div className="mx-auto flex max-w-[1380px] items-center justify-between px-6 h-16 md:h-20 transition-all duration-500">
         {/* Logo Lockup */}
         <Link
           href="/"
           onClick={() => setMobileOpen(false)}
           className="group relative flex items-center gap-3"
         >
-          <div className="relative h-10 w-[26px] md:h-11 md:w-[28px] transition-transform duration-300 group-hover:scale-105">
+          <div className="relative h-12 w-[32px] md:h-12 md:w-[32px] transition-transform duration-300 group-hover:scale-105">
             <Image
               src="/logo-mark.svg"
               alt="Staffing Solutions by Sarah Fell logo mark"

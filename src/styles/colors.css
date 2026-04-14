@@ -1,0 +1,66 @@
+/* Sarah Fell Color Palette - Extended Swatches */
+
+/* === CORE BRAND COLORS (Preserved) === */
+/* Charcoal: --color-dark #2C3434 */
+/* Gold: --color-primary #C6A64A */
+/* Brand Green: --color-accent #3D7A65 */
+
+/* === LIQUID-GLASS ADD-ON SET === */
+/* Elegant, translucent-inspired neutrals for depth and sophistication */
+:root {
+  --color-porcelain-mist: #F3F0EB;
+  --color-stone-veil: #B7ADA3;
+  --color-champagne-haze: #D8C6AE;
+  --color-smoked-umber: #4E433B;
+  --color-dusty-bronze: #8A6F58;
+}
+
+/* === CONTRAST-FOCUSED ADD-ON SET === */
+/* Rich, warm tones for high-contrast sections and accent moments */
+:root {
+  --color-espresso-brown: #4A3B34;
+  --color-soft-mushroom-taupe: #B5A79A;
+  --color-parchment-ivory: #F5EEDF;
+  --color-muted-clay-beige: #CBB8A3;
+  --color-aged-brass-highlight: #A8894E;
+}
+
+/* === EARTH TONES & ACCENTS === */
+/* Warm, grounded colors + Wasabi green for contrast */
+:root {
+  --color-crease: #BFB39C;
+  --color-khaki: #C3B091;
+  --color-egyptian: #5C4A3D;
+  --color-wasabi: #7D9B76;
+}
+
+/* === USAGE GUIDE === */
+/*
+Liquid-Glass Set (light, ethereal):
+- porcelain-mist: Backgrounds, cards, light overlays
+- stone-veil: Borders, dividers, subtle structure
+- champagne-haze: Accent backgrounds, soft highlights
+- smoked-umber: Dark text alternative, depth elements
+- dusty-bronze: Warm accents, button states
+
+Contrast-Focused Set (rich, warm):
+- espresso-brown: Deep backgrounds, dark sections
+- soft-mushroom-taupe: Muted text, secondary elements
+- parchment-ivory: Warm backgrounds, alternative light surfaces
+- muted-clay-beige: Subtle fills, tertiary elements
+- aged-brass-highlight: Gold alternative, accent highlights
+
+=== EARTH TONES & ACCENTS ===
+- crease: Soft warm beige for subtle backgrounds
+- khaki: Classic tan for dividers, borders
+- egyptian: Deep warm brown for dark sections, footer
+- wasabi: Fresh green for contrast accents (NOT main green)
+
+=== GLASSMORPHISM COMPATIBILITY ===
+These colors work with existing depth-plane classes:
+- Use porcelain-mist or parchment-ivory for light glass surfaces
+- Use champagne-haze or muted-clay-beige for gradient stops
+- Use dusty-bronze or aged-brass-highlight for subtle glows
+- Use smoked-umber or espresso-brown for dark glass variants
+- Use wasabi sparingly for accent highlights only
+*/
