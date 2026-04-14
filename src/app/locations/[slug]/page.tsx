@@ -45,7 +45,7 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
       <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[linear-gradient(180deg,rgba(198,166,74,0.18),rgba(198,166,74,0))]" />
 
       <PageHero
-        eyebrow={location.title.replace(' Recruitment Support', '')}
+        eyebrow="Location Page"
         title={location.title}
         description={location.summary}
         breadcrumbs={[
@@ -54,8 +54,8 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
           { label: location.title.replace(' Recruitment Support', '') },
         ]}
         actions={[
-          { href: '/book-a-call', label: 'Book a Call' },
-          { href: '/contact', label: 'Get in Touch', variant: 'secondary' },
+          { href: '/contact', label: 'Contact' },
+          { href: '/book-a-call', label: 'Book a Call', variant: 'secondary' },
         ]}
       />
 

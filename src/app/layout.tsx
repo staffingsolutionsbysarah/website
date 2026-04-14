@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Cormorant_Garamond, Manrope } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -31,6 +32,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <Script src="https://mcp.figma.com/mcp/html-to-design/capture.js" strategy="afterInteractive" />
+      </head>
       <body
         className={`${cormorant.variable} ${manrope.variable} font-body flex min-h-screen flex-col bg-[var(--color-bg)] text-[var(--color-dark)] antialiased`}
       >
