@@ -29,7 +29,7 @@ export default function TrustBlock() {
           className="relative aspect-[3/4] overflow-hidden rounded-[28px] lg:aspect-square"
         >
           <Image
-            src="/sarah-fell-recruitment-consultant.png"
+            src="/images/Sarah Fell-image.png"
             alt="Sarah Fell - Recruitment Consultant"
             fill
             className="object-cover"

@@ -3,74 +3,49 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Users, Building2, Factory, ShieldCheck } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const slides = [
   {
     id: 'employer',
     image: '/images/Business handshake in Toronto office.png',
     eyebrow: 'Hiring Support',
-    title: 'Recruitment for employers who cannot afford the wrong hire.',
+    title: 'Recruitment built for the work that matters.',
     body: 'Industrial, trades, and operations hiring handled with direct recruiter ownership, tighter shortlist logic, and less drag.',
-    primaryCTA: { label: 'Hire Talent', href: '/hire-talent' },
-    secondaryCTA: { label: 'Book a Call', href: '/book-a-call' },
-    icon: Factory,
+    cta: { label: 'Hire Talent', href: '/hire-talent' },
   },
   {
     id: 'industrial',
     image: '/images/Worker with tablet in manufacturing facility.png',
     eyebrow: 'Industrial Hiring',
-    title: "Your next role in Ontario's industrial core starts here.",
+    title: 'Your next role in Ontario starts here.',
     body: 'We connect skilled professionals with employers who value technical fit, reliability, and long-term career growth.',
-    primaryCTA: { label: 'Find Work', href: '/find-work' },
-    secondaryCTA: { label: 'View Jobs', href: '/jobs' },
-    icon: Users,
+    cta: { label: 'Find Work', href: '/find-work' },
   },
   {
     id: 'trades',
     image: '/images/Construction professionals reviewing plans together.png',
     eyebrow: 'Trades & Construction',
-    title: "Industry-specific recruitment across Ontario's core hiring lanes.",
-    body: 'Manufacturing, trades, construction, and business-side hiring supported with clearer sector context and better search judgment.',
-    primaryCTA: { label: 'View Industries', href: '/industries' },
-    secondaryCTA: { label: 'Our Services', href: '/services' },
-    icon: Building2,
+    title: 'Industry-specific recruitment across Ontario.',
+    body: 'Manufacturing, trades, construction, and business-side hiring supported with clearer sector context.',
+    cta: { label: 'View Industries', href: '/industries' },
   },
   {
     id: 'toronto',
     image: '/images/Toronto at golden hour.png',
-    eyebrow: 'Ontario Footprint',
+    eyebrow: 'Ontario',
     title: '10+ years of industrial recruitment expertise.',
-    body: 'Built on a decade of search experience across Ontario, from the GTA to Windsor. A strategic partner for your workforce.',
-    primaryCTA: { label: 'Our Process', href: '/our-process' },
-    secondaryCTA: { label: 'About Sarah', href: '/about' },
-    icon: ShieldCheck,
+    body: 'Built on a decade of search experience across Ontario, from the GTA to Windsor.',
+    cta: { label: 'About Sarah', href: '/about' },
   },
 ];
 
-const AUTO_ROTATE_INTERVAL = 8000;
+const AUTO_ROTATE_INTERVAL = 6000;
 
 export default function LiquidGlassHero() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  });
-
-  const slideOffset = useTransform(scrollYProgress, [0, 1], [0, 400]);
-  const slideX = useTransform(scrollYProgress, [0, 1], [0, -100]);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % slides.length);
@@ -79,6 +54,7 @@ export default function LiquidGlassHero() {
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
     setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 10000);
   };
 
   useEffect(() => {
@@ -89,28 +65,16 @@ export default function LiquidGlassHero() {
 
   const currentSlide = slides[currentIndex];
 
-  const glassStyles = isMobile
-    ? {
-        backdropFilter: 'blur(12px)',
-        background: 'rgba(255, 255, 255, 0.18)',
-        border: '1px solid rgba(255, 255, 255, 0.3)',
-      }
-    : {
-        backdropFilter: 'blur(20px)',
-        background: 'rgba(255, 255, 255, 0.15)',
-        border: '1px solid rgba(255, 255, 255, 0.25)',
-      };
-
   return (
-    <section ref={sectionRef} className="relative h-[85vh] min-h-[640px] w-full overflow-hidden bg-[#1F2628]">
+    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden bg-[#1F2628]">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide.image}
-          initial={{ opacity: 0, scale: 1.05 }}
+          initial={{ opacity: 0, scale: 1.08 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0 z-0"
+          transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0"
         >
           <Image
             src={currentSlide.image}
@@ -120,94 +84,97 @@ export default function LiquidGlassHero() {
             className="object-cover"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative z-10 mx-auto flex h-full w-full flex-col justify-center px-6 pb-24 pt-20">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="max-w-[52rem]"
-          style={glassStyles}
-        >
+      <div className="relative z-10 flex h-full w-full flex-col justify-end pb-20 md:pb-28">
+        <div className="mx-auto w-full max-w-[1380px] px-6 md:px-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide.id}
-              initial={{
-                opacity: 0,
-                x: currentIndex % 2 === 0 ? -300 : 300,
-              }}
-              animate={{
-                opacity: 1,
-                x: 0,
-              }}
-              exit={{
-                opacity: 0,
-                x: currentIndex % 2 === 0 ? 300 : -300,
-              }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              style={{
-                x: slideX,
-              }}
-              className="rounded-[24px] px-8 py-10 md:px-12 md:py-12"
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-[48rem] lg:max-w-[42rem]"
             >
-              <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#E7D08A]">
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="mb-6 text-[10px] font-semibold uppercase tracking-[0.5em] text-white/60"
+              >
                 {currentSlide.eyebrow}
-              </p>
-              <h1 className="mt-8 text-[3.2rem] leading-[0.88] tracking-[-0.05em] text-white md:text-[5.5rem] lg:text-[6.5rem]">
-                {currentSlide.title}
-              </h1>
-              <p className="mt-10 max-w-[40ch] text-lg leading-relaxed text-white/74 md:text-xl">
-                {currentSlide.body}
-              </p>
+              </motion.p>
 
-              <div className="mt-14 flex flex-wrap gap-5">
-                <Link href={currentSlide.primaryCTA.href} className="btn-primary !bg-white !text-[#1F2628] hover:!bg-[#E7D08A] transition-all px-8 py-4">
-                  {currentSlide.primaryCTA.label}
-                  <ArrowRight className="h-4 w-4" />
+              <motion.h1
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[2.8rem] leading-[0.92] tracking-[-0.04em] text-white md:text-[4.5rem] lg:text-[5.5rem]"
+              >
+                {currentSlide.title}
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="mt-6 max-w-[38ch] text-base leading-relaxed text-white/70 md:text-lg"
+              >
+                {currentSlide.body}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              >
+                <Link
+                  href={currentSlide.cta.href}
+                  className="mt-10 inline-flex items-center gap-3 border-b border-white/40 pb-2 text-sm font-medium uppercase tracking-[0.2em] text-white transition-all hover:border-[#C6A64A] hover:text-[#C6A64A] md:text-base"
+                >
+                  {currentSlide.cta.label}
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </Link>
-                <Link href={currentSlide.secondaryCTA.href} className="btn-outline !border-white/30 !text-white hover:!bg-white/10 transition-all px-8 py-4">
-                  {currentSlide.secondaryCTA.label}
-                </Link>
-              </div>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3"
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="absolute bottom-8 right-6 flex gap-3 md:right-10 md:bottom-10"
         >
           {slides.map((slide, index) => (
             <button
               key={slide.id}
               onClick={() => goToSlide(index)}
-              className={`relative h-2.5 rounded-full transition-all duration-500 ${
+              className={`h-1 rounded-full transition-all duration-700 ${
                 currentIndex === index
-                  ? 'w-12 bg-[#E7D08A]'
-                  : 'w-2.5 bg-white/30 hover:bg-white/50'
+                  ? 'w-16 bg-[#C6A64A]'
+                  : 'w-6 bg-white/30 hover:bg-white/50'
               }`}
               aria-label={`Go to slide ${index + 1}`}
-              aria-pressed={currentIndex === index}
-            >
-              {currentIndex === index && (
-                <motion.div
-                  layoutId="progress-dot"
-                  className="absolute inset-0 rounded-full border border-[#E7D08A]/40"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              )}
-            </button>
+            />
           ))}
         </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="pointer-events-none absolute bottom-6 left-6 text-[10px] uppercase tracking-[0.3em] text-white/30 md:left-10"
+      >
+        Scroll to explore
+        <span className="ml-3 inline-block h-px w-8 bg-white/20 align-middle" />
+      </motion.div>
     </section>
   );
 }
