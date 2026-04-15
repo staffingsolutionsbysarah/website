@@ -24,13 +24,13 @@ export function Parallax({ children, speed = 0.3, className = '' }: ParallaxProp
       el,
       { y: 0 },
       {
-        y: -100 * speed,
+        y: -150 * speed,
         ease: 'none',
         scrollTrigger: {
           trigger: el,
           start: 'top bottom',
           end: 'bottom top',
-          scrub: true,
+          scrub: 1.5,
         },
       }
     );
@@ -66,7 +66,7 @@ export function ParallaxSection({
     const bg = bgRef.current;
     if (!section || !bg) return;
 
-    const yMove = direction === 'up' ? -150 * speed : 150 * speed;
+    const yMove = direction === 'up' ? -250 * speed : 250 * speed;
 
     gsap.fromTo(
       bg,
@@ -78,7 +78,7 @@ export function ParallaxSection({
           trigger: section,
           start: 'top bottom',
           end: 'bottom top',
-          scrub: true,
+          scrub: 1.5,
         },
       }
     );
@@ -102,6 +102,7 @@ interface ScrollRevealProps {
   id?: string;
   stagger?: boolean;
   delay?: number;
+  intensity?: 'subtle' | 'medium' | 'dramatic';
 }
 
 export function ScrollReveal({
@@ -111,16 +112,25 @@ export function ScrollReveal({
   id,
   stagger = false,
   delay = 0,
+  intensity = 'medium',
 }: ScrollRevealProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
+  const distances = {
+    subtle: { x: 40, y: 40 },
+    medium: { x: 100, y: 80 },
+    dramatic: { x: 180, y: 120 },
+  };
+
+  const distance = distances[intensity];
+
   const getInitial = () => {
     switch (direction) {
-      case 'left': return { x: -120, opacity: 0 };
-      case 'right': return { x: 120, opacity: 0 };
-      case 'up': return { y: 100, opacity: 0 };
-      case 'down': return { y: -100, opacity: 0 };
-      default: return { y: 100, opacity: 0 };
+      case 'left': return { x: -distance.x, opacity: 0, scale: 0.95 };
+      case 'right': return { x: distance.x, opacity: 0, scale: 0.95 };
+      case 'up': return { y: distance.y, opacity: 0, scale: 0.95 };
+      case 'down': return { y: -distance.y, opacity: 0, scale: 0.95 };
+      default: return { y: distance.y, opacity: 0, scale: 0.95 };
     }
   };
 
@@ -139,13 +149,14 @@ export function ScrollReveal({
         x: 0,
         y: 0,
         opacity: 1,
-        duration: 0.8,
+        scale: 1,
+        duration: stagger ? 0.9 : 1.2,
         ease: 'power3.out',
-        stagger: stagger ? 0.1 : 0,
+        stagger: stagger ? 0.12 : 0,
         delay: stagger ? 0 : delay,
         scrollTrigger: {
           trigger: section,
-          start: 'top 75%',
+          start: 'top 80%',
           toggleActions: 'play none none reverse',
         },
       }
@@ -175,11 +186,12 @@ export function FadeIn({ children, className = '', id, delay = 0 }: FadeInProps)
 
     gsap.fromTo(
       el,
-      { opacity: 0, scale: 0.95 },
+      { opacity: 0, scale: 0.9, y: 50 },
       {
         opacity: 1,
         scale: 1,
-        duration: 0.8,
+        y: 0,
+        duration: 1,
         ease: 'power2.out',
         delay: delay,
         scrollTrigger: {
@@ -194,6 +206,190 @@ export function FadeIn({ children, className = '', id, delay = 0 }: FadeInProps)
   return (
     <div ref={ref} id={id} className={className}>
       {children}
+    </div>
+  );
+}
+
+interface ClipRevealProps {
+  children: React.ReactNode;
+  direction?: 'up' | 'right' | 'left' | 'down';
+  className?: string;
+  id?: string;
+  duration?: number;
+}
+
+export function ClipReveal({
+  children,
+  direction = 'up',
+  className = '',
+  id,
+  duration = 1.2,
+}: ClipRevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const getClipInit = () => {
+    switch (direction) {
+      case 'up': return { clipPath: 'inset(100% 0 0 0)' };
+      case 'right': return { clipPath: 'inset(0 0 0 100%)' };
+      case 'left': return { clipPath: 'inset(0 100% 0 0)' };
+      case 'down': return { clipPath: 'inset(0 0 100% 0)' };
+      default: return { clipPath: 'inset(100% 0 0 0)' };
+    }
+  };
+
+  useGSAP(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    gsap.fromTo(
+      el,
+      getClipInit(),
+      {
+        clipPath: 'inset(0% 0 0 0)',
+        duration: duration,
+        ease: 'power4.inOut',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    );
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} id={id} className={className} style={{ overflow: 'hidden' }}>
+      {children}
+    </div>
+  );
+}
+
+interface ScaleRevealProps {
+  children: React.ReactNode;
+  className?: string;
+  id?: string;
+  scale?: number;
+}
+
+export function ScaleReveal({
+  children,
+  className = '',
+  id,
+  scale = 1.15,
+}: ScaleRevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    gsap.fromTo(
+      el,
+      { scale: scale, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 1.4,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    );
+  }, { scope: ref });
+
+  return (
+    <div ref={ref} id={id} className={className}>
+      {children}
+    </div>
+  );
+}
+
+interface LayeredSectionProps {
+  children: React.ReactNode;
+  className?: string;
+  overlap?: 'sm' | 'md' | 'lg' | 'xl';
+  zIndex?: number;
+}
+
+export function LayeredSection({
+  children,
+  className = '',
+  overlap = 'md',
+  zIndex = 10,
+}: LayeredSectionProps) {
+  const overlapValues = {
+    sm: '-mt-12',
+    md: '-mt-20',
+    lg: '-mt-32',
+    xl: '-mt-48',
+  };
+
+  return (
+    <div
+      className={`${overlapValues[overlap]} relative z-[${zIndex}] ${className}`}
+      style={{ zIndex }}
+    >
+      {children}
+    </div>
+  );
+}
+
+interface ParallaxImageProps {
+  src: string;
+  alt: string;
+  className?: string;
+  speed?: number;
+  overlay?: boolean;
+}
+
+export function ParallaxImage({
+  src,
+  alt,
+  className = '',
+  speed = 0.2,
+  overlay = true,
+}: ParallaxImageProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const container = containerRef.current;
+    const img = imgRef.current;
+    if (!container || !img) return;
+
+    const movement = 200 * speed;
+
+    gsap.fromTo(
+      img,
+      { y: -movement },
+      {
+        y: movement,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: container,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5,
+        },
+      }
+    );
+  }, { scope: containerRef });
+
+  return (
+    <div
+      ref={containerRef}
+      className={`relative overflow-hidden ${className}`}
+      style={{ height: '120%', top: '-10%' }}
+    >
+      <div
+        ref={imgRef}
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${src})` }}
+      />
+      {overlay && <div className="absolute inset-0 bg-black/20" />}
     </div>
   );
 }

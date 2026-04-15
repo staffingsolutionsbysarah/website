@@ -1,0 +1,162 @@
+[
+  {
+    "route": "/",
+    "url": "http://127.0.0.1:4173/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/01--home.pdf"
+  },
+  {
+    "route": "/about",
+    "url": "http://127.0.0.1:4173/about/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/02--about.pdf"
+  },
+  {
+    "route": "/book-a-call",
+    "url": "http://127.0.0.1:4173/book-a-call/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/03--book-a-call.pdf"
+  },
+  {
+    "route": "/case-studies",
+    "url": "http://127.0.0.1:4173/case-studies/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/04--case-studies.pdf"
+  },
+  {
+    "route": "/contact",
+    "url": "http://127.0.0.1:4173/contact/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/05--contact.pdf"
+  },
+  {
+    "route": "/disclaimer",
+    "url": "http://127.0.0.1:4173/disclaimer/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/06--disclaimer.pdf"
+  },
+  {
+    "route": "/find-work",
+    "url": "http://127.0.0.1:4173/find-work/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/07--find-work.pdf"
+  },
+  {
+    "route": "/greeting/easter-2026",
+    "url": "http://127.0.0.1:4173/greeting/easter-2026/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/08--greeting--easter-2026.pdf"
+  },
+  {
+    "route": "/hire-talent",
+    "url": "http://127.0.0.1:4173/hire-talent/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/09--hire-talent.pdf"
+  },
+  {
+    "route": "/industries",
+    "url": "http://127.0.0.1:4173/industries/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/10--industries.pdf"
+  },
+  {
+    "route": "/industries/administrative-support",
+    "url": "http://127.0.0.1:4173/industries/administrative-support/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/11--industries--administrative-support.pdf"
+  },
+  {
+    "route": "/industries/construction",
+    "url": "http://127.0.0.1:4173/industries/construction/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/12--industries--construction.pdf"
+  },
+  {
+    "route": "/industries/finance-accounting",
+    "url": "http://127.0.0.1:4173/industries/finance-accounting/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/13--industries--finance-accounting.pdf"
+  },
+  {
+    "route": "/industries/food-grocery-retail",
+    "url": "http://127.0.0.1:4173/industries/food-grocery-retail/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/14--industries--food-grocery-retail.pdf"
+  },
+  {
+    "route": "/industries/it-technology",
+    "url": "http://127.0.0.1:4173/industries/it-technology/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/15--industries--it-technology.pdf"
+  },
+  {
+    "route": "/industries/manufacturing-skilled-trades",
+    "url": "http://127.0.0.1:4173/industries/manufacturing-skilled-trades/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/16--industries--manufacturing-skilled-trades.pdf"
+  },
+  {
+    "route": "/industries/sales-marketing",
+    "url": "http://127.0.0.1:4173/industries/sales-marketing/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/17--industries--sales-marketing.pdf"
+  },
+  {
+    "route": "/insights",
+    "url": "http://127.0.0.1:4173/insights/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/18--insights.pdf"
+  },
+  {
+    "route": "/jobs",
+    "url": "http://127.0.0.1:4173/jobs/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/19--jobs.pdf"
+  },
+  {
+    "route": "/locations",
+    "url": "http://127.0.0.1:4173/locations/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/20--locations.pdf"
+  },
+  {
+    "route": "/locations/belleville",
+    "url": "http://127.0.0.1:4173/locations/belleville/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/21--locations--belleville.pdf"
+  },
+  {
+    "route": "/locations/chatham-kent",
+    "url": "http://127.0.0.1:4173/locations/chatham-kent/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/22--locations--chatham-kent.pdf"
+  },
+  {
+    "route": "/locations/toronto-gta",
+    "url": "http://127.0.0.1:4173/locations/toronto-gta/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/23--locations--toronto-gta.pdf"
+  },
+  {
+    "route": "/locations/vaughan",
+    "url": "http://127.0.0.1:4173/locations/vaughan/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/24--locations--vaughan.pdf"
+  },
+  {
+    "route": "/locations/windsor",
+    "url": "http://127.0.0.1:4173/locations/windsor/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/25--locations--windsor.pdf"
+  },
+  {
+    "route": "/newsletter",
+    "url": "http://127.0.0.1:4173/newsletter/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/26--newsletter.pdf"
+  },
+  {
+    "route": "/our-process",
+    "url": "http://127.0.0.1:4173/our-process/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/27--our-process.pdf"
+  },
+  {
+    "route": "/privacy",
+    "url": "http://127.0.0.1:4173/privacy/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/28--privacy.pdf"
+  },
+  {
+    "route": "/request-talent-profile",
+    "url": "http://127.0.0.1:4173/request-talent-profile/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/29--request-talent-profile.pdf"
+  },
+  {
+    "route": "/services",
+    "url": "http://127.0.0.1:4173/services/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/30--services.pdf"
+  },
+  {
+    "route": "/submit-resume",
+    "url": "http://127.0.0.1:4173/submit-resume/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/31--submit-resume.pdf"
+  },
+  {
+    "route": "/terms",
+    "url": "http://127.0.0.1:4173/terms/",
+    "pdf": "/Users/TTTG/Sarah Fell/apps/sarah-fell-website-vercel-clone/docs/packages/stitch-testing-package-2026-04-13/32--terms.pdf"
+  }
+]

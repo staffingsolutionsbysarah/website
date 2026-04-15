@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 @theme {
+  --logo-height: 3rem;
+  --logo-width: 0.75in;
+
   --font-cormorant: var(--font-cormorant);
   --font-manrope: var(--font-manrope);
 
