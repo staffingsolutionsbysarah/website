@@ -19,6 +19,27 @@
   --color-section: #F4F2ED;
   --color-section-soft: #FAF8F3;
   --color-dark-panel: #1F2628;
+
+  /* === EXTENDED PALETTE === */
+  /* Liquid-Glass Set */
+  --color-porcelain-mist: #F3F0EB;
+  --color-stone-veil: #B7ADA3;
+  --color-champagne-haze: #D8C6AE;
+  --color-smoked-umber: #4E433B;
+  --color-dusty-bronze: #8A6F58;
+
+  /* Contrast-Focused Set */
+  --color-espresso-brown: #4A3B34;
+  --color-soft-mushroom-taupe: #B5A79A;
+  --color-parchment-ivory: #F5EEDF;
+  --color-muted-clay-beige: #CBB8A3;
+  --color-aged-brass-highlight: #A8894E;
+
+  /* Earth Tones */
+  --color-crease: #BFB39C;
+  --color-khaki: #C3B091;
+  --color-egyptian: #5C4A3D;
+  --color-wasabi: #7D9B76;
 }
 
 @layer base {
@@ -232,5 +253,129 @@
 
   .btn-outline:hover {
     transform: translateY(-1px);
+  }
+
+  /* === EARTH TONE DEPTH CLASSES === */
+  .depth-earth {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    border: 1px solid rgba(92, 74, 61, 0.1);
+    border-radius: 34px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(243, 240, 235, 0.5)),
+      linear-gradient(145deg, #f5eeea 0%, #e8e2da 56%, #ddd5c8 100%);
+    box-shadow:
+      0 26px 80px rgba(92, 74, 61, 0.08),
+      0 52px 120px rgba(92, 74, 61, 0.05);
+  }
+
+  .depth-earth::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.4), transparent 36%),
+      radial-gradient(circle at top right, rgba(198, 166, 74, 0.15), transparent 34%);
+    pointer-events: none;
+  }
+
+  .depth-bronze {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    border: 1px solid rgba(138, 111, 88, 0.12);
+    border-radius: 34px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(216, 198, 174, 0.3)),
+      linear-gradient(145deg, #faf5ee 0%, #ebe3d6 56%, #e0d5c5 100%);
+    box-shadow:
+      0 26px 80px rgba(138, 111, 88, 0.1),
+      0 52px 120px rgba(168, 137, 78, 0.06);
+  }
+
+  .depth-bronze::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.5), transparent 40%),
+      radial-gradient(circle at top right, rgba(168, 137, 78, 0.2), transparent 36%);
+    pointer-events: none;
+  }
+
+  .depth-khaki {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    border: 1px solid rgba(195, 176, 145, 0.15);
+    border-radius: 34px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(243, 240, 235, 0.4)),
+      linear-gradient(145deg, #f8f4ec 0%, #ede6d8 56%, #e3d9c8 100%);
+    box-shadow:
+      0 22px 70px rgba(195, 176, 145, 0.12),
+      0 44px 100px rgba(195, 176, 145, 0.06);
+  }
+
+  .depth-dark-panel {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    border: 1px solid rgba(74, 59, 52, 0.15);
+    border-radius: 34px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+      linear-gradient(150deg, #4a3b34 0%, #3d312a 46%, #352b24 100%);
+    box-shadow:
+      0 30px 100px rgba(74, 59, 52, 0.25),
+      0 56px 140px rgba(74, 59, 52, 0.18);
+  }
+
+  .depth-dark-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at top left, rgba(198, 166, 74, 0.2), transparent 30%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 28%);
+    pointer-events: none;
+  }
+
+  /* === WASABI ACCENT (use sparingly) === */
+  .accent-wasabi {
+    color: var(--color-wasabi);
+    background: linear-gradient(135deg, rgba(125, 155, 118, 0.1), transparent);
+  }
+
+  /* === SECTION BACKGROUNDS === */
+  .bg-ivory {
+    background-color: var(--color-parchment-ivory);
+  }
+
+  .bg-taupe {
+    background-color: var(--color-soft-mushroom-taupe);
+  }
+
+  .bg-clay {
+    background-color: var(--color-muted-clay-beige);
+  }
+
+  .bg-egyptian {
+    background-color: var(--color-egyptian);
+    color: white;
+  }
+
+  /* === BRONZE ACCENTS === */
+  .border-bronze {
+    border-color: var(--color-dusty-bronze);
+  }
+
+  .text-bronze {
+    color: var(--color-dusty-bronze);
+  }
+
+  .bg-bronze-glow {
+    background: radial-gradient(circle, rgba(138, 111, 88, 0.15), transparent 70%);
   }
 }
