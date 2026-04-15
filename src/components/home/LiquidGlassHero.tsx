@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const slides = [
   {
     id: 'employer',
-    image: '/images/Business handshake in Toronto office.png',
+    image: '/images/hero-employer-hiring-toronto.png',
     eyebrow: 'Hiring Support',
     title: 'Recruitment built for the work that matters.',
     body: 'Industrial, trades, and operations hiring handled with direct recruiter ownership, tighter shortlist logic, and less drag.',
@@ -16,7 +16,7 @@ const slides = [
   },
   {
     id: 'industrial',
-    image: '/images/Worker with tablet in manufacturing facility.png',
+    image: '/images/hero-industrial-manufacturing-ontario.png',
     eyebrow: 'Industrial Hiring',
     title: 'Your next role in Ontario starts here.',
     body: 'We connect skilled professionals with employers who value technical fit, reliability, and long-term career growth.',
@@ -24,7 +24,7 @@ const slides = [
   },
   {
     id: 'trades',
-    image: '/images/Construction professionals reviewing plans together.png',
+    image: '/images/hero-trades-construction-plans.png',
     eyebrow: 'Trades & Construction',
     title: 'Industry-specific recruitment across Ontario.',
     body: 'Manufacturing, trades, construction, and business-side hiring supported with clearer sector context.',
@@ -32,7 +32,7 @@ const slides = [
   },
   {
     id: 'toronto',
-    image: '/images/Toronto at golden hour.png',
+    image: '/images/hero-ontario-toronto-skyline.png',
     eyebrow: 'Ontario',
     title: '10+ years of industrial recruitment expertise.',
     body: 'Built on a decade of search experience across Ontario, from the GTA to Windsor.',

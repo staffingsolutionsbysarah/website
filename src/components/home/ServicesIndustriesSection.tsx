@@ -32,7 +32,7 @@ const serviceModel = [
 const capabilityLanes = [
   {
     icon: Factory,
-    image: '/images/Worker with tablet in manufacturing facility.png',
+    image: '/images/hero-industrial-manufacturing-ontario.png',
     title: 'Manufacturing & Industrial',
     summary: 'Industrial recruitment for production, quality, plant, and operations hiring where productivity pressure is real.',
     pressure: 'When the line cannot sit open and the hiring team needs usable candidates quickly.',
@@ -40,7 +40,7 @@ const capabilityLanes = [
   },
   {
     icon: Hammer,
-    image: '/images/Skilled trades workers reviewing blueprints.png',
+    image: '/images/industrial-trades-blueprints.png',
     title: 'Skilled Trades & Maintenance',
     summary: 'Skilled trades recruitment for maintenance-heavy environments where technical fit and shift reality matter.',
     pressure: 'When the role is hard to fill and weak screening gets expensive fast.',
@@ -48,7 +48,7 @@ const capabilityLanes = [
   },
   {
     icon: HardHat,
-    image: '/images/Construction professionals reviewing plans together.png',
+    image: '/images/hero-trades-construction-plans.png',
     title: 'Construction & Engineering',
     summary: 'Search support for field, project, and engineering-adjacent teams that need stronger shortlist judgment.',
     pressure: 'When site pressure, delivery pressure, or project timing leaves little room for process waste.',
@@ -56,7 +56,7 @@ const capabilityLanes = [
   },
   {
     icon: BriefcaseBusiness,
-    image: '/images/Planning and strategy essentials flat lay.png',
+    image: '/images/business-planning-strategy-flatlay.png',
     title: 'Accounting & Finance',
     summary: 'Business-side recruitment for firms that still want direct recruiter judgment rather than generic resume flow.',
     pressure: 'When the role needs commercial awareness, discretion, and cleaner early filtering.',
@@ -64,7 +64,7 @@ const capabilityLanes = [
   },
   {
     icon: Users,
-    image: '/images/Supermarket teamwork in Ontario produce aisle.png',
+    image: '/images/retail-supermarket-teamwork-ontario.png',
     title: 'Sales & Office Support',
     summary: 'Office and support hiring where reliability, communication, and role fit still drive business outcomes.',
     pressure: 'When the team needs someone dependable who can support execution, not just fill a seat.',
@@ -72,7 +72,7 @@ const capabilityLanes = [
   },
   {
     icon: MapPinned,
-    image: '/images/Worker operating control panel in factory.png',
+    image: '/images/industrial-factory-control-panel.png',
     title: 'Technology & Logistics',
     summary: 'Adjacent hiring coverage for planning, dispatch, logistics, and systems-adjacent operational roles.',
     pressure: 'When the brief is mixed and the search still needs structure, speed, and recruiter judgment.',

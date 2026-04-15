@@ -8,25 +8,25 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const cards = [
   {
-    image: '/images/Business handshake in Toronto office.png',
+    image: '/images/hero-employer-hiring-toronto.png',
     kicker: 'Employer + Hiring',
     title: 'Build Your Team',
     body: 'Direct recruiter ownership from intake through close. Clear search briefs, tighter shortlists, faster decisions.',
   },
   {
-    image: '/images/Worker with tablet in manufacturing facility.png',
+    image: '/images/hero-industrial-manufacturing-ontario.png',
     kicker: 'Candidate + Find Work',
     title: 'Find Your Next Role',
     body: 'Active industrial and trades opportunities across Ontario. Real roles, real timelines, direct communication.',
   },
   {
-    image: '/images/Skilled trades workers reviewing blueprints.png',
+    image: '/images/industrial-trades-blueprints.png',
     kicker: 'Industries',
     title: 'Manufacturing, Finance & Tech',
     body: 'Specialist coverage across production, skilled trades, accounting, and technology. Sector-aware search logic.',
   },
   {
-    image: '/images/Construction professionals reviewing plans together.png',
+    image: '/images/hero-trades-construction-plans.png',
     kicker: 'Ontario Trust',
     title: 'Regional Expertise',
     body: 'Ontario-first recruitment with manufacturing and skilled trades relevance. Local market knowledge, local results.',
