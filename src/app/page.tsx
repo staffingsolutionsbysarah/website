@@ -6,6 +6,7 @@ import { ScrollReveal, ParallaxSection, Parallax, FadeIn, ClipReveal, ScaleRevea
 
 import LiquidGlassHero from '@/components/home/LiquidGlassHero';
 import HorizontalStackingCards from '@/components/home/HorizontalStackingCards';
+import { ClientLogosSection } from '@/components/home/ClientLogosSection';
 import { ServicesIndustriesSection } from '@/components/home/ServicesIndustriesSection';
 import { DeliveryModelsSection } from '@/components/home/DeliveryModelsSection';
 import TrustBlock from '@/components/home/TrustBlock';
@@ -67,6 +68,13 @@ export default function HomePage() {
           <HorizontalStackingCards />
         </ScrollReveal>
       </ClipReveal>
+
+      {/* Client Logos - Trusted by section */}
+      <ScaleReveal>
+        <ScrollReveal direction="up" intensity="subtle">
+          <ClientLogosSection />
+        </ScrollReveal>
+      </ScaleReveal>
 
       {/* Delivery Models - Khaki depth with overlap */}
       <LayeredSection overlap="md" zIndex={15}>
