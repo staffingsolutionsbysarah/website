@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import PageHero from '@/components/site/PageHero';
 import CallToActionPanel from '@/components/site/CallToActionPanel';
+import TalentRequestForm from '@/components/forms/TalentRequestForm';
 
 export const metadata: Metadata = {
   title: 'Request Talent Profile — Employer Intake',
@@ -37,13 +38,7 @@ export default function RequestTalentProfilePage() {
       <section className="px-4 py-8 md:px-6 md:py-12">
         <div className="mx-auto grid max-w-[1280px] gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.6fr)]">
           <article className="depth-plane px-7 py-8 md:px-10 md:py-10">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent)]">
-              Current path
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-black/72 md:text-lg">
-              Talent profile requests are still handled through direct intake rather than a custom backend. That keeps
-              the implementation honest and avoids inventing a new system before the workflow is ready.
-            </p>
+            <TalentRequestForm />
           </article>
 
           <article className="depth-inset rounded-[30px] px-6 py-7 md:px-7">

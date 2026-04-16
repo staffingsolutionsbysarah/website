@@ -6,13 +6,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const industryImages: Record<string, string> = {
-  'manufacturing-skilled-trades': '/images/download-2.jpg',
-  'food-grocery-retail': '/images/download-3.jpg',
-  'construction': '/images/download-4.jpg',
-  'finance-accounting': '/images/download.jpg',
-  'it-technology': '/images/download-4.jpg',
-  'sales-marketing': '/images/download-3.jpg',
-  'administrative-support': '/images/download-1.jpg',
+  'manufacturing-skilled-trades': '/images/hero-industrial-manufacturing-ontario.png',
+  'food-grocery-retail': '/images/hero-employer-hiring-toronto.png',
+  'construction': '/images/hero-ontario-toronto-skyline.png',
+  'finance-accounting': '/images/hero-ontario-toronto-skyline.png',
+  'it-technology': '/images/hero-ontario-toronto-skyline.png',
+  'sales-marketing': '/images/hero-employer-hiring-toronto.png',
+  'administrative-support': '/images/hero-trades-construction-plans.png',
 };
 
 type IndustryPageProps = {
@@ -37,7 +37,7 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
     notFound();
   }
 
-  const mainImage = industryImages[industry.slug as string] || '/images/download-2.jpg';
+  const mainImage = industryImages[industry.slug as string] || '/images/hero-industrial-manufacturing-ontario.png';
 
   return (
     <div className="depth-canvas bg-[#FAFAFA] text-[var(--color-dark)]">

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 
 const testimonials = [
@@ -27,6 +27,16 @@ const closingProof = [
 
 export default function TestimonialsCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   const nextSlide = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % testimonials.length);
@@ -38,7 +48,10 @@ export default function TestimonialsCarousel() {
   }, [nextSlide]);
 
   return (
-    <section className="px-4 py-18 md:px-6 md:py-24">
+    <motion.section 
+      ref={sectionRef}
+      style={{ y, opacity }}
+      className="px-4 py-18 md:px-6 md:py-24">
       <div className="mx-auto grid max-w-[1380px] gap-8 lg:grid-cols-[minmax(280px,0.34fr)_minmax(0,0.66fr)]">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[var(--color-accent)]">
@@ -109,6 +122,6 @@ export default function TestimonialsCarousel() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -16,7 +16,7 @@ export default function DisclaimerPage() {
           
           <div className="mt-16 space-y-12 text-black/70 leading-relaxed">
             <section>
-              <p className="text-sm font-semibold uppercase tracking-widest text-black/40 mb-4">Last Updated: April 12, 2026</p>
+              <p className="text-sm font-semibold uppercase tracking-widest text-black/40 mb-4">Last Updated: April 16, 2026</p>
               <p>
                 The information on this website is provided for general business and recruitment-related purposes only.
               </p>

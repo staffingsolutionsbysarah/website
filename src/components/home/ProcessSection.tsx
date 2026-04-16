@@ -87,8 +87,21 @@ export function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: '-100px' });
 
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const sectionY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
+
   return (
-    <section className="relative mt-4 px-4 pb-20 pt-18 text-white md:px-6 md:pb-26 md:pt-24" id="process">
+    <motion.section 
+      ref={containerRef}
+      style={{ y: sectionY, opacity }}
+      className="relative mt-4 px-4 pb-20 pt-18 text-white md:px-6 md:pb-26 md:pt-24" 
+      id="process"
+    >
       <div className="absolute inset-x-0 bottom-0 top-0 bg-[#1F2628]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,rgba(198,166,74,0.18),transparent_58%)]" />
       <div className="relative mx-auto grid max-w-[1380px] gap-12 lg:grid-cols-[minmax(300px,0.36fr)_minmax(0,0.64fr)]">
@@ -125,6 +138,6 @@ export function ProcessSection() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

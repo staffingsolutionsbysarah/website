@@ -1,0 +1,182 @@
+{
+  "name": "Sarah Fell - Talent Request Intake",
+  "description": "Receives talent request form submissions and creates intake records in PocketBase",
+  "scenario_version": "1",
+  "modules": [
+    {
+      "id": "webhook1",
+      "name": "Talent Request Webhook",
+      "type": "webhook",
+      "module": "make/webhooks",
+      "version": "1",
+      "parameters": {
+        "name": "talent-request-webhook",
+        "location": "custom",
+        "events": "default"
+      },
+      "output": {
+        "schema": "talent-request-payload",
+        "sample": {
+          "kind": "talent-request",
+          "companyName": "Acme Manufacturing",
+          "contactName": "John Manager",
+          "workEmail": "john@acme.com",
+          "phone": "+1234567890",
+          "roleTitle": "Plant Supervisor",
+          "roleType": "Full-time",
+          "timeline": "1-2 weeks",
+          "budget": "$70-80k",
+          "roleDescription": "Looking for experienced plant supervisor...",
+          "hiringNeeds": "Supervise 20 staff, 3 shifts...",
+          "receivedAt": "2024-01-15T10:30:00Z",
+          "source": "request-talent-profile"
+        }
+      }
+    },
+    {
+      "id": "router1",
+      "name": "Route by Urgency",
+      "type": "router",
+      "module": "make/flow/router",
+      "version": "1",
+      "routes": [
+        {
+          "id": "route_urgent",
+          "name": "Urgent - Immediate",
+          "filter": "{{webhook1.timeline}} = \"Immediate\"",
+          "modules": ["http_urgent", "email_urgent", "linear_urgent"]
+        },
+        {
+          "id": "route_standard",
+          "name": "Standard",
+          "filter": "true",
+          "modules": ["http_standard", "email_standard"]
+        }
+      ]
+    },
+    {
+      "id": "http_urgent",
+      "name": "Create Urgent Intake in PocketBase",
+      "type": "action",
+      "module": "http/makeRequest",
+      "version": "1",
+      "parameters": {
+        "method": "POST",
+        "url": "https://YOUR_POCKETBASE_URL/api/collections/employer_leads/records",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR_POCKETBASE_ADMIN_TOKEN"
+        },
+        "body": {
+          "company": "{{webhook1.companyName}}",
+          "contact_name": "{{webhook1.contactName}}",
+          "email": "{{webhook1.workEmail}}",
+          "phone": "{{webhook1.phone}}",
+          "role_title": "{{webhook1.roleTitle}}",
+          "role_type": "{{webhook1.roleType}}",
+          "timeline": "{{webhook1.timeline}}",
+          "budget": "{{webhook1.budget}}",
+          "description": "{{webhook1.roleDescription}}",
+          "notes": "{{webhook1.hiringNeeds}}",
+          "status": "urgent",
+          "source": "{{webhook1.source}}"
+        },
+        "serializeBody": true
+      }
+    },
+    {
+      "id": "http_standard",
+      "name": "Create Standard Intake in PocketBase",
+      "type": "action",
+      "module": "http/makeRequest",
+      "version": "1",
+      "parameters": {
+        "method": "POST",
+        "url": "https://YOUR_POCKETBASE_URL/api/collections/employer_leads/records",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR_POCKETBASE_ADMIN_TOKEN"
+        },
+        "body": {
+          "company": "{{webhook1.companyName}}",
+          "contact_name": "{{webhook1.contactName}}",
+          "email": "{{webhook1.workEmail}}",
+          "phone": "{{webhook1.phone}}",
+          "role_title": "{{webhook1.roleTitle}}",
+          "role_type": "{{webhook1.roleType}}",
+          "timeline": "{{webhook1.timeline}}",
+          "budget": "{{webhook1.budget}}",
+          "description": "{{webhook1.roleDescription}}",
+          "notes": "{{webhook1.hiringNeeds}}",
+          "status": "new",
+          "source": "{{webhook1.source}}"
+        },
+        "serializeBody": true
+      }
+    },
+    {
+      "id": "email_urgent",
+      "name": "URGENT - Notify Sarah",
+      "type": "action",
+      "module": "gmail/sendEmail",
+      "version": "1",
+      "parameters": {
+        "connection": "YOUR_GMAIL_CONNECTION_ID",
+        "to": "sarah.fell@staffingsolutionsbysarah.com",
+        "subject": "URGENT - New Talent Request: {{webhook1.roleTitle}} at {{webhook1.companyName}}",
+        "body": "URGENT - Immediate hire needed!\n\nCompany: {{webhook1.companyName}}\nContact: {{webhook1.contactName}}\nEmail: {{webhook1.workEmail}}\nPhone: {{webhook1.phone}}\n\nRole: {{webhook1.roleTitle}}\nType: {{webhook1.roleType}}\nTimeline: {{webhook1.timeline}}\nBudget: {{webhook1.budget}}\n\nDescription:\n{{webhook1.roleDescription}}\n\nHiring Needs:\n{{webhook1.hiringNeeds}}\n\nView in PocketBase: https://YOUR_POCKETBASE_URL/_/#/collections/employer_leads"
+      }
+    },
+    {
+      "id": "email_standard",
+      "name": "Notify Sarah",
+      "type": "action",
+      "module": "gmail/sendEmail",
+      "version": "1",
+      "parameters": {
+        "connection": "YOUR_GMAIL_CONNECTION_ID",
+        "to": "sarah.fell@staffingsolutionsbysarah.com",
+        "subject": "New Talent Request: {{webhook1.roleTitle}} at {{webhook1.companyName}}",
+        "body": "New talent request submission:\n\nCompany: {{webhook1.companyName}}\nContact: {{webhook1.contactName}}\nEmail: {{webhook1.workEmail}}\n\nRole: {{webhook1.roleTitle}}\nType: {{webhook1.roleType}}\nTimeline: {{webhook1.timeline}}\nBudget: {{webhook1.budget}}\n\nDescription:\n{{webhook1.roleDescription}}\n\nHiring Needs:\n{{webhook1.hiringNeeds}}\n\nView in PocketBase: https://YOUR_POCKETBASE_URL/_/#/collections/employer_leads"
+      }
+    },
+    {
+      "id": "linear_urgent",
+      "name": "Create Linear Task - Urgent",
+      "type": "action",
+      "module": "linear/createIssue",
+      "version": "1",
+      "parameters": {
+        "connection": "YOUR_LINEAR_CONNECTION_ID",
+        "teamId": "YOUR_LINEAR_TEAM_ID",
+        "title": "URGENT: {{webhook1.roleTitle}} - {{webhook1.companyName}}",
+        "description": "Company: {{webhook1.companyName}}\nContact: {{webhook1.contactName}} ({{webhook1.workEmail}})\n\nRole: {{webhook1.roleTitle}}\nType: {{webhook1.roleType}}\nTimeline: {{webhook1.timeline}}\nBudget: {{webhook1.budget}}\n\n{{webhook1.roleDescription}}",
+        "priority": 1,
+        "labelIds": ["urgent"]
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "YOUR_GMAIL_CONNECTION_ID",
+      "name": "Gmail",
+      "service": "gmail",
+      "type": "oauth2",
+      "configured": false
+    },
+    {
+      "id": "YOUR_LINEAR_CONNECTION_ID",
+      "name": "Linear",
+      "service": "linear",
+      "type": "api_key",
+      "configured": false
+    }
+  ],
+  "metadata": {
+    "importInstructions": "1. Create webhook in Make.com\n2. Set up PocketBase + Linear\n3. Get your PocketBase URL, admin token, and Linear API key\n4. Add webhook URL to website .env.local",
+    "webhookUrl": "https://hook.make.com/YOUR_WEBHOOK_ID",
+    "requiredSetup": ["PocketBase collection: employer_leads", "Linear team configured"],
+    "version": "1.0.0",
+    "createdBy": "Sarah Fell Website"
+  }
+}

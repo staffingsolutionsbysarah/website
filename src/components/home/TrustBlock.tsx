@@ -13,21 +13,39 @@ const credentials = [
 
 export default function TrustBlock() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1, 1.05]);
+  const textY = useTransform(scrollYProgress, [0, 1], [80, -40]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
+  
+  const floatingY = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.5, 0.75, 1],
+    [0, -8, 0, 8, 0]
+  );
 
   return (
-    <section ref={containerRef} className="relative px-4 py-18 md:px-6 md:py-24">
+    <section ref={containerRef} className="relative overflow-hidden px-4 py-18 md:px-6 md:py-24">
+      <motion.div 
+        style={{ opacity }}
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-parchment-ivory)] via-transparent to-[var(--color-parchment-ivory)]"
+      />
+      
       <div className="mx-auto grid max-w-[1380px] gap-12 lg:grid-cols-[minmax(300px,0.38fr)_minmax(0,0.62fr)] lg:items-center">
         <motion.div
-          style={{ y, opacity }}
+          ref={imageRef}
+          style={{ y: imageY, scale: imageScale }}
           className="relative aspect-[3/4] overflow-hidden rounded-[28px] lg:aspect-square"
         >
+          <div className="absolute -inset-4 -z-10 rounded-[32px] bg-gradient-to-br from-[var(--color-primary)]/20 to-transparent blur-2xl" />
           <Image
             src="/images/portrait-sarah-fell-recruitment.png"
             alt="Sarah Fell - Recruitment Consultant"
@@ -35,10 +53,18 @@ export default function TrustBlock() {
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 38vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+          
+          <motion.div
+            style={{ y: floatingY }}
+            className="absolute -right-4 -bottom-4 rounded-[20px] border border-[var(--color-khaki)]/30 bg-white/80 px-5 py-4 shadow-xl backdrop-blur-md lg:-right-6 lg:-bottom-6"
+          >
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-smoked-umber)]">Trusted by</p>
+            <p className="mt-1 text-lg font-semibold tracking-tight text-[var(--color-dark)]">100+ Employers</p>
+          </motion.div>
         </motion.div>
 
-        <div>
+        <motion.div ref={textRef} style={{ y: textY }}>
           <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[var(--color-accent)]">
             Why Sarah?
           </p>
@@ -54,18 +80,24 @@ export default function TrustBlock() {
             {credentials.map((credential, index) => (
               <motion.div
                 key={credential}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
+                initial={{ opacity: 0, x: -40, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ delay: index * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 className="flex items-start gap-3"
               >
-                <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-accent)]" />
+                <motion.div 
+                  className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[var(--color-primary)]"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.12 + 0.3, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                />
                 <p className="text-sm leading-relaxed text-black/78">{credential}</p>
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

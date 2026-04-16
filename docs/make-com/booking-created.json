@@ -1,0 +1,192 @@
+{
+  "name": "Sarah Fell - Booking Created",
+  "description": "Processes Cal.com booking events and creates records in PocketBase + Linear tasks",
+  "scenario_version": "1",
+  "modules": [
+    {
+      "id": "webhook1",
+      "name": "Cal.com Webhook",
+      "type": "webhook",
+      "module": "make/webhooks",
+      "version": "1",
+      "parameters": {
+        "name": "cal-booking-webhook",
+        "location": "custom",
+        "events": "default"
+      },
+      "output": {
+        "schema": "cal-booking-payload",
+        "sample": {
+          "event": "BOOKING_CREATED",
+          "payload": {
+            "uid": "abc123",
+            "title": "Intake Call with John Smith",
+            "startTime": "2024-01-20T14:00:00Z",
+            "endTime": "2024-01-20T14:30:00Z",
+            "status": "accepted",
+            "attendees": [
+              {
+                "name": "John Smith",
+                "email": "john@example.com",
+                "timeZone": "America/Toronto"
+              }
+            ],
+            "organizer": {
+              "name": "Sarah Fell",
+              "email": "sarah.fell@staffingsolutionsbysarah.com"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "router1",
+      "name": "Route by Event Type",
+      "type": "router",
+      "module": "make/flow/router",
+      "version": "1",
+      "routes": [
+        {
+          "id": "route_intake",
+          "name": "Intake Call",
+          "filter": "{{webhook1.payload.title}} contains \"Intake\"",
+          "modules": ["http_intake", "linear_intake"]
+        },
+        {
+          "id": "route_screening",
+          "name": "Screening Call",
+          "filter": "{{webhook1.payload.title}} contains \"Screening\"",
+          "modules": ["http_screening", "linear_screening"]
+        },
+        {
+          "id": "route_other",
+          "name": "Other",
+          "filter": "true",
+          "modules": ["http_other"]
+        }
+      ]
+    },
+    {
+      "id": "http_intake",
+      "name": "Create Intake Booking in PocketBase",
+      "type": "action",
+      "module": "http/makeRequest",
+      "version": "1",
+      "parameters": {
+        "method": "POST",
+        "url": "https://YOUR_POCKETBASE_URL/api/collections/bookings/records",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR_POCKETBASE_ADMIN_TOKEN"
+        },
+        "body": {
+          "cal_id": "{{webhook1.payload.uid}}",
+          "title": "{{webhook1.payload.title}}",
+          "attendee_name": "{{webhook1.payload.attendees.0.name}}",
+          "attendee_email": "{{webhook1.payload.attendees.0.email}}",
+          "event_time": "{{webhook1.payload.startTime}}",
+          "status": "scheduled",
+          "booking_type": "intake"
+        },
+        "serializeBody": true
+      }
+    },
+    {
+      "id": "http_screening",
+      "name": "Create Screening Booking in PocketBase",
+      "type": "action",
+      "module": "http/makeRequest",
+      "version": "1",
+      "parameters": {
+        "method": "POST",
+        "url": "https://YOUR_POCKETBASE_URL/api/collections/bookings/records",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR_POCKETBASE_ADMIN_TOKEN"
+        },
+        "body": {
+          "cal_id": "{{webhook1.payload.uid}}",
+          "title": "{{webhook1.payload.title}}",
+          "attendee_name": "{{webhook1.payload.attendees.0.name}}",
+          "attendee_email": "{{webhook1.payload.attendees.0.email}}",
+          "event_time": "{{webhook1.payload.startTime}}",
+          "status": "scheduled",
+          "booking_type": "screening"
+        },
+        "serializeBody": true
+      }
+    },
+    {
+      "id": "http_other",
+      "name": "Create Other Booking in PocketBase",
+      "type": "action",
+      "module": "http/makeRequest",
+      "version": "1",
+      "parameters": {
+        "method": "POST",
+        "url": "https://YOUR_POCKETBASE_URL/api/collections/bookings/records",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR_POCKETBASE_ADMIN_TOKEN"
+        },
+        "body": {
+          "cal_id": "{{webhook1.payload.uid}}",
+          "title": "{{webhook1.payload.title}}",
+          "attendee_name": "{{webhook1.payload.attendees.0.name}}",
+          "attendee_email": "{{webhook1.payload.attendees.0.email}}",
+          "event_time": "{{webhook1.payload.startTime}}",
+          "status": "scheduled",
+          "booking_type": "other"
+        },
+        "serializeBody": true
+      }
+    },
+    {
+      "id": "linear_intake",
+      "name": "Create Linear Task - Intake",
+      "type": "action",
+      "module": "linear/createIssue",
+      "version": "1",
+      "parameters": {
+        "connection": "YOUR_LINEAR_CONNECTION_ID",
+        "teamId": "YOUR_LINEAR_TEAM_ID",
+        "title": "Intake: {{webhook1.payload.attendees.0.name}}",
+        "description": "Booking: {{webhook1.payload.title}}\nDate: {{webhook1.payload.startTime}}\nAttendee: {{webhook1.payload.attendees.0.name}} ({{webhook1.payload.attendees.0.email}})",
+        "priority": 2,
+        "labelIds": ["intake", "scheduled"]
+      }
+    },
+    {
+      "id": "linear_screening",
+      "name": "Create Linear Task - Screening",
+      "type": "action",
+      "module": "linear/createIssue",
+      "version": "1",
+      "parameters": {
+        "connection": "YOUR_LINEAR_CONNECTION_ID",
+        "teamId": "YOUR_LINEAR_TEAM_ID",
+        "title": "Screening: {{webhook1.payload.attendees.0.name}}",
+        "description": "Booking: {{webhook1.payload.title}}\nDate: {{webhook1.payload.startTime}}\nAttendee: {{webhook1.payload.attendees.0.name}} ({{webhook1.payload.attendees.0.email}})",
+        "priority": 3,
+        "labelIds": ["screening", "scheduled"]
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "YOUR_LINEAR_CONNECTION_ID",
+      "name": "Linear",
+      "service": "linear",
+      "type": "api_key",
+      "configured": false
+    }
+  ],
+  "metadata": {
+    "importInstructions": "1. Create webhook in Make.com\n2. Set up PocketBase + Linear\n3. Configure Cal.com to send webhooks to this Make.com webhook\n4. Get your PocketBase URL, admin token, and Linear API key",
+    "webhookUrl": "https://hook.make.com/YOUR_WEBHOOK_ID",
+    "requiredSetup": ["PocketBase collection: bookings", "Linear team configured", "Cal.com webhook configured"],
+    "calWebhookTrigger": "Set this webhook URL in Cal.com > Settings > Webhooks",
+    "version": "1.0.0",
+    "createdBy": "Sarah Fell Website"
+  }
+}

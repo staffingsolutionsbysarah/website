@@ -5,15 +5,16 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { MarqueeSection } from '@/components/ui/MarqueeSection';
 
 const industryImages: Record<string, string> = {
-  'manufacturing-skilled-trades': '/images/download-2.jpg',
-  'food-grocery-retail': '/images/download-3.jpg',
-  'construction': '/images/download-4.jpg',
-  'finance-accounting': '/images/download.jpg',
-  'it-technology': '/images/download-4.jpg',
-  'sales-marketing': '/images/download-3.jpg',
-  'administrative-support': '/images/download-1.jpg',
+  'manufacturing-skilled-trades': '/images/hero-industrial-manufacturing-ontario.png',
+  'food-grocery-retail': '/images/hero-employer-hiring-toronto.png',
+  'construction': '/images/hero-ontario-toronto-skyline.png',
+  'finance-accounting': '/images/hero-ontario-toronto-skyline.png',
+  'it-technology': '/images/hero-ontario-toronto-skyline.png',
+  'sales-marketing': '/images/hero-employer-hiring-toronto.png',
+  'administrative-support': '/images/hero-trades-construction-plans.png',
 };
 
 export default function IndustriesHub() {
@@ -36,6 +37,7 @@ export default function IndustriesHub() {
           </motion.div>
         </div>
       </section>
+      <MarqueeSection variant="dark" speed={32} />
 
       {/* Editorial List Hub */}
       <section className="px-6 pb-32">
@@ -60,7 +62,7 @@ export default function IndustriesHub() {
                   <div className="flex items-center gap-6 lg:justify-end">
                     <div className="relative hidden h-40 w-60 overflow-hidden rounded-[28px] border border-black/6 shadow-[0_18px_42px_rgba(0,0,0,0.08)] lg:block">
                       <Image 
-                        src={industryImages[industry.slug] || '/images/download-2.jpg'} 
+                        src={industryImages[industry.slug] || '/images/hero-industrial-manufacturing-ontario.png'} 
                         alt={industry.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"

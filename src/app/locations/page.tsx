@@ -2,6 +2,7 @@ import PageHero from '@/components/site/PageHero';
 import LinkCardGrid from '@/components/site/LinkCardGrid';
 import CallToActionPanel from '@/components/site/CallToActionPanel';
 import { locationHubCards } from '@/data/site-data';
+import { MarqueeSection } from '@/components/ui/MarqueeSection';
 
 export default function LocationsPage() {
   return (
@@ -21,6 +22,7 @@ export default function LocationsPage() {
           { href: '/contact', label: 'Contact', variant: 'secondary' },
         ]}
       />
+      <MarqueeSection variant="dark" speed={30} />
 
       <LinkCardGrid
         title="Location pages"

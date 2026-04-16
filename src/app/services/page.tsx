@@ -4,30 +4,31 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { MarqueeSection } from '@/components/ui/MarqueeSection';
 
 const deliveryModels = [
   {
     title: 'Direct Hire / Permanent Placement',
     body: 'Targeted recruitment for full-time roles where long-term retention and cultural fit are critical. We manage the search from intake through calibration to close.',
-    image: '/images/download-2.jpg',
+    image: '/images/hero-industrial-manufacturing-ontario.png',
     align: 'left'
   },
   {
     title: 'Retained & Exclusive Search',
     body: 'Priority search ownership for executive or specialized leadership roles. A dedicated process that creates deeper market commitment and stronger shortlist control.',
-    image: '/images/download-4.jpg',
+    image: '/images/hero-ontario-toronto-skyline.png',
     align: 'right'
   },
   {
     title: 'Contract & Temp-to-Perm',
     body: 'Flexible staffing support for project-based needs or interim coverage. A practical bridge that allows both parties to verify fit before a permanent commitment.',
-    image: '/images/download-1.jpg',
+    image: '/images/hero-trades-construction-plans.png',
     align: 'left'
   },
   {
     title: 'Payroll / EOR Support',
     body: 'Administrative and payroll support to simplify workforce management and compliance for contract teams and dispersed project staff.',
-    image: '/images/download-3.jpg',
+    image: '/images/hero-employer-hiring-toronto.png',
     align: 'right'
   },
 ];
@@ -62,6 +63,8 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      <MarqueeSection variant="dark" speed={28} />
 
       {/* Asymmetrical Service Sections */}
       <section className="px-6 pb-32">

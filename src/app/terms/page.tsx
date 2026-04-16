@@ -16,7 +16,7 @@ export default function TermsPage() {
           
           <div className="mt-16 space-y-12 text-black/70 leading-relaxed">
             <section>
-              <p className="text-sm font-semibold uppercase tracking-widest text-black/40 mb-4">Last Updated: April 12, 2026</p>
+              <p className="text-sm font-semibold uppercase tracking-widest text-black/40 mb-4">Last Updated: April 16, 2026</p>
               <p>
                 By accessing or using this website, you agree to these Terms of Use. If you do not agree, do not use the website.
               </p>

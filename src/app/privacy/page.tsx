@@ -16,30 +16,57 @@ export default function PrivacyPage() {
           
           <div className="mt-16 space-y-12 text-black/70 leading-relaxed">
             <section>
-              <p className="text-sm font-semibold uppercase tracking-widest text-black/40 mb-4">Effective: April 12, 2026</p>
+              <p className="text-sm font-semibold uppercase tracking-widest text-black/40 mb-4">Effective: April 16, 2026</p>
               <p>
                 Staffing Solutions by Sarah Fell Incorporated ("we," "us," "our") respects your privacy and is committed to protecting personal information in accordance with applicable Canadian privacy law, including the Personal Information Protection and Electronic Documents Act (PIPEDA), where applicable.
               </p>
               <p className="mt-4">
-                This Privacy Policy explains how we collect, use, disclose, retain, and protect personal information when you use this website, submit a contact form, book a call, or otherwise interact with us.
+                This Privacy Policy explains how we collect, use, disclose, retain, and protect personal information when you use this website, submit a form, book a call, or otherwise interact with us.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">1. Information We Collect</h2>
-              <p>We may collect personal information that you voluntarily provide, including:</p>
-              <ul className="mt-4 list-disc pl-6 space-y-2">
-                <li>full name</li>
-                <li>email address</li>
-                <li>phone number</li>
-                <li>company name</li>
-                <li>job title or hiring details</li>
-                <li>information included in your message or inquiry</li>
-                <li>booking details you submit through our scheduling flow</li>
+              <p>We may collect personal information that you voluntarily provide, depending on how you interact with us:</p>
+
+              <p className="mt-4 font-semibold text-black/70">Contact and Inquiry Forms</p>
+              <ul className="mt-2 list-disc pl-6 space-y-2">
+                <li>first and last name</li>
+                <li>work email address</li>
+                <li>phone number (optional)</li>
+                <li>company or organization name</li>
+                <li>message or inquiry content</li>
               </ul>
-              <p className="mt-4">
-                If resume submission or candidate application features are added in the future, we may also collect resume or CV information, employment history, qualifications, and other information you choose to submit in connection with a job inquiry or candidate profile.
-              </p>
+
+              <p className="mt-6 font-semibold text-black/70">Resume / Candidate Submission</p>
+              <ul className="mt-2 list-disc pl-6 space-y-2">
+                <li>first and last name</li>
+                <li>email address</li>
+                <li>phone number (optional)</li>
+                <li>location</li>
+                <li>LinkedIn profile URL (optional)</li>
+                <li>target role or position type</li>
+                <li>resume file (PDF, DOC, or DOCX — maximum 5 MB)</li>
+                <li>additional notes or context (optional)</li>
+              </ul>
+
+              <p className="mt-6 font-semibold text-black/70">Talent / Hiring Request Forms</p>
+              <ul className="mt-2 list-disc pl-6 space-y-2">
+                <li>company name</li>
+                <li>contact name</li>
+                <li>work email address</li>
+                <li>phone number (optional)</li>
+                <li>role title, type (full-time, contract, temporary), and timeline</li>
+                <li>budget range (optional)</li>
+                <li>role description and additional hiring context</li>
+              </ul>
+
+              <p className="mt-6 font-semibold text-black/70">Booking / Scheduling</p>
+              <ul className="mt-2 list-disc pl-6 space-y-2">
+                <li>name and email of booking participants</li>
+                <li>event type, date, and time</li>
+                <li>meeting or video call link (if applicable)</li>
+              </ul>
             </section>
 
             <section>
@@ -80,20 +107,50 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">5. Disclosure of Information</h2>
               <p>We do not sell personal information. We may disclose personal information only where reasonably necessary, including to service providers that support hosting, scheduling, analytics, or website operations, or where required by law.</p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">6. Retention and Safeguards</h2>
-              <p>
-                We retain personal information only for as long as reasonably necessary for the purposes described in this policy and to meet legal, regulatory, or legitimate business requirements.
-              </p>
+              <p className="mt-4">The third-party services we use to process form submissions and bookings include:</p>
+              <ul className="mt-4 list-disc pl-6 space-y-2">
+                <li><strong>PocketBase</strong> — a self-hosted database used to store contact inquiries, candidate submissions, talent requests, and booking records. The database is administered by Staffing Solutions by Sarah Fell and hosted on infrastructure controlled by the business owner.</li>
+                <li><strong>Make.com</strong> — an automation platform used to route submitted form data to internal workflows (such as notifications, CRM entries, or internal tracking). Data passed through Make.com is processed transiently and not retained long-term by the platform beyond what is needed to execute the workflow.</li>
+                <li><strong>Cal.com</strong> — a scheduling platform used to manage booking appointments. Booking data is subject to Cal.com's own privacy policy and terms of service. We receive booking event notifications via a secure webhook when appointments are created or updated.</li>
+                <li><strong>Vercel</strong> — the hosting platform for this website. Vercel may process minimal operational data as part of delivering the site.</li>
+              </ul>
               <p className="mt-4">
-                We use reasonable administrative, technical, and organizational safeguards appropriate to the sensitivity of the information, but no method of transmission over the internet or electronic storage is completely secure.
+                We take reasonable steps to ensure that any third-party service provider we share data with handles personal information in a manner consistent with this policy, but we are not responsible for the privacy practices of third-party platforms beyond our direct arrangements with them.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">7. Access, Corrections, and Third-Party Services</h2>
+              <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">6. File Uploads</h2>
+              <p>
+                If you submit a resume or other document through this website, the following applies:
+              </p>
+              <ul className="mt-4 list-disc pl-6 space-y-2">
+                <li>Accepted file formats: PDF, DOC, DOCX only.</li>
+                <li>Maximum file size: 5 MB per submission.</li>
+                <li>Files are transmitted securely and stored in our database (PocketBase).</li>
+                <li>Files are retained only for the duration described in the Retention section below.</li>
+                <li>Do not submit sensitive personal information beyond what is reasonably needed for a recruitment inquiry (e.g., avoid including government ID numbers, banking details, or health information in resume files).</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">7. Retention and Safeguards</h2>
+              <p>
+                We retain personal information only for as long as reasonably necessary for the purposes described in this policy and to meet legal, regulatory, or legitimate business requirements. Specific retention periods:
+              </p>
+              <ul className="mt-4 list-disc pl-6 space-y-2">
+                <li><strong>Contact inquiries:</strong> retained for up to 2 years from date of submission, unless a business relationship is established, in which case records may be kept for the duration of that relationship plus 2 years.</li>
+                <li><strong>Candidate / resume submissions:</strong> retained for up to 1 year from date of submission, unless you request earlier deletion or a placement is made, in which case records may be retained longer as part of our placement documentation.</li>
+                <li><strong>Talent / hiring requests:</strong> retained for up to 2 years from date of submission.</li>
+                <li><strong>Booking records:</strong> retained for up to 1 year following the scheduled event.</li>
+              </ul>
+              <p className="mt-4">
+                We use reasonable administrative, technical, and organizational safeguards appropriate to the sensitivity of the information, including secure storage (PocketBase with controlled access), webhook signature verification for automated data feeds, and encrypted transmission for form submissions. No method of transmission over the internet or electronic storage is completely secure.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">8. Access, Corrections, and Your Rights</h2>
               <p>
                 Subject to applicable law, you may request access to personal information we hold about you and request correction of inaccurate or incomplete information.
               </p>
@@ -103,9 +160,9 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">8. Future Candidate Submissions and Updates</h2>
+              <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">9. Policy Updates</h2>
               <p>
-                At present, the website is primarily used for inquiries and booking requests. If resume uploads, candidate profiles, or job application features are expanded later, this policy may be updated to describe those practices in more detail.
+                Candidate submission features are now active on this website. This policy describes those current practices. Additional features or changes to data collection will be reflected in updates to this policy.
               </p>
               <p className="mt-4">
                 We may update this Privacy Policy from time to time. For privacy questions, access requests, correction requests, or consent withdrawal, contact Staffing Solutions by Sarah Fell Incorporated at{' '}

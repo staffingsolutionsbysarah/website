@@ -1,0 +1,87 @@
+{
+  "name": "Sarah Fell - Contact Form Intake",
+  "description": "Receives contact form submissions from website and creates leads in PocketBase",
+  "scenario_version": "1",
+  "modules": [
+    {
+      "id": "webhook1",
+      "name": "Contact Form Webhook",
+      "type": "webhook",
+      "module": "make/webhooks",
+      "version": "1",
+      "parameters": {
+        "name": "contact-intake-webhook",
+        "location": "custom",
+        "events": "default"
+      },
+      "output": {
+        "schema": "contact-form-payload",
+        "sample": {
+          "kind": "contact",
+          "firstName": "John",
+          "lastName": "Smith",
+          "workEmail": "john@example.com",
+          "phone": "+1234567890",
+          "company": "Acme Inc",
+          "message": "I'm interested in staffing services",
+          "receivedAt": "2024-01-15T10:30:00Z",
+          "source": "contact-page"
+        }
+      }
+    },
+    {
+      "id": "http1",
+      "name": "Create Lead in PocketBase",
+      "type": "action",
+      "module": "http/makeRequest",
+      "version": "1",
+      "parameters": {
+        "method": "POST",
+        "url": "https://YOUR_POCKETBASE_URL/api/collections/employer_leads/records",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer YOUR_POCKETBASE_ADMIN_TOKEN"
+        },
+        "body": {
+          "company": "{{webhook1.company}}",
+          "contact_name": "{{webhook1.firstName}} {{webhook1.lastName}}",
+          "email": "{{webhook1.workEmail}}",
+          "phone": "{{webhook1.phone}}",
+          "message": "{{webhook1.message}}",
+          "status": "new",
+          "source": "{{webhook1.source}}"
+        },
+        "serializeBody": true
+      }
+    },
+    {
+      "id": "email1",
+      "name": "Notify via Email",
+      "type": "action",
+      "module": "gmail/sendEmail",
+      "version": "1",
+      "parameters": {
+        "connection": "YOUR_GMAIL_CONNECTION_ID",
+        "to": "sarah.fell@staffingsolutionsbysarah.com",
+        "subject": "New Contact: {{webhook1.firstName}} {{webhook1.lastName}} from {{webhook1.company}}",
+        "body": "New contact form submission:\n\nName: {{webhook1.firstName}} {{webhook1.lastName}}\nEmail: {{webhook1.workEmail}}\nPhone: {{webhook1.phone}}\nCompany: {{webhook1.company}}\n\nMessage:\n{{webhook1.message}}\n\nView in PocketBase: https://YOUR_POCKETBASE_URL/_/#/collections/employer_leads"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "YOUR_GMAIL_CONNECTION_ID",
+      "name": "Gmail",
+      "service": "gmail",
+      "type": "oauth2",
+      "configured": false
+    }
+  ],
+  "metadata": {
+    "importInstructions": "1. Create webhook in Make.com\n2. Set up PocketBase and get your URL + admin token\n3. Configure Gmail for notifications\n4. Add webhook URL to website .env.local",
+    "webhookUrl": "https://hook.make.com/YOUR_WEBHOOK_ID",
+    "requiredSetup": ["PocketBase collection: employer_leads"],
+    "version": "1.0.0",
+    "createdBy": "Sarah Fell Website"
+  }
+}

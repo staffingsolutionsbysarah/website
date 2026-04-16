@@ -1,7 +1,9 @@
 'use client';
 
+import { useRef } from 'react';
 import { Clock3, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 import LiquidGlassHero from '@/components/home/LiquidGlassHero';
 import HorizontalStackingCards from '@/components/home/HorizontalStackingCards';
@@ -38,6 +40,16 @@ const insightCards = [
 ] as const;
 
 export default function HomePage() {
+  const insightsRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: insightsRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [40, -20]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
+
   return (
     <main className="bg-[var(--color-bg)] text-[var(--color-dark)]">
       {/* Hero - Full bleed */}
@@ -88,7 +100,11 @@ export default function HomePage() {
       </section>
 
       {/* Insights */}
-      <section className="bg-[var(--color-crease)] px-6 py-24 md:px-10 md:py-32">
+      <motion.div
+        ref={insightsRef}
+        style={{ y, opacity }}
+        className="bg-[var(--color-crease)] px-6 py-24 md:px-10 md:py-32"
+      >
         <div className="depth-khaki mx-auto grid w-full gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
           <article className="px-8 py-10 md:px-12 md:py-12">
             <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[var(--color-primary)]">
@@ -110,16 +126,23 @@ export default function HomePage() {
           </article>
 
           <div className="space-y-5">
-            {insightCards.map((card) => (
-              <article key={card.title} className="rounded-[28px] border border-[var(--color-muted-clay-beige)] bg-white/80 px-6 py-7 backdrop-blur-sm md:px-7">
+            {insightCards.map((card, index) => (
+              <motion.article
+                key={card.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                className="rounded-[28px] border border-[var(--color-muted-clay-beige)] bg-white/80 px-6 py-7 backdrop-blur-sm md:px-7"
+              >
                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-dusty-bronze)]">{card.kicker}</p>
                 <h3 className="mt-4 text-[1.5rem] leading-[1.08] tracking-tight text-[var(--color-espresso-brown)]">{card.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-[var(--color-smoked-umber)]">{card.body}</p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
-      </section>
+      </motion.div>
 
       {/* CTA */}
       <section className="relative bg-[var(--color-espresso-brown)] pt-24">

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import PageHero from '@/components/site/PageHero';
 import CallToActionPanel from '@/components/site/CallToActionPanel';
+import { MarqueeSection } from '@/components/ui/MarqueeSection';
 
 export const metadata: Metadata = {
   title: 'Find Work — Active Industrial & Trades Roles in Ontario',
@@ -41,6 +42,8 @@ export default function FindWorkPage() {
           { href: '/submit-resume', label: 'Submit Resume', variant: 'secondary' },
         ]}
       />
+
+      <MarqueeSection variant="dark" speed={35} />
 
       <section className="px-4 py-8 md:px-6 md:py-12">
         <div className="mx-auto grid max-w-[1280px] gap-5 md:grid-cols-3">

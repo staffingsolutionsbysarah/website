@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import PageHero from '@/components/site/PageHero';
 import CallToActionPanel from '@/components/site/CallToActionPanel';
+import ContactForm from '@/components/forms/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Contact — Staffing Solutions by Sarah Fell',
@@ -44,6 +45,26 @@ export default function ContactPage() {
           { href: '/request-talent-profile', label: 'Request Talent Profile', variant: 'secondary' },
         ]}
       />
+
+      <section className="px-4 py-8 md:px-6 md:py-12">
+        <div className="mx-auto grid max-w-[1280px] gap-5 md:grid-cols-3">
+          {contactOptions.map((option) => (
+            <article key={option.title} className="depth-plane px-6 py-6">
+              <h2 className="text-[1.7rem] leading-[1.04] tracking-tight">{option.title}</h2>
+              <p className="mt-4 text-sm leading-relaxed text-black/68 md:text-base">{option.body}</p>
+              <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)]">
+                {option.detail}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="px-4 py-8 md:px-6 md:py-12">
+        <div className="mx-auto max-w-[640px]">
+          <ContactForm />
+        </div>
+      </section>
 
       <section className="px-4 py-8 md:px-6 md:py-12">
         <div className="mx-auto grid max-w-[1280px] gap-5 md:grid-cols-3">

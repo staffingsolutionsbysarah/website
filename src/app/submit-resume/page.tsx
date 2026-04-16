@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import PageHero from '@/components/site/PageHero';
 import CallToActionPanel from '@/components/site/CallToActionPanel';
+import ResumeForm from '@/components/forms/ResumeForm';
 
 export const metadata: Metadata = {
   title: 'Submit Resume — Candidate Intake',
@@ -36,12 +37,7 @@ export default function SubmitResumePage() {
       <section className="px-4 py-8 md:px-6 md:py-12">
         <div className="mx-auto grid max-w-[1280px] gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.6fr)]">
           <article className="depth-plane px-7 py-8 md:px-10 md:py-10">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent)]">
-              Manual intake
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-black/72 md:text-lg">
-              Resume review is handled manually. That keeps the candidate path honest — no automated system that collects your details and goes nowhere.
-            </p>
+            <ResumeForm />
           </article>
 
           <article className="depth-inset rounded-[30px] px-6 py-7 md:px-7">

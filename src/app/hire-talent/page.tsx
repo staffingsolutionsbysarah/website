@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import PageHero from '@/components/site/PageHero';
 import CallToActionPanel from '@/components/site/CallToActionPanel';
+import { MarqueeSection } from '@/components/ui/MarqueeSection';
 
 export const metadata: Metadata = {
   title: 'Hire Talent — Ontario Industrial & Trades Recruitment',
@@ -48,6 +49,8 @@ export default function HireTalentPage() {
           { href: '/book-a-call', label: 'Book a Call', variant: 'secondary' },
         ]}
       />
+
+      <MarqueeSection variant="dark" speed={30} />
 
       <section className="px-4 py-8 md:px-6 md:py-12">
         <div className="mx-auto grid max-w-[1280px] gap-5 md:grid-cols-3">
