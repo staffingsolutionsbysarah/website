@@ -10,6 +10,8 @@ import {
   BriefcaseBusiness,
   Users,
   MapPinned,
+  Megaphone,
+  TrendingUp,
   ArrowRight,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -77,6 +79,22 @@ const capabilityLanes = [
     summary: 'Adjacent hiring coverage for planning, dispatch, logistics, and systems-adjacent operational roles.',
     pressure: 'When the brief is mixed and the search still needs structure, speed, and recruiter judgment.',
     tags: ['Logistics', 'Planning', 'Dispatch'],
+  },
+  {
+    icon: Megaphone,
+    image: '/images/business-planning-strategy-flatlay.png',
+    title: 'Marketing & Creative',
+    summary: 'Hire for campaign, content, and brand roles where commercial instinct matters more than credentials alone.',
+    pressure: 'When the team needs someone who understands both the audience and the business, not just the deliverable.',
+    tags: ['Digital Marketing', 'Content', 'Brand'],
+  },
+  {
+    icon: TrendingUp,
+    image: '/images/retail-supermarket-teamwork-ontario.png',
+    title: 'Business Development',
+    summary: 'Revenue-adjacent and client-facing hiring for roles where relationship quality and commercial judgment drive outcomes.',
+    pressure: 'When the hire has to build trust fast and carry real accountability for results.',
+    tags: ['BD', 'Account Management', 'Client Relations'],
   },
 ] as const;
 
@@ -195,7 +213,7 @@ export function ServicesIndustriesSection() {
             Specialist coverage with stronger search judgment.
           </h2>
           <p className="mt-5 max-w-[34rem] text-base leading-relaxed text-black/66">
-            Six hiring lanes. Each sector operates with the same direct recruiter ownership and qualification logic — applied to the specific pressures of that industry and role environment.
+            Eight hiring lanes. Each sector operates with the same direct recruiter ownership and qualification logic — applied to the specific pressures of that industry and role environment.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
