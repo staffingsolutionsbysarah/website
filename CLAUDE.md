@@ -1,141 +1,245 @@
-# CLAUDE.md
+# CLAUDE.md - Sarah Fell Website AI Agent Instructions
 
-## Project
-This repository powers the Sarah Fell website, deployed through GitHub and Vercel.
+## Project Overview
+This repository powers the Staffing Solutions by Sarah website — a recruitment-focused business development site for Ontario employers and candidates.
 
-Tech stack:
-- Next.js
-- TypeScript
-- source code in `src/`
-- static assets in `public/`
-- configs/workflows at repo root
+**Live Site:** https://sarah-fell-website-vercel-clone.vercel.app  
+**GitHub Org:** https://github.com/staffingsolutionsbysarah
 
-## Core objective
-Maintain and improve this website as a recruiter-led business development site.
+---
 
-This is not a generic portfolio site.
-Every change must support clarity, credibility, and conversion.
+## 🎨 BRAND COLORS
 
-## Locked / Untouchable
-Do not change these unless explicitly instructed:
-- branding
-- colors
-- fonts
-- hero line
-- section order
-- deployment config
+### Core Palette (Primary)
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Charcoal | `#2C3434` | Primary dark, text, headers |
+| Gold | `#C6A64A` | Primary accent, highlights, CTAs |
+| Brand Green | `#3D7A65` | Secondary accent |
 
-## Operating rules
-1. Do not guess unknown repo structure or integrations.
-2. Inspect actual files before changing anything.
-3. Prefer small, production-safe edits.
-4. Do not broad-refactor the repo unless explicitly told.
-5. Light refactors are allowed only if required to implement a clean jobs foundation.
-6. Keep the website minimal, readable, and professional.
-7. Keep the site buyer-facing first. Jobs are secondary to client conversion.
-8. Output final code only unless asked for explanation.
+### Extended Palette (Earth Tones)
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Espresso Brown | `#4A3B34` | Dark sections, footer |
+| Soft Mushroom Taupe | `#B5A79A` | Muted backgrounds |
+| Parchment Ivory | `#F5EEDF` | Warm light surfaces |
+| Muted Clay Beige | `#CBB8A3` | Subtle fills |
+| Aged Brass Highlight | `#A8894E` | Gold alternative accent |
+| Dusty Bronze | `#8A6F58` | Warm accents |
+| Crease | `#BFB39C` | Soft beige backgrounds |
+| Khaki | `#C3B091` | Dividers, borders |
+| Stone Veil | `#B7ADA3` | Borders, secondary text |
+| Champagne Haze | `#D8C6AE` | Soft highlights |
+| Smoked Umber | `#4E433B` | Dark text alternative |
 
-## Task classification
-Internally classify each request as one of:
-- copy
-- layout
-- jobs
-- deployment
-- architecture
-- mixed
+**Flexibility:** These are guidelines. AI can suggest complementary additions (warm neutrals, muted greens, etc.) but core brand identity must remain recognizable.
 
-Also classify scope as:
-- NEW
-- UPDATE
-- REDO
+---
 
-Definitions:
-- NEW = build from scratch
-- UPDATE = preserve structure, change targeted parts only
-- REDO = replace the current implementation fully
+## 📐 DESIGN DIRECTION
 
-## Editing behavior
-Before editing:
-- identify the actual files involved
-- identify what must remain untouched
-- identify whether the task is NEW / UPDATE / REDO
+### Visual Style
+- **Industrial luxury, editorial, cinematic**
+- Think: Architectural consultancy meets recruitment expertise
+- Clean lines, intentional asymmetry
+- Premium feel without being sterile
 
-During editing:
-- touch only the files relevant to the task
-- preserve working patterns already used in the repo
-- avoid introducing unnecessary dependencies
+### Animation Philosophy
+- Smooth, cinematic transitions
+- Scroll-triggered reveals with stagger
+- Parallax depth layers
+- Liquid glass effects
+- GSAP + Framer Motion
+- No abrupt animations — everything flows
 
-## Website intent by page
-- Home = orient and convert
-- About = establish recruiter credibility
-- Jobs = show active public roles only
-- Book a Call = convert quickly with minimal friction
+### Typography
+- **Headings:** Cormorant (serif)
+- **Body:** Manrope (sans-serif)
 
-## Copy rules
-Write in a way that is:
-- direct
-- recruiter-led
-- buyer-aware
-- clear
-- not fluffy
-- not generic
+---
 
-## Layout rules
-Protect a minimal, professional layout:
-- clean spacing
-- readable hierarchy
-- no clutter
-- no decorative overbuild
-- desktop-first, still responsive
+## 🔗 REFERENCE SITES
 
-## Jobs system rules
-Current requirement:
-- Jobs page/foundation needs to be created
-- no jobs currently exist on site
-- implement a simple local typed jobs data source first
+### Design Inspiration
+- `thomasmamfredas.com` — Cinematic scroll storytelling, full-bleed imagery
+- `jordangilroy.com` — Smooth section reveals, minimalist elegance
+- `21st.dev` — Gallery-quality design, premium interactions
+- `godly.website` — Scroll effect patterns, creative transitions
 
-Default jobs logic:
-- use a local TypeScript or JSON data file first
-- render only jobs with active: true and public: true
-- keep cards scan-friendly
-- support easy migration later to Google Sheets
+### Functionality Reference
+- `codegridpro.com` — GSAP horizontal scroll with sticky pinning
+- `igniterec2rec.com` — Scroll-stop behavior
 
-Recommended fields:
-- id
-- title
-- location
-- type
-- summary
-- active
-- public
-- href
+---
 
-If there are no active public jobs:
-- show a clean empty state message
+## 🚫 CONSTRAINTS
 
-## Deployment rules
-- preserve GitHub + Vercel workflow
-- do not modify deployment config
-- separate content/code edits from infrastructure edits
-- call out anything that could affect build or routing
+### DO NOT CHANGE
+- Core brand colors (charcoal, gold, brand green)
+- Primary fonts (Cormorant for headings, Manrope for body)
+- Hero headline/copy
+- Section order and structure
+- Overall brand positioning
 
-## QA rules
-Before finishing, verify:
-- build-safe code
-- no unnecessary repo-wide changes
-- locked items untouched
-- jobs page works with empty and populated states
-- nav includes Jobs if required by task
-- output fits existing project structure
+### DO NOT
+- Add competing accent colors that clash with earth tones
+- Introduce decorative fonts or playful typography
+- Remove scroll animations or parallax effects
+- Make changes that reduce premium/luxury feel
+- Break mobile responsiveness
+- Change the buyer-facing nature of the site
 
-## Preferred implementation order for jobs
-1. inspect repo structure
-2. identify router type and current page structure
-3. add Jobs page
-4. add nav link
-5. add typed local jobs data source
-6. render cards / empty state
-7. verify no locked design rules were altered
+---
 
-## Response preference
-Return final code/results only unless explicitly asked for explanation.
+## ✅ GUIDANCE
+
+### AI CAN
+- Suggest additional earth-tone accents that harmonize with existing palette
+- Propose animation variations within the GSAP/Framer Motion framework
+- Recommend micro-interactions that enhance UX
+- Offer layout refinements that improve visual hierarchy
+- Suggest copy tweaks that improve conversion (within brand voice)
+- Add new sections that enhance scroll experience
+
+### Brand Voice
+Direct, recruiter-led, buyer-aware, professional. Not fluffy or generic.
+
+---
+
+## 📁 ASSETS
+
+### Images (in `public/images/`)
+```
+hero-employer-hiring-toronto.png
+hero-industrial-manufacturing-ontario.png
+hero-ontario-toronto-skyline.png
+hero-trades-construction-plans.png
+industrial-trades-blueprints.png
+industrial-factory-control-panel.png
+retail-supermarket-teamwork-ontario.png
+location-windsor-ambassador-bridge.png
+location-london-ontario-king-street.png
+business-planning-strategy-flatlay.png
+portrait-sarah-fell-recruitment.png
+texture-emerald-leather-dark.png
+texture-white-marble-carrara.png
+```
+
+### Logos (in `public/` or `public/brand/`)
+- `logo-mark.svg` — Logo mark
+- `S-logo-sf.png` — Favicon/logo
+
+---
+
+## 🗺️ SITE MAP
+
+### Main Navigation
+```
+/ (Home)
+├── /hire-talent
+├── /find-work
+├── /services
+├── /industries
+├── /locations
+├── /about
+└── /book-a-call (CTA)
+```
+
+### Hub Pages
+```
+/industries
+├── /industries/manufacturing-skilled-trades
+├── /industries/food-grocery-retail
+├── /industries/construction
+├── /industries/finance-accounting
+├── /industries/it-technology
+├── /industries/sales-marketing
+└── /industries/administrative-support
+
+/locations
+├── /locations/vaughan
+├── /locations/toronto-gta
+├── /locations/belleville
+├── /locations/chatham-kent
+└── /locations/windsor
+```
+
+### Conversion Pages
+```
+/book-a-call
+/contact
+/submit-resume
+```
+
+### Authority Pages
+```
+/insights
+/case-studies
+/our-process
+/about
+```
+
+---
+
+## 🏗️ TECH STACK
+
+### Current
+- **Frontend:** Next.js + TypeScript + Vercel
+- **Animations:** GSAP + Framer Motion
+- **Styling:** Tailwind CSS
+- **Fonts:** Cormorant (headings), Manrope (body)
+
+### Future Integration
+- **PocketBase** — Database, storage, auth
+- **Make.com** — Workflow automation
+- **Common Room** — Visitor intelligence
+- **Linear** — ATS / candidate tracking
+- **Cal.com** — Scheduling
+
+---
+
+## 📋 WORKFLOW
+
+### Making Changes
+1. Make changes to code
+2. Commit with descriptive message
+3. Push to GitHub — Vercel auto-deploys
+
+### Before Any Edit
+1. Identify actual files involved
+2. Identify what must remain untouched
+3. Classify task: NEW / UPDATE / REDO
+
+### Before Finishing
+- Run `npm run build` to verify
+- Check no locked items changed
+- Verify mobile responsiveness
+- Ensure build passes
+
+---
+
+## 🔒 SECRETS MANAGEMENT
+
+Never commit to GitHub:
+- `.env` files
+- API keys
+- Database credentials
+- Auth tokens
+
+Use Vercel Environment Variables for secrets.
+
+---
+
+## 📞 EXTERNAL LINKS
+
+- **LinkedIn:** https://www.linkedin.com/in/sarah-fell-3b8a5810
+- **Vercel:** Connected to GitHub
+- **Domain:** staffingsolutionsbysarah.com (Netfirms)
+
+---
+
+## 📝 VERSION HISTORY
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0 | 2026-04-16 | Initial AI Studio instructions |
