@@ -3,12 +3,7 @@ import { Cormorant_Garamond, Manrope } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import '../styles/colors.css';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import PageTransition from '../components/PageTransition';
-import SmoothScrollProvider from '../components/providers/SmoothScrollProvider';
-import CursorEffect from '../components/home/CursorEffect';
-import ParallaxBackground from '../components/home/ParallaxBackground';
+import ClientLayout from './ClientLayout';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -45,17 +40,9 @@ export default function RootLayout({
         <Script src="https://assets.cal.com/embed/embed.js" strategy="lazyOnload" />
       </head>
       <body
-        className={`${cormorant.variable} ${manrope.variable} font-body flex min-h-screen flex-col bg-[var(--color-bg)] text-[var(--color-dark)] antialiased`}
+        className={`${cormorant.variable} ${manrope.variable} font-body flex min-h-screen flex-col bg-[#1F2628] text-[var(--color-dark)] antialiased`}
       >
-        <CursorEffect />
-        <SmoothScrollProvider>
-          <ParallaxBackground />
-          <Navbar />
-          <main className="flex-grow">
-            <PageTransition>{children}</PageTransition>
-          </main>
-          <Footer />
-        </SmoothScrollProvider>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

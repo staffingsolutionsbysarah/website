@@ -40,6 +40,17 @@
   --color-khaki: #C3B091;
   --color-egyptian: #5C4A3D;
   --color-wasabi: #7D9B76;
+
+  /* === AI STUDIO PALETTE === */
+  --color-charcoal: #1F2628;
+  --color-gold: #C6A64A;
+  --color-gold-light: #E7D08A;
+  --color-brand-green: #3D7A65;
+  --color-parchment: #F5EEDF;
+  --color-brass: #8B6914;
+  --color-stone: #B8A99A;
+  --color-clay: #A89078;
+  --color-espresso: #3D2B1F;
 }
 
 @layer base {
@@ -378,4 +389,65 @@
   .bg-bronze-glow {
     background: radial-gradient(circle, rgba(138, 111, 88, 0.15), transparent 70%);
   }
+
+  /* === AI STUDIO UTILITIES === */
+  .liquid-glass {
+    position: relative;
+    isolation: isolate;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-gold);
+    background-color: var(--color-gold);
+    padding: 0.75rem 2rem;
+    color: var(--color-charcoal);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: all 180ms ease;
+  }
+
+  .btn-gold:hover {
+    background-color: var(--color-gold-light);
+    border-color: var(--color-gold-light);
+    transform: translateY(-1px);
+  }
+
+  /* Marquee animation */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+
+  /* AI Studio color classes */
+  .text-charcoal { color: var(--color-charcoal); }
+  .bg-charcoal { background-color: var(--color-charcoal); }
+  .text-gold { color: var(--color-gold); }
+  .text-gold-light { color: var(--color-gold-light); }
+  .bg-gold { background-color: var(--color-gold); }
+  .text-brand-green { color: var(--color-brand-green); }
+  .bg-brand-green { background-color: var(--color-brand-green); }
+  .text-parchment { color: var(--color-parchment); }
+  .bg-parchment { background-color: var(--color-parchment); }
+  .text-brass { color: var(--color-brass); }
+  .text-stone { color: var(--color-stone); }
+  .text-clay { color: var(--color-clay); }
+  .bg-clay { background-color: var(--color-clay); }
+  .text-espresso { color: var(--color-espresso); }
+  .bg-crease { background-color: var(--color-crease); }
+  .bg-khaki { background-color: var(--color-khaki); }
 }

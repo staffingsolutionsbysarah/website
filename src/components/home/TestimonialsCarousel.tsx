@@ -1,127 +1,59 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    quote:
-      'Sarah found us three solid millwrights right when we needed them. She understands the plant environment and did not send random resumes for us to sort.',
-    author: 'Maintenance Manager',
-    company: 'Food Processing',
+    text: "Sarah's understanding of the sector is unparalleled. She found us a leader who not only had the skills but fit our culture perfectly.",
+    author: 'VP Operations, Global Supplier',
   },
   {
-    quote:
-      'We were struggling to find good mechanics for the floor. She clarified what we actually needed and brought us dependable people we could move on quickly.',
-    author: 'Operations Director',
-    company: 'Industrial Manufacturing',
+    text: 'The boutique approach makes a massive difference. The quality of candidates we received was significantly higher than any large agency we\'ve used.',
+    author: 'HR Director, Professional Services Group',
   },
-] as const;
-
-const closingProof = [
-  'Direct recruiter communication instead of layered process.',
-  'Shortlist logic built around fit, urgency, and business pressure.',
-  'A buyer-facing site that still supports real candidate pathways.',
-] as const;
+];
 
 export default function TestimonialsCarousel() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-
-  const nextSlide = useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
-  }, [nextSlide]);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <motion.section 
-      ref={sectionRef}
-      style={{ y, opacity }}
-      className="px-4 py-18 md:px-6 md:py-24">
-      <div className="mx-auto grid max-w-[1380px] gap-8 lg:grid-cols-[minmax(280px,0.34fr)_minmax(0,0.66fr)]">
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[var(--color-accent)]">
-            Testimonials + proof
-          </p>
-          <h2 className="mt-4 max-w-[10ch] text-[2.45rem] leading-[0.95] tracking-[-0.045em] md:text-[3.3rem]">
-            Stronger trust signals without agency fluff.
-          </h2>
-          <p className="mt-5 max-w-[34rem] text-base leading-relaxed text-black/66">
-            Shorter review cycles. Stronger shortlists. Fewer interviews wasted on candidates who looked right on paper but
-            were not the right fit for the actual role and team.
-          </p>
-
-          <div className="mt-8 space-y-3">
-            {closingProof.map((item) => (
-              <div key={item} className="depth-inset flex items-start gap-3 rounded-[22px] px-4 py-4">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#A8872F]" />
-                <p className="text-sm leading-relaxed text-black/68">{item}</p>
-              </div>
-            ))}
+    <section ref={ref} className="py-20 md:py-32 px-6 md:px-10 bg-clay overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-end mb-12 md:mb-20">
+          <div>
+            <span className="text-espresso uppercase tracking-widest text-[10px] font-bold mb-4 block">
+              Testimonials
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif text-espresso">Client Voices</h2>
           </div>
         </div>
 
-        <div className="relative flex flex-col justify-center">
-          <div className="relative h-[320px] w-full">
-            <AnimatePresence mode="wait">
-              {testimonials.map(
-                (testimonial, index) =>
-                  index === activeIndex && (
-                    <motion.div
-                      key={testimonial.quote}
-                      initial={{ scale: 0.95, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 1.05, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: 'easeOut' }}
-                      className="depth-plane absolute inset-0 px-6 py-7 md:px-8 md:py-8"
-                    >
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent)]">
-                        Hiring manager perspective
-                      </p>
-                      <p className="mt-5 text-[1.08rem] leading-[1.7] text-black/78 md:text-[1.2rem]">
-                        &quot;{testimonial.quote}&quot;
-                      </p>
-                      <div className="mt-6 editorial-rule" />
-                      <div className="mt-4">
-                        <p className="text-base tracking-tight">{testimonial.author}</p>
-                        <p className="mt-1 text-sm text-black/52">{testimonial.company}</p>
-                      </div>
-                    </motion.div>
-                  )
-              )}
-            </AnimatePresence>
-          </div>
-
-          <div className="mt-6 flex justify-center gap-3">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`h-2 w-2 rounded-full transition-all ${
-                  index === activeIndex
-                    ? 'bg-[var(--color-accent)] scale-125'
-                    : 'bg-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/50'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={t.author}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              transition={{ delay: i * 0.2, duration: 0.8 }}
+              className="bg-parchment p-8 md:p-12 rounded-3xl shadow-sm relative border border-charcoal/5"
+            >
+              <Quote className="absolute top-6 md:top-8 right-6 md:right-8 text-brass/20 w-8 h-8 md:w-12 md:h-12" />
+              <p className="text-espresso/80 text-lg md:text-xl font-serif italic mb-6 md:mb-8 leading-relaxed">
+                &quot;{t.text}&quot;
+              </p>
+              <div className="flex items-center space-x-4">
+                <div className="w-8 h-8 md:w-10 md:h-10 bg-clay rounded-full" />
+                <span className="text-espresso font-bold text-[10px] md:text-xs uppercase tracking-widest">
+                  {t.author}
+                </span>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

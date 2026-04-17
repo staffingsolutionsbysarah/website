@@ -1,102 +1,89 @@
 'use client';
 
-import { useRef, useEffect, useState, useCallback } from 'react';
-import Image from 'next/image';
-import { motion, useMotionValue } from 'framer-motion';
-import { gsap } from 'gsap';
+import { useRef, useEffect } from 'react';
+import { ArrowRight } from 'lucide-react';
+import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
 
 const cards = [
   {
-    image: '/images/hero-employer-hiring-toronto.png',
-    kicker: 'Employer + Hiring',
-    title: 'Build Your Team',
-    body: 'Direct recruiter ownership from intake through close. Clear search briefs, tighter shortlists, faster decisions.',
+    title: 'Manufacturing & Operations',
+    desc: 'From plant managers to specialized technicians, we source the backbone of modern industry.',
+    img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070',
+    href: '/industries',
   },
   {
-    image: '/images/hero-industrial-manufacturing-ontario.png',
-    kicker: 'Candidate + Find Work',
-    title: 'Find Your Next Role',
-    body: 'Active industrial and trades opportunities across Ontario. Real roles, real timelines, direct communication.',
+    title: 'Construction & Infrastructure',
+    desc: 'Certified professionals for high-stakes projects. We understand the technical nuances of every trade.',
+    img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=2070',
+    href: '/industries',
   },
   {
-    image: '/images/industrial-trades-blueprints.png',
-    kicker: 'Industries',
-    title: 'Manufacturing, Finance & Tech',
-    body: 'Specialist coverage across production, skilled trades, accounting, and technology. Sector-aware search logic.',
+    title: 'Professional Services',
+    desc: 'Strategic leadership placement in Sales, Marketing, and Finance for companies ready to scale.',
+    img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069',
+    href: '/services',
   },
-  {
-    image: '/images/hero-trades-construction-plans.png',
-    kicker: 'Ontario Trust',
-    title: 'Regional Expertise',
-    body: 'Ontario-first recruitment with manufacturing and skilled trades relevance. Local market knowledge, local results.',
-  },
-] as const;
+];
 
 export default function HorizontalStackingCards() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const x = useMotionValue(0);
-
-  const snapToIndex = useCallback((index: number) => {
-    const track = trackRef.current;
-    const container = containerRef.current;
-    if (!track || !container) return;
-
-    const cardWidth = track.children[0] as HTMLElement;
-    const gap = 32;
-    const scrollPos = (cardWidth.offsetWidth + gap) * index;
-    
-    gsap.to(track, {
-      x: -scrollPos,
-      duration: 0.6,
-      ease: 'power2.out',
-    });
-    
-    setCurrentIndex(index);
-  }, []);
+  const horizontalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const container = containerRef.current;
-    const track = trackRef.current;
-    const progressDots = progressRef.current?.querySelectorAll('.dot');
+    const horizontal = horizontalRef.current;
 
-    if (!container || !track) return;
+    if (!container || !horizontal) return;
 
-    const totalWidth = track.scrollWidth;
-    const viewportWidth = container.offsetWidth;
-    const scrollDistance = totalWidth - viewportWidth;
+    const panels = gsap.utils.toArray<HTMLElement>('.horizontal-panel');
 
-    const tl = gsap.timeline({
+    const scrollTween = gsap.to(panels, {
+      xPercent: -100 * (panels.length - 1),
+      ease: 'none',
       scrollTrigger: {
         trigger: container,
-        start: 'top top',
-        end: `+=${scrollDistance * 1.5}`,
-        scrub: 0.5,
         pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        onUpdate: (self) => {
-          if (progressDots) {
-            const activeIndex = Math.min(
-              Math.floor(self.progress * cards.length),
-              cards.length - 1
-            );
-            progressDots.forEach((dot, i) => {
-              dot.classList.toggle('active', i === activeIndex);
-            });
-          }
-        },
+        scrub: 1,
+        snap: 1 / (panels.length - 1),
+        end: () => '+=' + container.offsetWidth,
       },
     });
 
-    tl.to(track, {
-      x: -scrollDistance,
-      ease: 'none',
+    panels.forEach((panel) => {
+      const img = panel.querySelector('.panel-img');
+      const text = panel.querySelector('.panel-text');
+
+      if (img) {
+        gsap.from(img, {
+          y: -80,
+          opacity: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: panel,
+            containerAnimation: scrollTween,
+            start: 'left center',
+            toggleActions: 'play none none reverse',
+          },
+        });
+      }
+
+      if (text) {
+        gsap.from(text, {
+          y: 80,
+          opacity: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: panel,
+            containerAnimation: scrollTween,
+            start: 'left center',
+            toggleActions: 'play none none reverse',
+          },
+        });
+      }
     });
 
     return () => {
@@ -107,63 +94,60 @@ export default function HorizontalStackingCards() {
   return (
     <section
       ref={containerRef}
-      className="relative h-screen min-h-[600px] w-full overflow-hidden bg-[var(--color-bg)]"
+      className="relative flex flex-col justify-center bg-parchment overflow-hidden h-screen"
     >
-      <motion.div
-        ref={trackRef}
-        className="flex h-full cursor-grab items-center gap-8 px-[10vw]"
-        style={{ x }}
-        drag="x"
-        dragElastic={0.1}
-        dragMomentum={false}
-        dragConstraints={{ left: -1200, right: 0 }}
-        whileTap={{ cursor: 'grabbing' }}
-      >
-        {cards.map((card, index) => (
-          <motion.div
-            key={card.kicker}
-            className="card relative flex h-[70vh] w-[min(70vw,700px)] shrink-0 items-center justify-center"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="relative h-full w-full overflow-hidden rounded-[24px] shadow-2xl">
-              <Image
-                src={card.image}
-                alt={card.title}
-                fill
-                sizes="70vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+      <div className="max-w-7xl mx-auto px-6 md:px-10 w-full mb-12">
+        <span className="text-brass uppercase tracking-widest text-[10px] font-bold mb-4 block">
+          Our Expertise
+        </span>
+        <h2 className="text-4xl md:text-5xl font-serif text-espresso">
+          Specialized Domains
+        </h2>
+      </div>
 
-              <div className="absolute inset-x-0 bottom-0 p-8 md:p-12">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#E7D08A]">
-                  {card.kicker}
-                </p>
-                <h3 className="mt-3 text-[2.2rem] leading-[0.96] tracking-tight text-white md:text-[3rem]">
+      <div ref={horizontalRef} className="flex w-[300vw] h-[60vh]">
+        {cards.map((card, i) => (
+          <div
+            key={card.title}
+            className="horizontal-panel w-screen px-6 md:px-10 flex items-center justify-center"
+          >
+            <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row gap-16 items-center">
+              <div className="flex-1 panel-img">
+                <div className="aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border-8 border-white/20">
+                  <img
+                    src={card.img}
+                    alt={card.title}
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </div>
+              <div className="flex-1 space-y-4 md:space-y-6 panel-text">
+                <span className="text-brass font-serif text-3xl md:text-4xl italic">
+                  0{i + 1}
+                </span>
+                <h3 className="text-3xl md:text-4xl font-serif text-espresso">
                   {card.title}
                 </h3>
-                <p className="mt-4 max-w-[32rem] text-base leading-relaxed text-white/78 md:text-lg">
-                  {card.body}
+                <p className="text-espresso/70 text-base md:text-lg leading-relaxed">
+                  {card.desc}
                 </p>
+
+                <Link
+                  href={card.href}
+                  className="group inline-flex items-center overflow-hidden relative w-48 h-12 cursor-pointer border border-brass/30 rounded-full bg-brass/5 hover:bg-brass/10 transition-colors"
+                >
+                  <div className="flex whitespace-nowrap animate-marquee group-hover:animate-none">
+                    <span className="text-brass font-bold text-[10px] uppercase tracking-widest mx-4 flex items-center">
+                      Learn More <ArrowRight className="ml-2 w-3 h-3" /> &bull; Learn More{' '}
+                      <ArrowRight className="ml-2 w-3 h-3" /> &bull; Learn More{' '}
+                      <ArrowRight className="ml-2 w-3 h-3" /> &bull;{' '}
+                    </span>
+                  </div>
+                </Link>
               </div>
             </div>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      <div
-        ref={progressRef}
-        className="absolute bottom-10 left-1/2 flex -translate-x-1/2 gap-3"
-      >
-        {cards.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => snapToIndex(index)}
-            className={`dot h-2.5 w-2.5 rounded-full bg-[#C6A64A] transition-all duration-300 ${
-              index === 0 ? 'active w-10' : 'opacity-40'
-            }`}
-          />
+          </div>
         ))}
       </div>
     </section>

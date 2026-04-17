@@ -1,143 +1,80 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import {
-  UserCheck,
-  Crown,
-  Search,
-  Clock,
-  ArrowRightFromLine,
-  ArrowRight,
-  Briefcase,
-  Wallet,
-} from 'lucide-react';
-import Link from 'next/link';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Target, Zap, Users } from 'lucide-react';
 
 const deliveryModels = [
   {
-    icon: UserCheck,
-    title: 'Direct Hire / Permanent Placement',
-    description: 'Long-term hires placed directly with your organization. Full-cycle recruitment from intake through onboarding.',
-  },
-  {
-    icon: Crown,
-    title: 'Executive Search',
-    description: 'Senior and C-suite level placements. Targeted outreach and rigorous evaluation for leadership roles.',
-  },
-  {
-    icon: Search,
+    icon: Target,
     title: 'Retained Search',
-    description: 'Exclusive search engagement with upfront commitment. Dedicated resources and priority positioning on hard-to-fill roles.',
+    desc: 'Dedicated resources for high-priority executive roles.',
   },
   {
-    icon: Clock,
-    title: 'Contract Staffing',
-    description: 'Temporary coverage for seasonal peaks, project needs, or leave replacements. Flexible hiring to match workload demands.',
+    icon: Zap,
+    title: 'Contingent Placement',
+    desc: 'Success-based hiring for specialized roles.',
   },
   {
-    icon: ArrowRightFromLine,
-    title: 'Contract-to-Perm',
-    description: 'Trial period before permanent offer. Evaluate fit in your environment before making a long-term commitment.',
-  },
-  {
-    icon: Briefcase,
-    title: 'Admin Support',
-    description: 'Administrative professionals for office operations. Reception, coordination, and executive support roles.',
-  },
-  {
-    icon: Wallet,
-    title: 'Payroll',
-    description: 'Payroll management services for contractor and temporary workforce. Handling compliance, timesheets, and payments.',
+    icon: Users,
+    title: 'Project RPO',
+    desc: 'Scaling your team for specific project timelines.',
   },
 ] as const;
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.08,
-      duration: 0.5,
-    },
-  }),
-};
-
-interface DeliveryCardProps {
-  model: (typeof deliveryModels)[number];
-  index: number;
-}
-
-function DeliveryCard({ model, index }: DeliveryCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <motion.article
-      custom={index}
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="depth-plane group relative cursor-pointer overflow-hidden rounded-[20px] transition-transform duration-300"
-      style={{
-        transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
-      }}
-    >
-      <div
-        className="absolute inset-0 rounded-[20px] transition-shadow duration-300"
-        style={{
-          boxShadow: isHovered
-            ? '0 20px 40px -10px rgba(0,0,0,0.2)'
-            : '0 4px 12px -4px rgba(0,0,0,0.08)',
-        }}
-      />
-
-      <div className="relative p-6 md:p-7">
-        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-[14px] bg-[var(--color-section)] transition-colors duration-300 group-hover:bg-[var(--color-accent)]">
-          <model.icon className="h-5 w-5 text-[var(--color-dark)] transition-colors duration-300 group-hover:text-white" />
-        </div>
-
-        <h3 className="text-[1.25rem] leading-[1.2] tracking-tight text-[var(--color-dark)]">
-          {model.title}
-        </h3>
-        <p className="mt-3 text-sm leading-relaxed text-black/64">
-          {model.description}
-        </p>
-      </div>
-    </motion.article>
-  );
-}
-
 export function DeliveryModelsSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
   return (
-    <section className="px-4 py-18 md:px-6 md:py-24" id="delivery-models">
-      <div className="mx-auto max-w-[1380px]">
-        <div className="mb-12 md:mb-16">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[var(--color-accent)]">
-            Delivery models
-          </p>
-          <h2 className="mt-4 max-w-[14ch] text-[2.45rem] leading-[0.95] tracking-[-0.045em] md:text-[3.35rem]">
-            Flexible hiring models for every workforce need.
+    <section className="py-20 md:py-32 px-6 md:px-10 bg-crease">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+        <div>
+          <span className="text-brass uppercase tracking-widest text-[10px] font-bold mb-4 block">
+            How We Work
+          </span>
+          <h2 className="text-4xl md:text-5xl font-serif text-charcoal mb-6 md:mb-8">
+            Tailored Delivery Models
           </h2>
-          <p className="mt-5 max-w-[48ch] text-base leading-relaxed text-black/66 md:max-w-[36ch]">
-            From permanent placement to contract coverage. Choose the model that matches your timeline, budget, and risk tolerance.
+          <p className="text-charcoal/60 text-base md:text-lg leading-relaxed mb-8 md:mb-12">
+            Every hire is unique. We offer flexible engagement models designed to align with your
+            business goals and urgency.
           </p>
+          <div className="space-y-6 md:space-y-8">
+            {deliveryModels.map((model, i) => (
+              <motion.div
+                key={model.title}
+                initial={{ opacity: 0, x: -30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+                transition={{ delay: i * 0.15, duration: 0.6 }}
+                className="flex items-start space-x-6"
+              >
+                <div className="w-12 h-12 bg-brass/10 rounded-xl flex items-center justify-center text-brass flex-shrink-0">
+                  <model.icon className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-charcoal mb-1">{model.title}</h4>
+                  <p className="text-charcoal/50 text-sm">{model.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {deliveryModels.map((model, index) => (
-            <DeliveryCard key={model.title} model={model} index={index} />
-          ))}
-        </div>
-
-        <div className="mt-12 flex flex-wrap gap-3 md:mt-14">
-          <Link href="/hire-talent" className="btn-primary">
-            Discuss Your Hiring Needs
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+        <div className="relative">
+          <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
+            <img
+              src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=1974"
+              alt="Collaboration"
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="absolute -bottom-10 -left-10 liquid-glass p-8 rounded-2xl shadow-xl max-w-xs bg-white/40">
+            <Target className="text-brass w-8 h-8 mb-4" />
+            <p className="text-charcoal font-serif text-lg italic">
+              &quot;Fit-first methodology ensures 98% retention rate over 2 years.&quot;
+            </p>
+          </div>
         </div>
       </div>
     </section>
