@@ -7,7 +7,7 @@ import { CalendarCheck2, ArrowRight } from 'lucide-react';
 export default function BookingSuccessPage() {
   return (
     <div className="depth-canvas bg-[var(--color-bg)] text-[var(--color-dark)] min-h-[80vh] flex items-center justify-center px-6">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[40vh] bg-[radial-gradient(circle_at_top,rgba(198,166,74,0.12),transparent_40%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[40vh] bg-[radial-gradient(circle_at_top,rgba(139,118,76,0.12),transparent_40%)]" />
       
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
@@ -15,7 +15,7 @@ export default function BookingSuccessPage() {
         transition={{ duration: 0.5 }}
         className="depth-plane p-10 md:p-16 max-w-[600px] text-center relative z-10"
       >
-        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#E7D08A]/20 text-[#A8872F] mb-8">
+        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#AB9D82]/20 text-[#714E3C] mb-8">
           <CalendarCheck2 className="h-10 w-10" />
         </div>
         

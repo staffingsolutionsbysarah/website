@@ -66,7 +66,7 @@ export default function LiquidGlassHero() {
   const currentSlide = slides[currentIndex];
 
   return (
-    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden bg-[#1F2628]">
+    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden bg-[#2C3434]">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide.image}
@@ -133,7 +133,7 @@ export default function LiquidGlassHero() {
               >
                 <Link
                   href={currentSlide.cta.href}
-                  className="mt-10 inline-flex items-center gap-3 border-b border-white/40 pb-2 text-sm font-medium uppercase tracking-[0.2em] text-white transition-all hover:border-[#C6A64A] hover:text-[#C6A64A] md:text-base"
+                  className="mt-10 inline-flex items-center gap-3 border-b border-white/40 pb-2 text-sm font-medium uppercase tracking-[0.2em] text-white transition-all hover:border-[#8B764C] hover:text-[#8B764C] md:text-base"
                 >
                   {currentSlide.cta.label}
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,7 +157,7 @@ export default function LiquidGlassHero() {
               onClick={() => goToSlide(index)}
               className={`h-1 rounded-full transition-all duration-700 ${
                 currentIndex === index
-                  ? 'w-16 bg-[#C6A64A]'
+                  ? 'w-16 bg-[#8B764C]'
                   : 'w-6 bg-white/30 hover:bg-white/50'
               }`}
               aria-label={`Go to slide ${index + 1}`}

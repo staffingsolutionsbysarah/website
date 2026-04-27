@@ -19,7 +19,7 @@ const industryImages: Record<string, string> = {
 
 export default function IndustriesHub() {
   return (
-    <div className="depth-canvas bg-[#FAFAFA] text-[var(--color-dark)]">
+    <div className="depth-canvas bg-[#EFEDEF] text-[var(--color-dark)]">
       <section className="px-6 pb-20 pt-24 md:pt-40">
         <div className="mx-auto max-w-[1380px]">
           <motion.div
@@ -27,7 +27,7 @@ export default function IndustriesHub() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-[900px]"
           >
-            <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#C6A64A]">Industries</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#8B764C]">Industries</p>
             <h1 className="mt-8 text-[3.5rem] leading-[0.88] tracking-[-0.05em] md:text-[6rem] lg:text-[7.5rem]">
               Ontario Sector <br />Coverage.
             </h1>
@@ -69,7 +69,7 @@ export default function IndustriesHub() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
                     </div>
-                    <ArrowRight className="h-6 w-6 text-[#C6A64A] transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight className="h-6 w-6 text-[#8B764C] transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
@@ -88,9 +88,9 @@ export default function IndustriesHub() {
             </p>
           </div>
           <div className="flex flex-col justify-end items-start lg:items-end">
-            <Link href="/book-a-call" className="group flex items-center gap-6 text-3xl font-medium tracking-tight hover:text-[#C6A64A] transition-colors">
+            <Link href="/book-a-call" className="group flex items-center gap-6 text-3xl font-medium tracking-tight hover:text-[#8B764C] transition-colors">
               Discuss requirements
-              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-black/10 group-hover:border-[#C6A64A] group-hover:bg-[#C6A64A] group-hover:text-white transition-all">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-black/10 group-hover:border-[#8B764C] group-hover:bg-[#8B764C] group-hover:text-white transition-all">
                 <ArrowRight className="h-6 w-6" />
               </div>
             </Link>

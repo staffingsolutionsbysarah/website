@@ -13,20 +13,20 @@
   --color-soft-mushroom-taupe: #B5A79A;
   --color-parchment-ivory: #F5EEDF;
   --color-muted-clay-beige: #CBB8A3;
-  --color-aged-brass-highlight: #A8894E;
+  --color-aged-brass-highlight: #8B764C;
   --color-crease: #BFB39C;
   --color-khaki: #C3B091;
   --color-egyptian: #5C4A3D;
   --color-wasabi: #7D9B76;
-  --color-primary: #C6A64A;
-  --color-primary-hover: #A8872F;
+  --color-primary: #8B764C;
+  --color-primary-hover: #714E3C;
   --color-primary-light: #D8C78F;
   --color-dark: #2C3434;
-  --color-bg: #FAFAFA;
+  --color-bg: #EFEDEF;
   --color-accent: #4B635E;
-  --color-section: #F4F2ED;
-  --color-section-soft: #FAF8F3;
-  --color-dark-panel: #1F2628;
+  --color-section: #EFEDEF;
+  --color-section-soft: #EFEDEF;
+  --color-dark-panel: #2C3434;
 }
 
 /* === USAGE GUIDE === */

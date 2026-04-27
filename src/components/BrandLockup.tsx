@@ -55,7 +55,7 @@ export default function BrandLockup({ compact = false, className = '' }: BrandLo
               initial={shouldReduceMotion ? false : { width: 0, opacity: 0 }}
               animate={shouldReduceMotion ? undefined : { width: compact ? 86 : 102, opacity: compact ? 0.82 : 1 }}
               transition={shouldReduceMotion ? undefined : { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.32 }}
-              className="mt-1.5 h-px rounded-full bg-[linear-gradient(90deg,#C6A64A_0%,rgba(198,166,74,0)_100%)]"
+              className="mt-1.5 h-px rounded-full bg-[linear-gradient(90deg,#8B764C_0%,rgba(139,118,76,0)_100%)]"
             />
           </div>
         </motion.div>

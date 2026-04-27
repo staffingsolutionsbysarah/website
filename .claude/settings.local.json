@@ -1,8 +1,18 @@
 {
   "permissions": {
     "allow": [
-      "Bash(claude mcp:*)",
-      "mcp__stitch__list_projects"
+      "Read(//Users/TTTG/Downloads/**)",
+      "Bash(unzip -p ClaudeCode_Design_Skills_Guide.docx word/document.xml)",
+      "WebSearch",
+      "WebFetch(domain:emilkowal.ski)",
+      "WebFetch(domain:github.com)",
+      "Bash(npx skills *)",
+      "WebFetch(domain:impeccable.style)",
+      "Bash(gh repo *)",
+      "Bash(cp /Users/TTTG/JA/Claude/sfsite/.claude/settings.local.json /tmp/sfsite-settings-backup.json)",
+      "Bash(git checkout *)",
+      "Bash(mv /Users/TTTG/JA/Claude/sfsite/.claude/settings.local.json /tmp/sfsite-settings-backup.json)",
+      "Bash(mv /tmp/sfsite-settings-backup.json /Users/TTTG/JA/Claude/sfsite/.claude/settings.local.json)"
     ]
   }
 }

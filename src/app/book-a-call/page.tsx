@@ -15,7 +15,7 @@ export default function BookACallPage() {
               className="lg:sticky lg:top-24 lg:h-fit"
             >
               <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[var(--color-accent)]">Direct Intake</p>
-              <h1 className="mt-6 text-[2.8rem] leading-[0.96] tracking-[-0.04em] md:text-[3.8rem]">Book a Strategy Call</h1>
+              <h1 className="mt-6 font-serif font-light text-[2.8rem] leading-[0.96] tracking-[-0.04em] md:text-[3.8rem]">Book a Strategy Call</h1>
               <p className="mt-8 text-base leading-relaxed text-black/66">
                 Schedule a 15-minute intake call with Sarah. No pressure, no sales pitch. Just a direct conversation about your role, timeline, and what success looks like.
               </p>

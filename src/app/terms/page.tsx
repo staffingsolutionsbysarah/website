@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 
 export default function TermsPage() {
   return (
-    <div className="depth-canvas bg-[#FAFAFA] text-[var(--color-dark)] px-6 py-24 md:py-40">
+    <div className="depth-canvas bg-[#EFEDEF] text-[var(--color-dark)] px-6 py-24 md:py-40">
       <div className="mx-auto max-w-[800px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#C6A64A]">Compliance</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#8B764C]">Compliance</p>
           <h1 className="mt-8 text-[3rem] leading-[1.1] tracking-[-0.04em] md:text-[4.5rem]">Terms of Use</h1>
           
           <div className="mt-16 space-y-12 text-black/70 leading-relaxed">

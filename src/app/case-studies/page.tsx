@@ -35,7 +35,7 @@ export default function CaseStudiesPage() {
     <div className="depth-canvas bg-[var(--color-bg)] text-[var(--color-dark)]">
       {/* Hero Section */}
       <section className="relative px-6 pb-16 pt-16 md:pb-24 md:pt-24">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[40vh] bg-[radial-gradient(circle_at_top_right,rgba(198,166,74,0.12),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[40vh] bg-[radial-gradient(circle_at_top_right,rgba(139,118,76,0.12),transparent_40%)]" />
         
         <div className="mx-auto max-w-[1200px]">
           <motion.div
@@ -47,7 +47,7 @@ export default function CaseStudiesPage() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-[var(--color-accent)]">
               Proof of Delivery
             </p>
-            <h1 className="mt-6 text-5xl font-medium tracking-[-0.03em] md:text-7xl">
+            <h1 className="mt-6 font-serif font-light text-[3rem] leading-[0.92] tracking-[-0.04em] md:text-[5rem]">
               Recruitment Case Studies.
             </h1>
             <p className="mt-8 text-lg leading-relaxed text-black/65">
@@ -70,17 +70,17 @@ export default function CaseStudiesPage() {
               className="depth-plane overflow-hidden"
             >
               <div className="grid lg:grid-cols-[300px_1fr]">
-                <div className="bg-[#1F2628] p-8 text-white flex flex-col justify-between">
+                <div className="bg-[#2C3434] p-8 text-white flex flex-col justify-between">
                   <div>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E7D08A]/10 text-[#E7D08A] mb-6 border border-[#E7D08A]/20">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#AB9D82]/10 text-[#AB9D82] mb-6 border border-[#AB9D82]/20">
                       <study.icon className="h-6 w-6" />
                     </div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E7D08A]/60">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#AB9D82]/60">
                       {study.category}
                     </p>
                   </div>
                   <div className="hidden lg:block">
-                    <CheckCircle2 className="h-10 w-10 text-[#E7D08A]/20" />
+                    <CheckCircle2 className="h-10 w-10 text-[#AB9D82]/20" />
                   </div>
                 </div>
                 
@@ -98,8 +98,8 @@ export default function CaseStudiesPage() {
                       <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-black/40 mb-3">Solution</p>
                       <p className="text-sm leading-relaxed text-black/70">{study.solution}</p>
                     </div>
-                    <div className="bg-[#E7D08A]/10 p-4 rounded-2xl border border-[#E7D08A]/20">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#A8872F] mb-3">Outcome</p>
+                    <div className="bg-[#AB9D82]/10 p-4 rounded-2xl border border-[#AB9D82]/20">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#714E3C] mb-3">Outcome</p>
                       <p className="text-sm font-medium leading-relaxed text-[#2C3434]">{study.outcome}</p>
                     </div>
                   </div>

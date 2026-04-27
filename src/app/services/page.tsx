@@ -35,7 +35,7 @@ const deliveryModels = [
 
 export default function ServicesPage() {
   return (
-    <div className="depth-canvas bg-[#FAFAFA] text-[var(--color-dark)]">
+    <div className="depth-canvas bg-[#EFEDEF] text-[var(--color-dark)]">
       {/* Editorial Header */}
       <section className="px-6 pb-20 pt-24 md:pb-32 md:pt-40">
         <div className="mx-auto max-w-[1380px]">
@@ -45,8 +45,8 @@ export default function ServicesPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#C6A64A]">Recruitment Delivery</p>
-              <h1 className="mt-8 text-[3.5rem] leading-[0.88] tracking-[-0.05em] md:text-[6rem] lg:text-[7.5rem]">
+              <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#8B764C]">Recruitment Delivery</p>
+              <h1 className="mt-8 font-serif font-light text-[3.5rem] leading-[0.88] tracking-[-0.05em] md:text-[6rem] lg:text-[7.5rem]">
                 How we <br />build teams.
               </h1>
             </motion.div>
@@ -103,19 +103,19 @@ export default function ServicesPage() {
                   isReversed ? 'lg:order-1 lg:pr-12 xl:pr-16' : 'lg:pl-12 xl:pl-16',
                 ].join(' ')}
               >
-                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#C6A64A]">
+                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#8B764C]">
                   Delivery Model {String(index + 1).padStart(2, '0')}
                 </p>
-                <h2 className="text-3xl font-medium tracking-tight md:text-5xl lg:text-6xl max-w-[12ch]">{model.title}</h2>
-                <div className="mt-8 h-px w-12 bg-[#C6A64A]" />
+                <h2 className="font-serif font-light text-3xl tracking-tight md:text-5xl lg:text-6xl max-w-[12ch]">{model.title}</h2>
+                <div className="mt-8 h-px w-12 bg-[#8B764C]" />
                 <p className="mt-8 max-w-[34ch] text-lg leading-relaxed text-black/62 md:text-xl">
                   {model.body}
                 </p>
                 <div className="mt-12 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#C6A64A]/10 text-[#C6A64A]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#8B764C]/10 text-[#8B764C]">
                     <CheckCircle2 className="h-5 w-5" />
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#C6A64A]">Direct Search Ownership</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#8B764C]">Direct Search Ownership</span>
                 </div>
               </div>
             </div>
@@ -126,14 +126,14 @@ export default function ServicesPage() {
       {/* Integrated CTA Stage */}
       <section className="px-6 pb-32">
         <div className="mx-auto max-w-[1380px]">
-          <div className="relative overflow-hidden rounded-[60px] bg-[#1F2628] p-12 md:p-24 text-white">
+          <div className="relative overflow-hidden rounded-[60px] bg-[#2C3434] p-12 md:p-24 text-white">
             <div className="relative z-10 max-w-[700px]">
               <h2 className="text-4xl font-medium tracking-tight md:text-6xl lg:text-7xl">Ready to talk <br />through the role?</h2>
               <p className="mt-10 text-xl text-white/60 leading-relaxed max-w-[480px]">
                 Book a 15-minute intake call to determine which delivery model best fits your timeline and team reality.
               </p>
               <div className="mt-14 flex flex-wrap gap-6">
-                <Link href="/book-a-call" className="btn-primary !bg-white !text-[#1F2628] hover:!bg-[#C6A64A] hover:!text-white transition-all px-8 py-4">
+                <Link href="/book-a-call" className="btn-primary !bg-white !text-[#2C3434] hover:!bg-[#8B764C] hover:!text-white transition-all px-8 py-4">
                   Book a Strategy Call
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -143,7 +143,7 @@ export default function ServicesPage() {
               </div>
             </div>
             {/* Subtle Texture Overlay */}
-            <div className="pointer-events-none absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,rgba(198,166,74,0.4),transparent_50%)]" />
+            <div className="pointer-events-none absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,rgba(139,118,76,0.4),transparent_50%)]" />
           </div>
         </div>
       </section>

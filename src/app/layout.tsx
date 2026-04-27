@@ -8,7 +8,7 @@ import ClientLayout from './ClientLayout';
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   variable: '--font-cormorant',
-  weight: ['500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
 });
 const manrope = Manrope({
   subsets: ['latin'],
@@ -40,7 +40,7 @@ export default function RootLayout({
         <Script src="https://assets.cal.com/embed/embed.js" strategy="lazyOnload" />
       </head>
       <body
-        className={`${cormorant.variable} ${manrope.variable} font-body flex min-h-screen flex-col bg-[#1F2628] text-[var(--color-dark)] antialiased`}
+        className={`${cormorant.variable} ${manrope.variable} font-body flex min-h-screen flex-col bg-[#2C3434] text-[var(--color-dark)] antialiased`}
       >
         <ClientLayout>{children}</ClientLayout>
       </body>

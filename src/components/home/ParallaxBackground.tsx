@@ -19,7 +19,7 @@ export default function ParallaxBackground() {
       .cursor_point {
         width: 8px;
         height: 8px;
-        background: #C6A64A;
+        background: #8B764C;
         border-radius: 50%;
         position: fixed;
         pointer-events: none;
@@ -28,7 +28,7 @@ export default function ParallaxBackground() {
       .cursor_outer {
         width: 40px;
         height: 40px;
-        border: 1px solid #C6A64A;
+        border: 1px solid #8B764C;
         border-radius: 50%;
         position: fixed;
         pointer-events: none;
@@ -57,7 +57,7 @@ export default function ParallaxBackground() {
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, #C6A64A 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 2px 2px, #8B764C 1px, transparent 0)`,
           backgroundSize: "40px 40px",
         }}
       />

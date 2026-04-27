@@ -24,7 +24,7 @@ export default function PageHero({
   actions = [],
   theme = 'light',
 }: PageHeroProps) {
-  const eyebrowClass = theme === 'dark' ? 'text-[#E7D08A]' : 'text-[var(--color-accent)]';
+  const eyebrowClass = theme === 'dark' ? 'text-[#AB9D82]' : 'text-[var(--color-accent)]';
   const titleClass = theme === 'dark' ? 'text-white' : 'text-[var(--color-dark)]';
   const descriptionClass = theme === 'dark' ? 'text-white/74' : 'text-black/70';
 

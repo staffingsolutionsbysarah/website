@@ -116,7 +116,7 @@ export default function ContactForm() {
   };
 
   const inputBaseClasses =
-    'w-full px-4 py-3 bg-white/80 border border-black/10 rounded-xl text-[#2C3434] placeholder:text-gray-400 focus:outline-none focus:border-[#C6A64A] focus:ring-2 focus:ring-[#C6A64A]/20 transition-all duration-200';
+    'w-full px-4 py-3 bg-white/80 border border-black/10 rounded-xl text-[#2C3434] placeholder:text-gray-400 focus:outline-none focus:border-[#8B764C] focus:ring-2 focus:ring-[#8B764C]/20 transition-all duration-200';
 
   const inputErrorClasses = 'border-red-400 focus:border-red-400 focus:ring-red-400/20';
 
@@ -135,9 +135,9 @@ export default function ContactForm() {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-          className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#C6A64A]/20 mb-6"
+          className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#8B764C]/20 mb-6"
         >
-          <CheckCircle className="w-8 h-8 text-[#C6A64A]" />
+          <CheckCircle className="w-8 h-8 text-[#8B764C]" />
         </motion.div>
         <h3 className="font-heading text-2xl md:text-3xl text-[#2C3434] mb-3">
           Message Sent

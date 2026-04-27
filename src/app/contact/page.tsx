@@ -29,8 +29,8 @@ const contactOptions = [
 
 export default function ContactPage() {
   return (
-    <div className="relative overflow-hidden bg-[#F4F2ED] text-[var(--color-dark)]">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[linear-gradient(180deg,rgba(198,166,74,0.18),rgba(198,166,74,0))]" />
+    <div className="relative overflow-hidden bg-[#EFEDEF] text-[var(--color-dark)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[linear-gradient(180deg,rgba(139,118,76,0.18),rgba(139,118,76,0))]" />
 
       <PageHero
         eyebrow="Contact"
@@ -63,20 +63,6 @@ export default function ContactPage() {
       <section className="px-4 py-8 md:px-6 md:py-12">
         <div className="mx-auto max-w-[640px]">
           <ContactForm />
-        </div>
-      </section>
-
-      <section className="px-4 py-8 md:px-6 md:py-12">
-        <div className="mx-auto grid max-w-[1280px] gap-5 md:grid-cols-3">
-          {contactOptions.map((option) => (
-            <article key={option.title} className="depth-plane px-6 py-6">
-              <h2 className="text-[1.7rem] leading-[1.04] tracking-tight">{option.title}</h2>
-              <p className="mt-4 text-sm leading-relaxed text-black/68 md:text-base">{option.body}</p>
-              <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-accent)]">
-                {option.detail}
-              </p>
-            </article>
-          ))}
         </div>
       </section>
 

@@ -25,18 +25,21 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
-    setIsScrolled(latest > window.innerHeight - 80);
+    // Trigger at 60px — snappy, not annoying
+    setIsScrolled(latest > 60);
   });
 
   const isHome = pathname === '/';
-  const textClass = isScrolled ? 'text-charcoal' : 'text-white';
-  const useLightBg = !isScrolled && isHome;
+  // On non-home pages: always show solid dark bg (no floating transparent nav)
+  const solidBg = isScrolled || !isHome;
 
   return (
     <nav
       className={[
-        'fixed top-0 left-0 right-0 z-[100] px-4 md:px-10 py-4 md:py-6 flex justify-between items-center transition-all duration-500',
-        isScrolled ? 'bg-parchment text-charcoal shadow-sm' : 'bg-transparent text-white'
+        'fixed top-0 left-0 right-0 z-[100] px-4 md:px-10 py-3 md:py-5 flex justify-between items-center transition-all duration-500',
+        solidBg
+          ? 'bg-[#2C3434]/95 backdrop-blur-sm shadow-sm'
+          : 'bg-transparent',
       ].join(' ')}
     >
       {/* Left Nav */}
@@ -45,10 +48,7 @@ export default function Navbar() {
           <Link
             key={item.href}
             href={item.href}
-            className={[
-              'nav-link hidden sm:block text-[10px] font-bold uppercase tracking-[0.15em] transition-colors duration-300',
-              useLightBg ? 'text-white hover:text-white/80' : 'text-charcoal hover:text-brand-green'
-            ].join(' ')}
+            className="nav-link hidden sm:block text-[10px] font-bold uppercase tracking-[0.15em] transition-colors duration-300 text-white/70 hover:text-[#AB9D82]"
           >
             {item.label}
           </Link>
@@ -56,25 +56,16 @@ export default function Navbar() {
       </div>
 
       {/* Logo - Centered */}
-      <div
-        className="flex-shrink-0 text-center flex-1 cursor-pointer"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      >
+      <Link href="/" className="flex-shrink-0 text-center flex-1">
         <div className="flex flex-col items-center">
-          <span className={[
-            'font-serif font-bold text-sm md:text-xl tracking-tighter uppercase leading-none transition-colors duration-500',
-            useLightBg ? 'text-white' : 'text-charcoal'
-          ].join(' ')}>
+          <span className="font-serif font-bold text-sm md:text-xl tracking-tighter uppercase leading-none text-white transition-colors duration-500">
             Staffing Solutions
           </span>
-          <span className={[
-            'text-[6px] md:text-[8px] uppercase tracking-[0.3em] mt-0.5 md:mt-1 transition-colors duration-500',
-            useLightBg ? 'text-white/60' : 'text-gold'
-          ].join(' ')}>
+          <span className="text-[6px] md:text-[8px] uppercase tracking-[0.3em] mt-0.5 md:mt-1 text-[#AB9D82] transition-colors duration-500">
             by Sarah Fell, Inc.
           </span>
         </div>
-      </div>
+      </Link>
 
       {/* Right Nav */}
       <div className="flex items-center space-x-4 md:space-x-6 justify-end flex-1">
@@ -82,46 +73,37 @@ export default function Navbar() {
           <Link
             key={item.href}
             href={item.href}
-            className={[
-              'nav-link hidden lg:block text-[10px] font-bold uppercase tracking-[0.15em] transition-colors duration-300',
-              useLightBg ? 'text-white hover:text-white/80' : 'text-charcoal hover:text-brand-green'
-            ].join(' ')}
+            className="nav-link hidden lg:block text-[10px] font-bold uppercase tracking-[0.15em] transition-colors duration-300 text-white/70 hover:text-[#AB9D82]"
           >
             {item.label}
           </Link>
         ))}
-        <button
-          onClick={() => window.location.href = '/book-a-call'}
-          className={[
-            'px-4 md:px-6 py-1.5 md:py-2 rounded-full text-[8px] md:text-[10px] uppercase tracking-widest font-bold focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 transition-all',
-            useLightBg
-              ? 'bg-white text-charcoal hover:bg-gold hover:text-white'
-              : 'bg-charcoal text-white hover:bg-gold hover:text-charcoal'
-          ].join(' ')}
+        <Link
+          href="/book-a-call"
+          className="hidden sm:inline-flex items-center px-4 md:px-5 py-1.5 md:py-2 rounded-full text-[8px] md:text-[9px] uppercase tracking-widest font-bold transition-all duration-200 border border-[#8B764C]/60 text-[#AB9D82] hover:bg-[#8B764C] hover:border-[#8B764C] hover:text-white active:scale-[0.97]"
         >
           Book a Call
-        </button>
+        </Link>
       </div>
 
       {/* Mobile Toggle */}
       <button
-        className={[
-          'flex lg:hidden items-center justify-center h-10 w-10 rounded-full transition-colors ml-2',
-          useLightBg ? 'text-white hover:bg-white/10' : 'text-charcoal hover:bg-black/5'
-        ].join(' ')}
+        className="flex lg:hidden items-center justify-center h-9 w-9 rounded-full transition-colors ml-2 text-white/80 hover:bg-white/10"
         onClick={() => setMobileOpen(!mobileOpen)}
+        aria-label="Toggle menu"
       >
-        {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+        {mobileOpen ? <X size={18} /> : <Menu size={18} />}
       </button>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 overflow-hidden bg-parchment shadow-xl lg:hidden border-b border-charcoal/5"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full left-0 right-0 bg-[#2C3434] shadow-xl lg:hidden border-t border-white/8"
           >
             <div className="flex flex-col p-6 gap-3">
               {[...leftNavItems, ...rightNavItems].map((item) => (
@@ -129,17 +111,18 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-[11px] font-bold uppercase tracking-[0.15em] transition-colors text-charcoal hover:text-brand-green border-b border-charcoal/5 pb-3 last:border-0 last:pb-0"
+                  className="text-[11px] font-bold uppercase tracking-[0.15em] transition-colors text-white/70 hover:text-[#AB9D82] border-b border-white/8 pb-3 last:border-0 last:pb-0"
                 >
                   {item.label}
                 </Link>
               ))}
-              <button
-                onClick={() => { window.location.href = '/book-a-call'; setMobileOpen(false); }}
-                className="mt-3 rounded-xl bg-charcoal p-4 text-center text-white font-bold uppercase tracking-widest text-xs"
+              <Link
+                href="/book-a-call"
+                onClick={() => setMobileOpen(false)}
+                className="mt-3 rounded-xl bg-[#8B764C] p-4 text-center text-white font-bold uppercase tracking-widest text-xs hover:bg-[#714E3C] transition-colors active:scale-[0.97]"
               >
                 Book a Call
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}

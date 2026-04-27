@@ -80,17 +80,17 @@ export default function HomePage() {
               {
                 title: 'The Future of Skilled Trades in Ontario',
                 date: 'Oct 2024',
-                img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=2070',
+                img: '/images/industrial-trades-blueprints.png',
               },
               {
                 title: 'Why Cultural Fit Outweighs Technical Skill',
                 date: 'Sep 2024',
-                img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070',
+                img: '/images/business-planning-strategy-flatlay.png',
               },
               {
                 title: 'Navigating the Talent Shortage in Manufacturing',
                 date: 'Aug 2024',
-                img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070',
+                img: '/images/hero-industrial-manufacturing-ontario.png',
               },
             ].map((post, i) => (
               <div key={post.title} className="group cursor-pointer">
@@ -99,7 +99,6 @@ export default function HomePage() {
                     src={post.img}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <span className="text-espresso/70 text-[10px] font-bold uppercase tracking-widest mb-2 block">

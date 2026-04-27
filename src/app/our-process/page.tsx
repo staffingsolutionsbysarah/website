@@ -26,8 +26,8 @@ const processSteps = [
 
 export default function OurProcessPage() {
   return (
-    <div className="relative overflow-hidden bg-[#1F2628] text-white">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_top,rgba(198,166,74,0.22),transparent_58%)]" />
+    <div className="relative overflow-hidden bg-[#2C3434] text-white">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_top,rgba(139,118,76,0.22),transparent_58%)]" />
 
       <PageHero
         eyebrow="Process"
@@ -55,7 +55,7 @@ export default function OurProcessPage() {
                   index % 2 === 0 ? 'lg:mr-14' : 'lg:ml-14',
                 ].join(' ')}
               >
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#E7D08A]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#AB9D82]">
                   Step {String(index + 1).padStart(2, '0')}
                 </p>
                 <h2 className="mt-3 text-[1.8rem] leading-[1.04] tracking-tight text-white md:text-[2.1rem]">

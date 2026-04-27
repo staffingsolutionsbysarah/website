@@ -9,8 +9,8 @@ type LegalPageShellProps = {
 
 export default function LegalPageShell({ document }: LegalPageShellProps) {
   return (
-    <div className="relative overflow-hidden bg-[#F4F2ED] text-[var(--color-dark)]">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[linear-gradient(180deg,rgba(198,166,74,0.18),rgba(198,166,74,0))]" />
+    <div className="relative overflow-hidden bg-[#EFEDEF] text-[var(--color-dark)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[linear-gradient(180deg,rgba(139,118,76,0.18),rgba(139,118,76,0))]" />
 
       <PageHero
         eyebrow="Legal"
@@ -42,8 +42,8 @@ export default function LegalPageShell({ document }: LegalPageShellProps) {
                       className={[
                         'rounded-full border px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] transition',
                         active
-                          ? 'border-[#C6A64A] bg-[#C6A64A] text-[#1F2628]'
-                          : 'border-black/10 bg-white/70 text-black/62 hover:border-[#C6A64A] hover:text-black',
+                          ? 'border-[#8B764C] bg-[#8B764C] text-[#2C3434]'
+                          : 'border-black/10 bg-white/70 text-black/62 hover:border-[#8B764C] hover:text-black',
                       ].join(' ')}
                     >
                       {item.title}

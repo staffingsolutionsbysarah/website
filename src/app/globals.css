@@ -6,51 +6,30 @@
 
   --font-cormorant: var(--font-cormorant);
   --font-manrope: var(--font-manrope);
-
   --font-heading: var(--font-cormorant);
   --font-body: var(--font-manrope);
 
-  --color-primary: #C6A64A;
-  --color-primary-hover: #A8872F;
-  --color-primary-light: #D8C78F;
-  --color-dark: #2C3434;
-  --color-bg: #FAFAFA;
-  --color-accent: #4B635E;
-  --color-section: #F4F2ED;
-  --color-section-soft: #FAF8F3;
-  --color-dark-panel: #1F2628;
+  /* ═══════════════════════════════════════════
+     SARAH FELL — BRAND PALETTE (5 colors only)
+     ═══════════════════════════════════════════ */
+  --color-bg:         #2C3434;   /* Dark charcoal green — primary bg (dark-forward) */
+  --color-light:      #EFEDEF;   /* Off-white — cards, light sections, contrast     */
+  --color-dark:       #2C3434;   /* Dark charcoal — text on light, panel bg         */
+  --color-stone:      #AB9D82;   /* Warm stone — panels, dividers, neutral fills    */
+  --color-gold:       #8B764C;   /* Antique gold — buttons, accents, CTAs, borders  */
+  --color-clay:       #714E3C;   /* Clay brown — warm cards, hover, testimonials    */
 
-  /* === EXTENDED PALETTE === */
-  /* Liquid-Glass Set */
-  --color-porcelain-mist: #F3F0EB;
-  --color-stone-veil: #B7ADA3;
-  --color-champagne-haze: #D8C6AE;
-  --color-smoked-umber: #4E433B;
-  --color-dusty-bronze: #8A6F58;
+  /* Functional aliases */
+  --color-primary:        #8B764C;   /* = gold  */
+  --color-primary-hover:  #714E3C;   /* = clay  */
+  --color-dark-panel:     #2C3434;   /* dark sections = primary dark */
+  --color-accent:         #8B764C;   /* eyebrow text on light bg */
+  --color-section:        #EFEDEF;   /* section bg */
 
-  /* Contrast-Focused Set */
-  --color-espresso-brown: #4A3B34;
-  --color-soft-mushroom-taupe: #B5A79A;
-  --color-parchment-ivory: #F5EEDF;
-  --color-muted-clay-beige: #CBB8A3;
-  --color-aged-brass-highlight: #A8894E;
-
-  /* Earth Tones */
-  --color-crease: #BFB39C;
-  --color-khaki: #C3B091;
-  --color-egyptian: #5C4A3D;
-  --color-wasabi: #7D9B76;
-
-  /* === AI STUDIO PALETTE === */
-  --color-charcoal: #1F2628;
-  --color-gold: #C6A64A;
-  --color-gold-light: #E7D08A;
-  --color-brand-green: #3D7A65;
-  --color-parchment: #F5EEDF;
-  --color-brass: #8B6914;
-  --color-stone: #B8A99A;
-  --color-clay: #A89078;
-  --color-espresso: #3D2B1F;
+  /* Light on dark — use stone as warm contrast text */
+  --color-gold-light:  #AB9D82;   /* was #AB9D82 — now stone, warm on dark panels  */
+  --color-parchment:   #EFEDEF;   /* alias for bg */
+  --color-charcoal:    #2C3434;   /* alias for dark */
 }
 
 @layer base {
@@ -60,37 +39,30 @@
 
   body {
     font-family: var(--font-body);
-    background:
-      radial-gradient(circle at top left, rgba(198, 166, 74, 0.08), transparent 30%),
-      linear-gradient(180deg, #faf9f6 0%, #f6f2e8 46%, #faf9f6 100%);
-    color: var(--color-dark);
+    background-color: #2C3434;
+    color: #EFEDEF;
     text-rendering: optimizeLegibility;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--color-dark);
     text-wrap: balance;
   }
 
   ::selection {
-    background: rgba(198, 166, 74, 0.3);
+    background: rgba(139, 118, 76, 0.25);
     color: var(--color-dark);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
+    html { scroll-behavior: auto; }
   }
 }
 
 @layer components {
+
+  /* ─── Depth system ─── */
   .depth-canvas {
     position: relative;
     isolation: isolate;
@@ -104,11 +76,11 @@
     border: 1px solid rgba(44, 52, 52, 0.08);
     border-radius: 34px;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.4)),
-      linear-gradient(145deg, #fbf9f3 0%, #f3eee2 56%, #eef2ee 100%);
+      linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.45)),
+      linear-gradient(145deg, #f8f6f2 0%, #f0ece4 56%, #eae6de 100%);
     box-shadow:
-      0 26px 80px rgba(31, 38, 40, 0.08),
-      0 52px 120px rgba(31, 38, 40, 0.05);
+      0 26px 80px rgba(44, 52, 52, 0.07),
+      0 52px 120px rgba(44, 52, 52, 0.04);
   }
 
   .depth-plane::before {
@@ -116,8 +88,8 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.42), transparent 36%),
-      radial-gradient(circle at top right, rgba(198, 166, 74, 0.12), transparent 34%);
+      linear-gradient(135deg, rgba(255,255,255,0.4), transparent 36%),
+      radial-gradient(circle at top right, rgba(139,118,76,0.10), transparent 34%);
     pointer-events: none;
   }
 
@@ -125,14 +97,14 @@
     position: relative;
     isolation: isolate;
     overflow: clip;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255,255,255,0.07);
     border-radius: 34px;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
-      linear-gradient(150deg, #232a2c 0%, #1f2628 46%, #273032 100%);
+      linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+      linear-gradient(150deg, #343d3d 0%, #2c3434 46%, #313c3c 100%);
     box-shadow:
-      0 30px 100px rgba(0, 0, 0, 0.22),
-      0 56px 140px rgba(0, 0, 0, 0.18);
+      0 30px 100px rgba(0,0,0,0.20),
+      0 56px 140px rgba(0,0,0,0.15);
   }
 
   .depth-plane-dark::before {
@@ -140,77 +112,109 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at top left, rgba(198, 166, 74, 0.16), transparent 30%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 28%);
+      radial-gradient(circle at top left, rgba(139,118,76,0.14), transparent 30%),
+      linear-gradient(180deg, rgba(255,255,255,0.04), transparent 28%);
     pointer-events: none;
+  }
+
+  .depth-inset {
+    position: relative;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.5)),
+      linear-gradient(160deg, #f5f2ec 0%, #ede8de 100%);
+    border: 1px solid rgba(44,52,52,0.07);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.75),
+      0 18px 36px rgba(44,52,52,0.05);
   }
 
   .depth-veil {
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(180deg, rgba(250, 249, 246, 0.04) 0%, rgba(31, 38, 40, 0.22) 42%, rgba(31, 38, 40, 0.88) 100%);
+    background: linear-gradient(180deg, rgba(239,237,239,0.04) 0%, rgba(44,52,52,0.20) 42%, rgba(44,52,52,0.85) 100%);
     pointer-events: none;
   }
 
   .depth-caption {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(250, 249, 246, 0.76);
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(239,237,239,0.80);
     backdrop-filter: blur(12px);
   }
 
   .depth-caption-dark {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(31, 38, 40, 0.4);
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(44,52,52,0.40);
     backdrop-filter: blur(14px);
   }
 
-  .depth-inset {
-    position: relative;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.5)),
-      linear-gradient(160deg, #faf8f3 0%, #f3eee2 100%);
-    border: 1px solid rgba(44, 52, 52, 0.07);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.75),
-      0 18px 36px rgba(31, 38, 40, 0.05);
-  }
-
+  /* ─── Editorial rule ─── */
   .editorial-rule {
     height: 1px;
-    background: linear-gradient(90deg, rgba(44, 52, 52, 0), rgba(44, 52, 52, 0.12) 18%, rgba(44, 52, 52, 0.12) 82%, rgba(44, 52, 52, 0));
+    background: linear-gradient(90deg,
+      rgba(139,118,76,0),
+      rgba(139,118,76,0.20) 18%,
+      rgba(139,118,76,0.20) 82%,
+      rgba(139,118,76,0));
   }
 
+  /* ─── Buttons ─── */
   .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     border-radius: 999px;
-    border: 1px solid #2c3434;
-    background-color: #2c3434;
+    border: 1px solid #2C3434;
+    background-color: #2C3434;
     padding: 0.95rem 1.5rem;
-    color: white;
+    color: #EFEDEF;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    transition:
-      background-color 180ms ease,
-      border-color 180ms ease,
-      color 180ms ease,
-      transform 180ms ease;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
   }
 
   .btn-primary:hover {
     transform: translateY(-1px);
-    border-color: var(--color-primary);
-    background-color: var(--color-primary);
-    color: #1f2628;
+    border-color: #8B764C;
+    background-color: #8B764C;
+    color: #EFEDEF;
+  }
+
+  .btn-primary:active {
+    transform: scale(0.97);
+  }
+
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid #8B764C;
+    background-color: #8B764C;
+    padding: 0.95rem 2rem;
+    color: #EFEDEF;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    transition: all 180ms ease;
+  }
+
+  .btn-gold:hover {
+    background-color: #714E3C;
+    border-color: #714E3C;
+    transform: translateY(-1px);
+  }
+
+  .btn-gold:active {
+    transform: scale(0.97);
   }
 
   .btn-secondary {
@@ -219,26 +223,22 @@
     justify-content: center;
     gap: 0.5rem;
     border-radius: 999px;
-    border: 1px solid rgba(44, 52, 52, 0.14);
-    background: rgba(255, 255, 255, 0.76);
+    border: 1px solid rgba(44,52,52,0.16);
+    background: rgba(255,255,255,0.70);
     padding: 0.95rem 1.5rem;
-    color: rgba(44, 52, 52, 0.82);
+    color: rgba(44,52,52,0.82);
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    transition:
-      background-color 180ms ease,
-      border-color 180ms ease,
-      color 180ms ease,
-      transform 180ms ease;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
   }
 
   .btn-secondary:hover {
     transform: translateY(-1px);
-    border-color: var(--color-primary);
+    border-color: #8B764C;
     background: white;
-    color: var(--color-dark);
+    color: #2C3434;
   }
 
   .btn-outline {
@@ -255,30 +255,72 @@
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    transition:
-      background-color 180ms ease,
-      border-color 180ms ease,
-      color 180ms ease,
-      transform 180ms ease;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
   }
 
   .btn-outline:hover {
     transform: translateY(-1px);
+    background: rgba(255,255,255,0.08);
   }
 
-  /* === EARTH TONE DEPTH CLASSES === */
+  /* ─── Liquid glass ─── */
+  .liquid-glass {
+    position: relative;
+    isolation: isolate;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ─── Marquee ─── */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+
+  /* ─── Tailwind utility aliases (keep classes that exist in JSX) ─── */
+  .text-gold        { color: #8B764C; }
+  .text-gold-light  { color: #AB9D82; }
+  .bg-gold          { background-color: #8B764C; }
+  .text-charcoal    { color: #2C3434; }
+  .bg-charcoal      { background-color: #2C3434; }
+  .text-parchment   { color: #EFEDEF; }
+  .bg-parchment     { background-color: #EFEDEF; }
+  .text-stone       { color: #AB9D82; }
+  .bg-stone         { background-color: #AB9D82; }
+  .text-clay        { color: #714E3C; }
+  .bg-clay          { background-color: #714E3C; }
+
+  /* Brand green was removed — map any remaining references to clay */
+  .text-brand-green   { color: #714E3C; }
+  .bg-brand-green     { background-color: #714E3C; }
+  .hover\:text-brand-green:hover { color: #714E3C; }
+
+  /* Section backgrounds */
+  .bg-khaki    { background-color: #EFEDEF; }
+  .bg-crease   { background-color: #EFEDEF; }
+  .bg-ivory    { background-color: #EFEDEF; }
+  .text-espresso  { color: #2C3434; }
+  .bg-espresso    { background-color: #2C3434; }
+
+  /* depth-earth stays but updates gold highlight */
   .depth-earth {
     position: relative;
     isolation: isolate;
     overflow: clip;
-    border: 1px solid rgba(92, 74, 61, 0.1);
+    border: 1px solid rgba(171,157,130,0.15);
     border-radius: 34px;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(243, 240, 235, 0.5)),
-      linear-gradient(145deg, #f5eeea 0%, #e8e2da 56%, #ddd5c8 100%);
+      linear-gradient(180deg, rgba(255,255,255,0.66), rgba(239,237,239,0.45)),
+      linear-gradient(145deg, #f5f2ec 0%, #ede8de 56%, #e6e0d4 100%);
     box-shadow:
-      0 26px 80px rgba(92, 74, 61, 0.08),
-      0 52px 120px rgba(92, 74, 61, 0.05);
+      0 26px 80px rgba(44,52,52,0.07),
+      0 52px 120px rgba(44,52,52,0.04);
   }
 
   .depth-earth::before {
@@ -286,168 +328,8 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.4), transparent 36%),
-      radial-gradient(circle at top right, rgba(198, 166, 74, 0.15), transparent 34%);
+      linear-gradient(135deg, rgba(255,255,255,0.4), transparent 36%),
+      radial-gradient(circle at top right, rgba(139,118,76,0.12), transparent 34%);
     pointer-events: none;
   }
-
-  .depth-bronze {
-    position: relative;
-    isolation: isolate;
-    overflow: clip;
-    border: 1px solid rgba(138, 111, 88, 0.12);
-    border-radius: 34px;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(216, 198, 174, 0.3)),
-      linear-gradient(145deg, #faf5ee 0%, #ebe3d6 56%, #e0d5c5 100%);
-    box-shadow:
-      0 26px 80px rgba(138, 111, 88, 0.1),
-      0 52px 120px rgba(168, 137, 78, 0.06);
-  }
-
-  .depth-bronze::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.5), transparent 40%),
-      radial-gradient(circle at top right, rgba(168, 137, 78, 0.2), transparent 36%);
-    pointer-events: none;
-  }
-
-  .depth-khaki {
-    position: relative;
-    isolation: isolate;
-    overflow: clip;
-    border: 1px solid rgba(195, 176, 145, 0.15);
-    border-radius: 34px;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(243, 240, 235, 0.4)),
-      linear-gradient(145deg, #f8f4ec 0%, #ede6d8 56%, #e3d9c8 100%);
-    box-shadow:
-      0 22px 70px rgba(195, 176, 145, 0.12),
-      0 44px 100px rgba(195, 176, 145, 0.06);
-  }
-
-  .depth-dark-panel {
-    position: relative;
-    isolation: isolate;
-    overflow: clip;
-    border: 1px solid rgba(74, 59, 52, 0.15);
-    border-radius: 34px;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
-      linear-gradient(150deg, #4a3b34 0%, #3d312a 46%, #352b24 100%);
-    box-shadow:
-      0 30px 100px rgba(74, 59, 52, 0.25),
-      0 56px 140px rgba(74, 59, 52, 0.18);
-  }
-
-  .depth-dark-panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at top left, rgba(198, 166, 74, 0.2), transparent 30%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 28%);
-    pointer-events: none;
-  }
-
-  /* === WASABI ACCENT (use sparingly) === */
-  .accent-wasabi {
-    color: var(--color-wasabi);
-    background: linear-gradient(135deg, rgba(125, 155, 118, 0.1), transparent);
-  }
-
-  /* === SECTION BACKGROUNDS === */
-  .bg-ivory {
-    background-color: var(--color-parchment-ivory);
-  }
-
-  .bg-taupe {
-    background-color: var(--color-soft-mushroom-taupe);
-  }
-
-  .bg-clay {
-    background-color: var(--color-muted-clay-beige);
-  }
-
-  .bg-egyptian {
-    background-color: var(--color-egyptian);
-    color: white;
-  }
-
-  /* === BRONZE ACCENTS === */
-  .border-bronze {
-    border-color: var(--color-dusty-bronze);
-  }
-
-  .text-bronze {
-    color: var(--color-dusty-bronze);
-  }
-
-  .bg-bronze-glow {
-    background: radial-gradient(circle, rgba(138, 111, 88, 0.15), transparent 70%);
-  }
-
-  /* === AI STUDIO UTILITIES === */
-  .liquid-glass {
-    position: relative;
-    isolation: isolate;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .btn-gold {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    border-radius: 999px;
-    border: 1px solid var(--color-gold);
-    background-color: var(--color-gold);
-    padding: 0.75rem 2rem;
-    color: var(--color-charcoal);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    transition: all 180ms ease;
-  }
-
-  .btn-gold:hover {
-    background-color: var(--color-gold-light);
-    border-color: var(--color-gold-light);
-    transform: translateY(-1px);
-  }
-
-  /* Marquee animation */
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
-  }
-
-  .animate-marquee {
-    animation: marquee 20s linear infinite;
-  }
-
-  /* AI Studio color classes */
-  .text-charcoal { color: var(--color-charcoal); }
-  .bg-charcoal { background-color: var(--color-charcoal); }
-  .text-gold { color: var(--color-gold); }
-  .text-gold-light { color: var(--color-gold-light); }
-  .bg-gold { background-color: var(--color-gold); }
-  .text-brand-green { color: var(--color-brand-green); }
-  .bg-brand-green { background-color: var(--color-brand-green); }
-  .text-parchment { color: var(--color-parchment); }
-  .bg-parchment { background-color: var(--color-parchment); }
-  .text-brass { color: var(--color-brass); }
-  .text-stone { color: var(--color-stone); }
-  .text-clay { color: var(--color-clay); }
-  .bg-clay { background-color: var(--color-clay); }
-  .text-espresso { color: var(--color-espresso); }
-  .bg-crease { background-color: var(--color-crease); }
-  .bg-khaki { background-color: var(--color-khaki); }
 }

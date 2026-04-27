@@ -164,7 +164,7 @@ function IndustryCard({ lane, index }: IndustryCardProps) {
 
       <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
         <div className="max-w-[30rem]">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#E7D08A]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#AB9D82]">
             {lane.tags.join(' / ')}
           </p>
           <h3 className="mt-3 max-w-[14ch] text-[2rem] leading-[0.96] tracking-[-0.04em] text-white md:text-[2.55rem]">

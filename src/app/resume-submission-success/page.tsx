@@ -15,7 +15,7 @@ export default function ResumeSubmissionSuccessPage() {
         transition={{ duration: 0.5 }}
         className="depth-plane p-10 md:p-16 max-w-[600px] text-center relative z-10"
       >
-        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#E7D08A]/20 text-[#A8872F] mb-8">
+        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#AB9D82]/20 text-[#714E3C] mb-8">
           <FileCheck className="h-10 w-10" />
         </div>
         

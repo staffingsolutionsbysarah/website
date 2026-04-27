@@ -30,7 +30,7 @@ export default function InsightsPage() {
     <div className="depth-canvas bg-[var(--color-bg)] text-[var(--color-dark)]">
       {/* Hero Section */}
       <section className="relative px-6 pb-16 pt-16 md:pb-24 md:pt-24">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[40vh] bg-[radial-gradient(circle_at_top_right,rgba(198,166,74,0.12),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[40vh] bg-[radial-gradient(circle_at_top_right,rgba(139,118,76,0.12),transparent_40%)]" />
         
         <div className="mx-auto max-w-[1200px]">
           <motion.div
@@ -42,7 +42,7 @@ export default function InsightsPage() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-[var(--color-accent)]">
               Recruiter Perspectives
             </p>
-            <h1 className="mt-6 text-5xl font-medium tracking-[-0.03em] md:text-7xl">
+            <h1 className="mt-6 font-serif font-light text-[3rem] leading-[0.92] tracking-[-0.04em] md:text-[5rem]">
               Insights & Market Notes.
             </h1>
             <p className="mt-8 text-lg leading-relaxed text-black/65">
@@ -100,14 +100,14 @@ export default function InsightsPage() {
       {/* Newsletter Strip */}
       <section className="bg-[var(--color-dark-panel)] px-6 py-20 text-white">
         <div className="mx-auto max-w-[800px] text-center">
-           <h2 className="text-3xl font-medium tracking-tight md:text-4xl text-[#E7D08A]">
+           <h2 className="text-3xl font-medium tracking-tight md:text-4xl text-[#AB9D82]">
              Get the field notes in your inbox.
            </h2>
            <p className="mt-4 text-white/60">
              Occasional market updates and hiring advice for Ontario industrial leaders.
            </p>
            <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-             <Link href="/newsletter" className="btn-primary border-[#E7D08A] bg-[#E7D08A] text-black hover:bg-white hover:border-white">
+             <Link href="/newsletter" className="btn-primary border-[#AB9D82] bg-[#AB9D82] text-black hover:bg-white hover:border-white">
                Subscribe to Newsletter
              </Link>
            </div>

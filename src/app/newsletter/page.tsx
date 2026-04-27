@@ -7,7 +7,7 @@ export default function NewsletterPage() {
   return (
     <div className="depth-canvas bg-[var(--color-bg)] text-[var(--color-dark)] min-h-screen">
       <section className="relative px-6 pb-20 pt-16 md:pb-32 md:pt-24">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[60vh] bg-[radial-gradient(circle_at_top_right,rgba(198,166,74,0.15),transparent_40%)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[60vh] bg-[radial-gradient(circle_at_top_right,rgba(139,118,76,0.15),transparent_40%)]" />
         
         <div className="mx-auto max-w-[1200px]">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -19,7 +19,7 @@ export default function NewsletterPage() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-[var(--color-accent)]">
                 Recruiter Field Notes
               </p>
-              <h1 className="mt-6 text-5xl font-medium tracking-[-0.03em] md:text-7xl">
+              <h1 className="mt-6 font-serif font-light text-[3rem] leading-[0.92] tracking-[-0.04em] md:text-[5rem]">
                 Stay current with Ontario hiring.
               </h1>
               <p className="mt-8 text-xl leading-relaxed text-black/65">
@@ -32,7 +32,7 @@ export default function NewsletterPage() {
                   { icon: ShieldCheck, title: 'Privacy First', body: 'We never share your data. Unsubscribe anytime.' },
                 ].map((item) => (
                   <div key={item.title} className="flex gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E7D08A]/20 text-[#A8872F]">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#AB9D82]/20 text-[#714E3C]">
                       <item.icon className="h-5 w-5" />
                     </div>
                     <div>

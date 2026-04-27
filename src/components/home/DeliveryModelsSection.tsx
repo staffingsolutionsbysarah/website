@@ -2,80 +2,98 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Target, Zap, Users } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
-const deliveryModels = [
+const models = [
   {
-    icon: Target,
+    label: '01',
+    title: 'Direct Hire',
+    body: 'Full-time permanent placement with direct recruiter ownership. Search, qualify, shortlist, close.',
+  },
+  {
+    label: '02',
     title: 'Retained Search',
-    desc: 'Dedicated resources for high-priority executive roles.',
+    body: 'Priority search for executive and hard-to-fill roles. Deeper market commitment, stronger shortlist control.',
   },
   {
-    icon: Zap,
-    title: 'Contingent Placement',
-    desc: 'Success-based hiring for specialized roles.',
+    label: '03',
+    title: 'Contract & Temp-to-Perm',
+    body: 'Flexible staffing for project coverage or interim needs. Verify fit before a permanent commitment.',
   },
   {
-    icon: Users,
-    title: 'Project RPO',
-    desc: 'Scaling your team for specific project timelines.',
+    label: '04',
+    title: 'Payroll / EOR',
+    body: 'Administrative and payroll support for contract teams. Simplify workforce compliance and management.',
   },
 ] as const;
 
 export function DeliveryModelsSection() {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref      = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-20 md:py-32 px-6 md:px-10 bg-crease">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-        <div>
-          <span className="text-brass uppercase tracking-widest text-[10px] font-bold mb-4 block">
-            How We Work
-          </span>
-          <h2 className="text-4xl md:text-5xl font-serif text-charcoal mb-6 md:mb-8">
-            Tailored Delivery Models
-          </h2>
-          <p className="text-charcoal/60 text-base md:text-lg leading-relaxed mb-8 md:mb-12">
-            Every hire is unique. We offer flexible engagement models designed to align with your
-            business goals and urgency.
-          </p>
-          <div className="space-y-6 md:space-y-8">
-            {deliveryModels.map((model, i) => (
-              <motion.div
-                key={model.title}
-                initial={{ opacity: 0, x: -30 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-                transition={{ delay: i * 0.15, duration: 0.6 }}
-                className="flex items-start space-x-6"
-              >
-                <div className="w-12 h-12 bg-brass/10 rounded-xl flex items-center justify-center text-brass flex-shrink-0">
-                  <model.icon className="w-6 h-6" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-charcoal mb-1">{model.title}</h4>
-                  <p className="text-charcoal/50 text-sm">{model.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        <div className="relative">
-          <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-            <img
-              src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=1974"
-              alt="Collaboration"
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <div className="absolute -bottom-10 -left-10 liquid-glass p-8 rounded-2xl shadow-xl max-w-xs bg-white/40">
-            <Target className="text-brass w-8 h-8 mb-4" />
-            <p className="text-charcoal font-serif text-lg italic">
-              &quot;Fit-first methodology ensures 98% retention rate over 2 years.&quot;
+    <section
+      ref={ref}
+      className="relative overflow-hidden py-20 md:py-28"
+      style={{ background: '#EFEDEF' }}
+    >
+      <div className="mx-auto max-w-[1380px] px-6 md:px-10">
+
+        {/* Header row */}
+        <div className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.42em] text-[#8B764C]">
+              How We Work
             </p>
-          </div>
+            <h2 className="max-w-[16ch] font-serif text-[2.2rem] leading-[0.94] tracking-[-0.045em] text-[#2C3434] md:text-[3rem]">
+              Delivery models built around the search, not a contract tier.
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <Link href="/services" className="btn-primary">
+              All Services
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
         </div>
+
+        {/* Editorial rule */}
+        <div className="editorial-rule mb-12 md:mb-14" />
+
+        {/* Model rows — editorial list layout */}
+        <div className="divide-y divide-black/[0.06]">
+          {models.map((model, i) => (
+            <motion.div
+              key={model.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.09 }}
+              className="group grid grid-cols-[48px_1fr] items-start gap-6 py-6 md:grid-cols-[64px_1fr_1fr] md:items-center md:gap-10 md:py-7"
+            >
+              <span className="font-serif text-2xl font-light text-[#8B764C]/40 transition-colors duration-300 group-hover:text-[#8B764C]/70 md:text-3xl">
+                {model.label}
+              </span>
+              <h3 className="font-serif text-[1.4rem] leading-tight tracking-[-0.02em] text-[#2C3434] md:text-[1.65rem]">
+                {model.title}
+              </h3>
+              <p className="col-start-2 col-end-3 mt-1 text-sm leading-relaxed text-black/52 md:col-auto md:mt-0 md:text-base">
+                {model.body}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="editorial-rule mt-0" />
       </div>
     </section>
   );

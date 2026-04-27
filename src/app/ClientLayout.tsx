@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -9,29 +10,36 @@ import SmoothScrollProvider from '../components/providers/SmoothScrollProvider';
 import Preloader from '../components/home/Preloader';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
-  const [loading, setLoading] = useState(true);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+
+  const [loading, setLoading] = useState(() => {
+    // Only ever run preloader on home page — other routes skip immediately
+    if (typeof window === 'undefined') return false;
+    if (!isHome) return false;
+    return !sessionStorage.getItem('preloader-seen');
+  });
+
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const hasSeenPreloader = sessionStorage.getItem('preloader-seen');
-    if (hasSeenPreloader) {
+    // Non-home routes: ensure content is always visible
+    if (!isHome) {
       setLoading(false);
-      if (contentRef.current) {
-        gsap.set(contentRef.current, { opacity: 1 });
-      }
     }
-  }, []);
+  }, [isHome]);
 
   const handlePreloaderComplete = () => {
+    sessionStorage.setItem('preloader-seen', 'true');
     setLoading(false);
     if (contentRef.current) {
-      gsap.to(contentRef.current, { opacity: 1, duration: 1.5, ease: 'power2.out' });
+      gsap.to(contentRef.current, { opacity: 1, duration: 1.2, ease: 'power2.out' });
     }
   };
 
   return (
     <>
-      {loading && <Preloader onComplete={handlePreloaderComplete} />}
+      {isHome && loading && <Preloader onComplete={handlePreloaderComplete} />}
       <div
         ref={contentRef}
         className="contents"
@@ -39,7 +47,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       >
         <SmoothScrollProvider>
           <Navbar />
-          <main className="flex-grow bg-parchment">
+          <main className="flex-grow">
             <PageTransition>{children}</PageTransition>
           </main>
           <Footer />

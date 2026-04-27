@@ -73,7 +73,7 @@ export default function HeroStage() {
   const currentSlide = slides[currentIndex];
 
   return (
-    <section className="relative h-[90vh] min-h-[720px] w-full overflow-hidden bg-[#1F2628]">
+    <section className="relative h-[90vh] min-h-[720px] w-full overflow-hidden bg-[#2C3434]">
       {/* Immersive Background Image Layer */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -108,7 +108,7 @@ export default function HeroStage() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#E7D08A]">
+              <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#AB9D82]">
                 {currentSlide.eyebrow}
               </p>
               <h1 className="mt-8 text-[3.2rem] leading-[0.88] tracking-[-0.05em] text-white md:text-[5.5rem] lg:text-[6.5rem]">
@@ -119,7 +119,7 @@ export default function HeroStage() {
               </p>
 
               <div className="mt-14 flex flex-wrap gap-5">
-                <Link href={currentSlide.primaryCTA.href} className="btn-primary !bg-white !text-[#1F2628] hover:!bg-[#E7D08A] transition-all px-8 py-4">
+                <Link href={currentSlide.primaryCTA.href} className="btn-primary !bg-white !text-[#2C3434] hover:!bg-[#AB9D82] transition-all px-8 py-4">
                   {currentSlide.primaryCTA.label}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -142,12 +142,12 @@ export default function HeroStage() {
                 aria-label={`Go to slide ${index + 1}`}
                 aria-pressed={currentIndex === index}
               >
-                <slide.icon className={`h-4 w-4 transition-all ${currentIndex === index ? 'text-[#E7D08A] scale-110' : 'text-white/30 group-hover:text-white/60'}`} />
+                <slide.icon className={`h-4 w-4 transition-all ${currentIndex === index ? 'text-[#AB9D82] scale-110' : 'text-white/30 group-hover:text-white/60'}`} />
                 
                 {currentIndex === index && (
                   <motion.div
                     layoutId="active-indicator"
-                    className="absolute inset-0 border border-[#E7D08A]/40 rounded-full"
+                    className="absolute inset-0 border border-[#AB9D82]/40 rounded-full"
                   />
                 )}
 
@@ -159,7 +159,7 @@ export default function HeroStage() {
                     initial={{ width: 0 }}
                     animate={{ width: '100%' }}
                     transition={{ duration: isPaused ? 0.3 : AUTO_ROTATE_INTERVAL / 1000, ease: 'linear' }}
-                    className="absolute bottom-0 left-0 h-0.5 bg-[#E7D08A]"
+                    className="absolute bottom-0 left-0 h-0.5 bg-[#AB9D82]"
                   />
                 )}
               </button>

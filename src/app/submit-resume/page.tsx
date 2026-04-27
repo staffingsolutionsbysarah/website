@@ -17,8 +17,8 @@ const resumeGuidance = [
 
 export default function SubmitResumePage() {
   return (
-    <div className="relative overflow-hidden bg-[#F4F2ED] text-[var(--color-dark)]">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[linear-gradient(180deg,rgba(198,166,74,0.18),rgba(198,166,74,0))]" />
+    <div className="relative overflow-hidden bg-[#EFEDEF] text-[var(--color-dark)]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[linear-gradient(180deg,rgba(139,118,76,0.18),rgba(139,118,76,0))]" />
 
       <PageHero
         eyebrow="Candidate Support"
