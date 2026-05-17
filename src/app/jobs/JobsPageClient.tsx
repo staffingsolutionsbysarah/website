@@ -47,8 +47,8 @@ export default function JobsPageClient() {
   }, [activeJobs, typeFilter, search]);
 
   return (
-    <div className="relative overflow-hidden bg-[#EFEDEF] text-[var(--color-dark)]">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[linear-gradient(180deg,rgba(139,118,76,0.18),rgba(139,118,76,0))]" />
+    <div className="relative overflow-hidden bg-[#FAF9F6] text-[#2C3434]">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[linear-gradient(180deg,rgba(200,173,106,0.12),rgba(200,173,106,0))]" />
 
       <section className="px-4 pb-20 pt-16 md:px-6 md:pb-24 md:pt-24">
         <div className="mx-auto max-w-[1280px]">
@@ -83,7 +83,7 @@ export default function JobsPageClient() {
                       value={search}
                       onChange={(event) => setSearch(event.target.value)}
                       placeholder="Role, location, type…"
-                      className="mt-2 w-full border-b border-black/12 bg-transparent px-0 py-2 text-sm text-black/82 outline-none transition placeholder:text-black/36 focus:border-[#8B764C]"
+                      className="mt-2 w-full border-b border-black/12 bg-transparent px-0 py-2 text-sm text-black/82 outline-none transition placeholder:text-black/36 focus:border-[#C8AD6A]"
                     />
                   </div>
                   {jobTypes.length > 1 && (
@@ -98,7 +98,7 @@ export default function JobsPageClient() {
                         id="type-filter"
                         value={typeFilter}
                         onChange={(e) => setTypeFilter(e.target.value)}
-                        className="mt-2 w-full cursor-pointer border-b border-black/12 bg-transparent px-0 py-2 text-sm text-black/82 outline-none transition focus:border-[#8B764C]"
+                        className="mt-2 w-full cursor-pointer border-b border-black/12 bg-transparent px-0 py-2 text-sm text-black/82 outline-none transition focus:border-[#C8AD6A]"
                       >
                         <option value="">All types</option>
                         {jobTypes.map((type) => (

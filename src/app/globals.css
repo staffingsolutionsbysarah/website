@@ -10,26 +10,36 @@
   --font-body: var(--font-manrope);
 
   /* ═══════════════════════════════════════════
-     SARAH FELL — BRAND PALETTE (5 colors only)
+     SARAH FELL — LIGHT PREMIUM EDITORIAL PALETTE
      ═══════════════════════════════════════════ */
-  --color-bg:         #2C3434;   /* Dark charcoal green — primary bg (dark-forward) */
-  --color-light:      #EFEDEF;   /* Off-white — cards, light sections, contrast     */
-  --color-dark:       #2C3434;   /* Dark charcoal — text on light, panel bg         */
-  --color-stone:      #AB9D82;   /* Warm stone — panels, dividers, neutral fills    */
-  --color-gold:       #8B764C;   /* Antique gold — buttons, accents, CTAs, borders  */
-  --color-clay:       #714E3C;   /* Clay brown — warm cards, hover, testimonials    */
 
-  /* Functional aliases */
-  --color-primary:        #8B764C;   /* = gold  */
-  --color-primary-hover:  #714E3C;   /* = clay  */
-  --color-dark-panel:     #2C3434;   /* dark sections = primary dark */
-  --color-accent:         #8B764C;   /* eyebrow text on light bg */
-  --color-section:        #EFEDEF;   /* section bg */
+  /* New light-forward tokens */
+  --color-canvas:     #FAF9F6;   /* Warm white — body background                   */
+  --color-raised:     #F4F2ED;   /* Card / panel surface                           */
+  --color-sage:       #4A6A58;   /* Restrained sage — eyebrows, borders, icons     */
+  --color-champagne:  #C8AD6A;   /* Champagne gold — CTAs, highlights, accents     */
+  --color-slate:      #8596A8;   /* Smoke / slate blue — secondary labels          */
+  --color-blush:      #EDE5DC;   /* Oyster / warm blush — inset sections           */
 
-  /* Light on dark — use stone as warm contrast text */
-  --color-gold-light:  #AB9D82;   /* was #AB9D82 — now stone, warm on dark panels  */
-  --color-parchment:   #EFEDEF;   /* alias for bg */
-  --color-charcoal:    #2C3434;   /* alias for dark */
+  /* Core structural colours (kept for dark hero, navbar, footer) */
+  --color-charcoal:   #2C3434;   /* Dark charcoal — hero, navbar, footer, h-tags   */
+  --color-dark:       #2C3434;   /* alias */
+  --color-light:      #EFEDEF;   /* Off-white — kept for compatibility              */
+  --color-stone:      #AB9D82;   /* Warm stone — kept for compatibility             */
+  --color-gold:       #8B764C;   /* Antique gold — kept for compatibility           */
+  --color-clay:       #714E3C;   /* Clay — COMPATIBILITY ONLY, do not use in new code */
+
+  /* Functional aliases — updated for light editorial */
+  --color-bg:             #FAF9F6;   /* = canvas (was dark charcoal) */
+  --color-primary:        #C8AD6A;   /* = champagne gold             */
+  --color-primary-hover:  #4A6A58;   /* = sage (replaces clay hover) */
+  --color-dark-panel:     #2C3434;   /* dark sections stay charcoal  */
+  --color-accent:         #4A6A58;   /* = sage — eyebrow text on light bg */
+  --color-section:        #FAF9F6;   /* = canvas                     */
+
+  /* Kept for backward compat */
+  --color-gold-light:  #AB9D82;
+  --color-parchment:   #EFEDEF;
 }
 
 @layer base {
@@ -39,8 +49,8 @@
 
   body {
     font-family: var(--font-body);
-    background-color: #2C3434;
-    color: #EFEDEF;
+    background-color: #FAF9F6;
+    color: #2C3434;
     text-rendering: optimizeLegibility;
   }
 
@@ -57,6 +67,11 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
@@ -196,10 +211,10 @@
     justify-content: center;
     gap: 0.5rem;
     border-radius: 999px;
-    border: 1px solid #8B764C;
-    background-color: #8B764C;
+    border: 1px solid #C8AD6A;
+    background-color: #C8AD6A;
     padding: 0.95rem 2rem;
-    color: #EFEDEF;
+    color: #2C3434;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.20em;
@@ -208,8 +223,9 @@
   }
 
   .btn-gold:hover {
-    background-color: #714E3C;
-    border-color: #714E3C;
+    background-color: #4A6A58;
+    border-color: #4A6A58;
+    color: #FAF9F6;
     transform: translateY(-1px);
   }
 
@@ -296,10 +312,10 @@
   .text-clay        { color: #714E3C; }
   .bg-clay          { background-color: #714E3C; }
 
-  /* Brand green was removed — map any remaining references to clay */
-  .text-brand-green   { color: #714E3C; }
-  .bg-brand-green     { background-color: #714E3C; }
-  .hover\:text-brand-green:hover { color: #714E3C; }
+  /* Brand green — single dark sage green */
+  .text-brand-green   { color: #3B5040; }
+  .bg-brand-green     { background-color: #3B5040; }
+  .hover\:text-brand-green:hover { color: #3B5040; }
 
   /* Section backgrounds */
   .bg-khaki    { background-color: #EFEDEF; }

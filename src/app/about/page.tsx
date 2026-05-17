@@ -22,7 +22,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="relative overflow-hidden bg-[#EFEDEF] text-[var(--color-dark)]">
+    <div className="relative overflow-hidden bg-[#FAF9F6] text-[#2C3434]">
 
       {/* Hero banner — dark full-width */}
       <section className="relative min-h-[52vh] bg-[#2C3434] px-6 py-24 md:py-36 flex items-end overflow-hidden">
@@ -31,7 +31,7 @@ export default function AboutPage() {
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse 55% 50% at 80% 15%, rgba(139,118,76,0.12), transparent 60%)',
+              'radial-gradient(ellipse 55% 50% at 80% 15%, rgba(200,173,106,0.10), transparent 60%)',
           }}
         />
         <motion.div
@@ -76,7 +76,7 @@ export default function AboutPage() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-[10px] font-bold uppercase tracking-[0.42em] text-[#8B764C]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.42em] text-[#4A6A58]">
               Over a Decade of Search Experience
             </p>
             <h2 className="mt-5 font-serif text-[2rem] font-light leading-[1.0] tracking-[-0.03em] text-[#2C3434] md:text-[2.6rem]">
@@ -95,7 +95,7 @@ export default function AboutPage() {
                 href="https://toptiertalentgroup.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-black hover:text-[#8B764C] transition-colors underline"
+                className="font-semibold text-[#2C3434] hover:text-[#4A6A58] transition-colors underline"
               >
                 Top Tier Talent Group
               </a>
@@ -160,7 +160,7 @@ export default function AboutPage() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="depth-plane p-8 md:p-10">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8B764C]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#4A6A58]">
               For Hiring Managers
             </p>
             <h3 className="mt-4 font-serif text-[1.6rem] font-light leading-tight tracking-tight text-[#2C3434]">
@@ -172,7 +172,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="depth-plane p-8 md:p-10">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#8B764C]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#4A6A58]">
               For HR & Operations Leaders
             </p>
             <h3 className="mt-4 font-serif text-[1.6rem] font-light leading-tight tracking-tight text-[#2C3434]">

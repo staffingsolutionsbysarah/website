@@ -3,7 +3,7 @@
 import { ArrowRight, TrendingUp, Users, Mail } from 'lucide-react';
 import Link from 'next/link';
 
-import GlobeHero from '@/components/home/GlobeHero';
+import CinematicHero from '@/components/home/CinematicHero';
 import HorizontalStackingCards from '@/components/home/HorizontalStackingCards';
 import { ClientLogosSection } from '@/components/home/ClientLogosSection';
 import { ServicesIndustriesSection } from '@/components/home/ServicesIndustriesSection';
@@ -21,16 +21,16 @@ const proofStrip = [
 
 export default function HomePage() {
   return (
-    <main className="bg-parchment text-charcoal">
-      {/* Hero - Globe hero */}
-      <GlobeHero />
+    <main className="bg-[#FAF9F6] text-[#2C3434]">
+      {/* Hero — Canada signal preloader → cinematic image hero */}
+      <CinematicHero />
 
-      {/* Proof Strip - Layered over hero */}
-      <section className="relative z-10 -mt-16 bg-brand-green py-8 md:-mt-24 md:py-12 border-y border-white/10">
+      {/* Proof Strip — dark band anchored to hero base */}
+      <section className="relative z-10 bg-[#2C3434] py-8 md:py-12 border-t border-white/8">
         <div className="mx-auto grid w-[calc(100%-3rem)] gap-6 py-4 md:grid-cols-4 md:px-10">
           {proofStrip.map((item, i) => (
             <div key={item.value} className={`text-center ${i < proofStrip.length - 1 ? 'border-r border-white/10' : ''}`}>
-              <span className="block text-gold text-[8px] md:text-[10px] uppercase tracking-widest font-bold mb-1">
+              <span className="block text-[8px] md:text-[10px] uppercase tracking-widest font-bold mb-1" style={{ color: '#C8AD6A' }}>
                 {item.label}
               </span>
               <span className="text-white font-serif text-lg md:text-xl">{item.value}</span>
@@ -61,7 +61,7 @@ export default function HomePage() {
       <ProcessSection />
 
       {/* Insights */}
-      <section className="py-20 md:py-32 px-6 md:px-10 bg-khaki">
+      <section className="py-20 md:py-32 px-6 md:px-10 bg-[#FAF9F6]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-6">
             <div>
@@ -115,11 +115,11 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="py-20 md:py-32 px-6 md:px-10 bg-charcoal relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gold/5 blur-[120px] rounded-full" />
+        <div className="absolute top-0 right-0 w-1/2 h-full blur-[120px] rounded-full" style={{ background: 'rgba(200,173,106,0.06)' }} />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="text-4xl md:text-7xl text-white font-serif mb-8 md:mb-12">
             Ready to find your <br />
-            <span className="italic text-gold">perfect fit?</span>
+            <span className="italic" style={{ color: '#C8AD6A' }}>perfect fit?</span>
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
             <Link
