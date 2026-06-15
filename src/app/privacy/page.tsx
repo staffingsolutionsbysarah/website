@@ -107,11 +107,10 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">5. Disclosure of Information</h2>
               <p>We do not sell personal information. We may disclose personal information only where reasonably necessary, including to service providers that support hosting, scheduling, analytics, or website operations, or where required by law.</p>
-              <p className="mt-4">The third-party services we use to process form submissions and bookings include:</p>
+              <p className="mt-4">The third-party services that may process information from website interactions include:</p>
               <ul className="mt-4 list-disc pl-6 space-y-2">
-                <li><strong>PocketBase</strong> — a self-hosted database used to store contact inquiries, candidate submissions, talent requests, and booking records. The database is administered by Staffing Solutions by Sarah Fell and hosted on infrastructure controlled by the business owner.</li>
-                <li><strong>Make.com</strong> — an automation platform used to route submitted form data to internal workflows (such as notifications, CRM entries, or internal tracking). Data passed through Make.com is processed transiently and not retained long-term by the platform beyond what is needed to execute the workflow.</li>
-                <li><strong>Cal.com</strong> — a scheduling platform used to manage booking appointments. Booking data is subject to Cal.com's own privacy policy and terms of service. We receive booking event notifications via a secure webhook when appointments are created or updated.</li>
+                <li><strong>Email providers</strong> — contact, resume, and talent request forms open an email draft addressed to Staffing Solutions by Sarah Fell. If you send the email, the information is processed by your email provider and our email provider.</li>
+                <li><strong>Cal.com</strong> — a scheduling platform used to manage booking appointments. Booking data is subject to Cal.com's own privacy policy and terms of service.</li>
                 <li><strong>Vercel</strong> — the hosting platform for this website. Vercel may process minimal operational data as part of delivering the site.</li>
               </ul>
               <p className="mt-4">
@@ -127,8 +126,8 @@ export default function PrivacyPage() {
               <ul className="mt-4 list-disc pl-6 space-y-2">
                 <li>Accepted file formats: PDF, DOC, DOCX only.</li>
                 <li>Maximum file size: 5 MB per submission.</li>
-                <li>Files are transmitted securely and stored in our database (PocketBase).</li>
-                <li>Files are retained only for the duration described in the Retention section below.</li>
+                <li>The website does not upload resume files to a public website database. Resume submissions open an email draft and ask you to attach the selected file before sending.</li>
+                <li>Files sent by email are retained only for the duration described in the Retention section below.</li>
                 <li>Do not submit sensitive personal information beyond what is reasonably needed for a recruitment inquiry (e.g., avoid including government ID numbers, banking details, or health information in resume files).</li>
               </ul>
             </section>
@@ -145,7 +144,7 @@ export default function PrivacyPage() {
                 <li><strong>Booking records:</strong> retained for up to 1 year following the scheduled event.</li>
               </ul>
               <p className="mt-4">
-                We use reasonable administrative, technical, and organizational safeguards appropriate to the sensitivity of the information, including secure storage (PocketBase with controlled access), webhook signature verification for automated data feeds, and encrypted transmission for form submissions. No method of transmission over the internet or electronic storage is completely secure.
+                We use reasonable administrative, technical, and organizational safeguards appropriate to the sensitivity of the information, including controlled access to business records and encrypted transmission where supported by the relevant email, scheduling, or hosting provider. No method of transmission over the internet or electronic storage is completely secure.
               </p>
             </section>
 
@@ -162,7 +161,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-2xl font-medium text-[var(--color-dark)] mb-6">9. Policy Updates</h2>
               <p>
-                Candidate submission features are now active on this website. This policy describes those current practices. Additional features or changes to data collection will be reflected in updates to this policy.
+                Candidate submission features are active on this website through email draft workflows. This policy describes those current practices. Additional features or changes to data collection will be reflected in updates to this policy.
               </p>
               <p className="mt-4">
                 We may update this Privacy Policy from time to time. For privacy questions, access requests, correction requests, or consent withdrawal, contact Staffing Solutions by Sarah Fell Incorporated at{' '}

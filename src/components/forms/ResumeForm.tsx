@@ -4,10 +4,11 @@ import { useState, useRef, type FormEvent, type ChangeEvent } from 'react';
 import Link from 'next/link';
 import { CheckCircle2, AlertCircle, Upload, FileText, X } from 'lucide-react';
 
+const CONTACT_EMAIL = 'Sarah.fell@staffingsolutionsbysarah.com';
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = ['.pdf', '.doc', '.docx'];
 
-type FormState = 'idle' | 'loading' | 'success' | 'error';
+type FormState = 'idle' | 'success' | 'error';
 
 interface FormData {
   firstName: string;
@@ -81,26 +82,31 @@ export default function ResumeForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormState('loading');
     setErrorMessage('');
 
-    try {
-      const response = await fetch('/api/resume', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || 'Submission failed. Please try again.');
-      }
-
-      setFormState('success');
-    } catch (err) {
+    if (!selectedFile) {
       setFormState('error');
-      setErrorMessage(err instanceof Error ? err.message : 'An unexpected error occurred.');
+      setErrorMessage('Attach a resume before opening the email draft.');
+      return;
     }
+
+    const subject = `Resume submission from ${formData.firstName} ${formData.lastName}`;
+    const body = [
+      `Name: ${formData.firstName} ${formData.lastName}`,
+      `Email: ${formData.email}`,
+      `Phone: ${formData.phone || 'Not provided'}`,
+      `Location: ${formData.location}`,
+      `Target Role: ${formData.targetRole}`,
+      `LinkedIn: ${formData.linkedinUrl || 'Not provided'}`,
+      `Resume file to attach: ${selectedFile.name}`,
+      '',
+      `Notes: ${formData.notes || 'None provided'}`,
+      '',
+      'Please attach the selected resume file before sending this email.',
+    ].join('\n');
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setFormState('success');
   };
 
   if (formState === 'success') {
@@ -110,9 +116,9 @@ export default function ResumeForm() {
           <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-accent)]/10">
             <CheckCircle2 className="h-8 w-8 text-[var(--color-accent)]" />
           </div>
-          <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Resume Submitted</h2>
+          <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Email Draft Opened</h2>
           <p className="mt-4 max-w-[42ch] text-base text-black/66">
-            Your resume has been received. Sarah will review it and reach out directly if there is a fit for current or upcoming roles.
+            Review the email draft, attach your resume file, and send it when ready. Sarah will respond directly if there is a fit.
           </p>
           <Link href="/submit-resume" className="btn-primary mt-8">
             Submit Another
@@ -336,35 +342,10 @@ export default function ResumeForm() {
         </p>
         <button
           type="submit"
-          disabled={formState === 'loading' || !selectedFile}
+          disabled={!selectedFile}
           className="btn-primary min-w-[160px]"
         >
-          {formState === 'loading' ? (
-            <span className="flex items-center gap-2">
-              <svg
-                className="h-4 w-4 animate-spin"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                />
-              </svg>
-              Submitting...
-            </span>
-          ) : (
-            'Submit Resume'
-          )}
+          Open Email Draft
         </button>
       </div>
 

@@ -2,9 +2,11 @@
 
 import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { Loader2, CheckCircle2, AlertCircle, Send } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Send } from 'lucide-react';
 
-type FormState = 'idle' | 'loading' | 'success' | 'error';
+const CONTACT_EMAIL = 'Sarah.fell@staffingsolutionsbysarah.com';
+
+type FormState = 'idle' | 'success' | 'error';
 
 interface FormData {
   companyName: string;
@@ -46,26 +48,33 @@ export default function TalentRequestForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormState('loading');
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/talent-request', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      const subject = `Talent request from ${formData.companyName}`;
+      const body = [
+        `Company Name: ${formData.companyName}`,
+        `Contact Name: ${formData.contactName}`,
+        `Work Email: ${formData.workEmail}`,
+        `Phone: ${formData.phone || 'Not provided'}`,
+        `Role Title: ${formData.roleTitle}`,
+        `Role Type: ${formData.roleType}`,
+        `Timeline: ${formData.timeline}`,
+        `Budget Range: ${formData.budget || 'Not provided'}`,
+        '',
+        `Role Description:`,
+        formData.roleDescription,
+        '',
+        `Additional Hiring Context:`,
+        formData.hiringNeeds,
+      ].join('\n');
 
-      if (!response.ok) {
-        const data = await response.json().catch(() => ({}));
-        throw new Error(data.message || 'Submission failed. Please try again.');
-      }
-
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       setFormState('success');
       setFormData(initialFormData);
     } catch (err) {
       setFormState('error');
-      setErrorMessage(err instanceof Error ? err.message : 'An unexpected error occurred.');
+      setErrorMessage(err instanceof Error ? err.message : 'Unable to open an email draft.');
     }
   };
 
@@ -81,10 +90,10 @@ export default function TalentRequestForm() {
             <CheckCircle2 className="h-7 w-7 text-[var(--color-accent)]" />
           </div>
           <h3 className="mt-6 text-[1.8rem] leading-tight tracking-[-0.03em]">
-            Request received
+            Email Draft Opened
           </h3>
           <p className="mt-4 max-w-[40ch] text-base leading-relaxed text-black/64">
-            Thank you for your talent profile request. Sarah will review your requirements and respond within 1-2 business days.
+            Review the email draft and send it when ready. Sarah will review your requirements and respond directly.
           </p>
           <button
             onClick={() => setFormState('idle')}
@@ -297,20 +306,10 @@ export default function TalentRequestForm() {
           </p>
           <button
             type="submit"
-            disabled={formState === 'loading'}
             className="btn-primary min-w-[160px]"
           >
-            {formState === 'loading' ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" />
-                Submitting...
-              </>
-            ) : (
-              <>
-                <Send className="h-4 w-4" />
-                Submit Request
-              </>
-            )}
+            <Send className="h-4 w-4" />
+            Open Email Draft
           </button>
         </div>
       </div>

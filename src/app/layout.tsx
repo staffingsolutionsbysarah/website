@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Cormorant_Garamond, Manrope } from 'next/font/google';
-import Script from 'next/script';
 import './globals.css';
 import '../styles/colors.css';
 import ClientLayout from './ClientLayout';
@@ -23,7 +22,7 @@ export const metadata: Metadata = {
   description:
     'Ontario recruiter for manufacturing, skilled trades, operations, and industrial hiring. Reduce hiring drag with direct recruiter access, sharper screening, and stronger shortlist fit.',
   icons: {
-    icon: '/vectors/sf-favicon.ico',
+    icon: '/sf-favicon-32.png',
   },
 };
 
@@ -35,9 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script src="https://mcp.figma.com/mcp/html-to-design/capture.js" strategy="afterInteractive" />
         <link rel="preconnect" href="https://cal.com" />
-        <Script src="https://assets.cal.com/embed/embed.js" strategy="lazyOnload" />
       </head>
       <body
         className={`${cormorant.variable} ${manrope.variable} font-body flex min-h-screen flex-col bg-[#2C3434] text-[var(--color-dark)] antialiased`}
