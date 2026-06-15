@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle } from 'lucide-react';
+
+const CONTACT_EMAIL = 'Sarah.fell@staffingsolutionsbysarah.com';
 
 interface FormData {
   firstName: string;
@@ -21,7 +23,7 @@ interface FormErrors {
   message?: string;
 }
 
-type FormStatus = 'idle' | 'loading' | 'success' | 'error';
+type FormStatus = 'idle' | 'success';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -34,7 +36,6 @@ export default function ContactForm() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<FormStatus>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -75,44 +76,33 @@ export default function ContactForm() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) {
       return;
     }
 
-    setStatus('loading');
-    setErrorMessage('');
+    const subject = `Website inquiry from ${formData.firstName} ${formData.lastName}`;
+    const body = [
+      `Name: ${formData.firstName} ${formData.lastName}`,
+      `Email: ${formData.workEmail}`,
+      `Company: ${formData.company}`,
+      `Phone: ${formData.phone || 'Not provided'}`,
+      '',
+      formData.message,
+    ].join('\n');
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
-
-      setStatus('success');
-      setFormData({
-        firstName: '',
-        lastName: '',
-        workEmail: '',
-        company: '',
-        phone: '',
-        message: '',
-      });
-    } catch (err) {
-      setStatus('error');
-      setErrorMessage(
-        'Something went wrong. Please try again or contact us directly.'
-      );
-    }
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setStatus('success');
+    setFormData({
+      firstName: '',
+      lastName: '',
+      workEmail: '',
+      company: '',
+      phone: '',
+      message: '',
+    });
   };
 
   const inputBaseClasses =
@@ -140,10 +130,10 @@ export default function ContactForm() {
           <CheckCircle className="w-8 h-8 text-[#8B764C]" />
         </motion.div>
         <h3 className="font-heading text-2xl md:text-3xl text-[#2C3434] mb-3">
-          Message Sent
+          Email Draft Opened
         </h3>
         <p className="text-gray-600 mb-6 max-w-sm mx-auto">
-          Thank you for reaching out. Sarah will get back to you within 1-2 business days.
+          Review the email draft in your mail app and send it when ready. Sarah will respond directly.
         </p>
         <button
           onClick={() => setStatus('idle')}
@@ -311,57 +301,14 @@ export default function ContactForm() {
         </AnimatePresence>
       </div>
 
-      <AnimatePresence>
-        {status === 'error' && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3"
-          >
-            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-red-700">{errorMessage}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <motion.button
         type="submit"
-        disabled={status === 'loading'}
-        whileHover={{ scale: status === 'loading' ? 1 : 1.02 }}
-        whileTap={{ scale: status === 'loading' ? 1 : 0.98 }}
-        className="btn-primary w-full disabled:opacity-60 disabled:cursor-not-allowed"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="btn-primary w-full"
       >
-        {status === 'loading' ? (
-          <>
-            <svg
-              className="animate-spin h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              />
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              />
-            </svg>
-            Sending...
-          </>
-        ) : (
-          <>
-            <Send className="w-4 h-4" />
-            Send Message
-          </>
-        )}
+        <Send className="w-4 h-4" />
+        Open Email Draft
       </motion.button>
     </form>
   );
