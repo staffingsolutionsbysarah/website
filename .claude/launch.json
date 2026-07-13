@@ -5,14 +5,19 @@
       "name": "Next.js Dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "port": 3000,
-      "autoPort": true
+      "port": 3000
     },
     {
       "name": "Static Preview",
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "4173", "--directory", "out"],
       "port": 4173
+    },
+    {
+      "name": "Kit Preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4899", "--directory", "/Users/TTTG/Downloads/sf-redesign-kit"],
+      "port": 4899
     },
     {
       "name": "REDESIGN Preview",

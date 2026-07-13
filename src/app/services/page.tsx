@@ -10,25 +10,25 @@ const deliveryModels = [
   {
     title: 'Direct Hire / Permanent Placement',
     body: 'Targeted recruitment for full-time roles where long-term retention and cultural fit are critical. We manage the search from intake through calibration to close.',
-    image: '/images/hero-industrial-manufacturing-ontario.png',
+    image: '/images/hero-industrial-manufacturing-ontario.webp',
     align: 'left'
   },
   {
     title: 'Retained & Exclusive Search',
     body: 'Priority search ownership for executive or specialized leadership roles. A dedicated process that creates deeper market commitment and stronger shortlist control.',
-    image: '/images/hero-ontario-toronto-skyline.png',
+    image: '/images/hero-ontario-toronto-skyline.webp',
     align: 'right'
   },
   {
     title: 'Contract & Temp-to-Perm',
     body: 'Flexible staffing support for project-based needs or interim coverage. A practical bridge that allows both parties to verify fit before a permanent commitment.',
-    image: '/images/hero-trades-construction-plans.png',
+    image: '/images/hero-trades-construction-plans.webp',
     align: 'left'
   },
   {
     title: 'Payroll / EOR Support',
     body: 'Administrative and payroll support to simplify workforce management and compliance for contract teams and dispersed project staff.',
-    image: '/images/hero-employer-hiring-toronto.png',
+    image: '/images/hero-employer-hiring-toronto.webp',
     align: 'right'
   },
 ];

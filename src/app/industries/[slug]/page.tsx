@@ -6,13 +6,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const industryImages: Record<string, string> = {
-  'manufacturing-skilled-trades': '/images/hero-industrial-manufacturing-ontario.png',
-  'food-grocery-retail': '/images/hero-employer-hiring-toronto.png',
-  'construction': '/images/hero-ontario-toronto-skyline.png',
-  'finance-accounting': '/images/hero-ontario-toronto-skyline.png',
-  'it-technology': '/images/hero-ontario-toronto-skyline.png',
-  'sales-marketing': '/images/hero-employer-hiring-toronto.png',
-  'administrative-support': '/images/hero-trades-construction-plans.png',
+  'manufacturing-skilled-trades': '/images/hero-industrial-manufacturing-ontario.webp',
+  'food-grocery-retail': '/images/hero-employer-hiring-toronto.webp',
+  'construction': '/images/hero-ontario-toronto-skyline.webp',
+  'finance-accounting': '/images/hero-ontario-toronto-skyline.webp',
+  'it-technology': '/images/hero-ontario-toronto-skyline.webp',
+  'sales-marketing': '/images/hero-employer-hiring-toronto.webp',
+  'administrative-support': '/images/hero-trades-construction-plans.webp',
 };
 
 type IndustryPageProps = {
@@ -37,7 +37,7 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
     notFound();
   }
 
-  const mainImage = industryImages[industry.slug as string] || '/images/hero-industrial-manufacturing-ontario.png';
+  const mainImage = industryImages[industry.slug as string] || '/images/hero-industrial-manufacturing-ontario.webp';
 
   return (
     <div className="depth-canvas bg-[#EFEDEF] text-[var(--color-dark)]">

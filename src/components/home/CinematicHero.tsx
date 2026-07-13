@@ -15,10 +15,10 @@ import GlobeHero from './GlobeHero';
  */
 
 const HERO_IMAGES = [
-  '/images/hero-industrial-manufacturing-ontario.png',
-  '/images/hero-trades-construction-plans.png',
-  '/images/hero-employer-hiring-toronto.png',
-  '/images/industrial-factory-control-panel.png',
+  '/images/hero-industrial-manufacturing-ontario.webp',
+  '/images/hero-trades-construction-plans.webp',
+  '/images/hero-employer-hiring-toronto.webp',
+  '/images/industrial-factory-control-panel.webp',
 ];
 
 const PRELOADER_MIN_MS = 2800;

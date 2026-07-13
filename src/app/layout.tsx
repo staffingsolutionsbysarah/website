@@ -35,7 +35,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script src="https://mcp.figma.com/mcp/html-to-design/capture.js" strategy="afterInteractive" />
         <link rel="preconnect" href="https://cal.com" />
         <Script src="https://assets.cal.com/embed/embed.js" strategy="lazyOnload" />
       </head>

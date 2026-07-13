@@ -80,17 +80,17 @@ export default function HomePage() {
               {
                 title: 'The Future of Skilled Trades in Ontario',
                 date: 'Oct 2024',
-                img: '/images/industrial-trades-blueprints.png',
+                img: '/images/industrial-trades-blueprints.webp',
               },
               {
                 title: 'Why Cultural Fit Outweighs Technical Skill',
                 date: 'Sep 2024',
-                img: '/images/business-planning-strategy-flatlay.png',
+                img: '/images/business-planning-strategy-flatlay.webp',
               },
               {
                 title: 'Navigating the Talent Shortage in Manufacturing',
                 date: 'Aug 2024',
-                img: '/images/hero-industrial-manufacturing-ontario.png',
+                img: '/images/hero-industrial-manufacturing-ontario.webp',
               },
             ].map((post, i) => (
               <div key={post.title} className="group cursor-pointer">

@@ -61,8 +61,8 @@ export default function AboutPage() {
           >
             <div className="relative h-full w-full overflow-hidden rounded-[22px]">
               <Image
-                src="/sarah-fell-recruitment-consultant.png"
-                alt="Sarah Fell — Ontario industrial and trades recruitment consultant"
+                src="/images/portrait-sarah-fell-recruitment.webp"
+                alt="Sarah Fell, Ontario industrial and trades recruitment consultant"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 500px"

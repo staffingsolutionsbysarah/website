@@ -43,3 +43,11 @@ data/
 *.tsbuildinfo
 next-env.d.ts
 .playwright-mcp/
+
+# session/handoff clutter
+*.zip
+logs/
+HANDOFF*.md
+session-summary*
+.playwright-mcp/
+deck-*.jpeg

@@ -72,7 +72,7 @@ export default function TrustBlock() {
               style={{ borderColor: 'rgba(139,118,76,0.3)' }}
             >
               <Image
-                src="/images/portrait-sarah-fell-recruitment.png"
+                src="/images/portrait-sarah-fell-recruitment.webp"
                 alt="Sarah Fell — Ontario Recruitment Consultant"
                 fill
                 sizes="112px"

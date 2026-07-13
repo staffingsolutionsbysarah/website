@@ -14,25 +14,39 @@ export async function POST(request: Request) {
     }
 
     const webhookUrl = process.env.MAKE_WEBHOOK_CONTACT;
-    
-    if (webhookUrl) {
-      await fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          kind: 'contact',
-          receivedAt: new Date().toISOString(),
-          firstName,
-          lastName,
-          workEmail,
-          company: company || '',
-          phone: phone || '',
-          message,
-          source: 'website',
-        }),
-      });
+
+    if (!webhookUrl) {
+      console.error('MAKE_WEBHOOK_CONTACT not configured — contact submission was NOT delivered');
+      return NextResponse.json(
+        { error: 'This form is temporarily unavailable. Please email Sarah directly or try again shortly.' },
+        { status: 503 }
+      );
+    }
+
+    const res = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        kind: 'contact',
+        receivedAt: new Date().toISOString(),
+        firstName,
+        lastName,
+        workEmail,
+        company: company || '',
+        phone: phone || '',
+        message,
+        source: 'website',
+      }),
+    });
+
+    if (!res.ok) {
+      console.error('Contact webhook returned non-OK status:', res.status);
+      return NextResponse.json(
+        { error: 'Failed to submit form. Please try again.' },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({
