@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { industries, locations } from '@/data/site-data';
+import { jobs, slugifyJob } from '@/data/jobs';
 
 export const dynamic = 'force-static';
 
@@ -48,5 +49,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...industryRoutes, ...locationRoutes];
+  const jobRoutes = jobs
+    .filter((job) => job.active && job.public)
+    .map((job) => ({
+      url: `${siteUrl}/jobs/${slugifyJob(job)}`,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    }));
+
+  return [...staticRoutes, ...industryRoutes, ...locationRoutes, ...jobRoutes];
 }

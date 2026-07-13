@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { jobs } from '@/data/jobs';
+import { jobs, slugifyJob } from '@/data/jobs';
 
 function isActive(active: boolean | string) {
   return String(active).trim().toLowerCase() === 'true';
@@ -155,7 +155,11 @@ export default function JobsPageClient() {
                     <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/42">
                       {job.type}
                     </p>
-                    <h2 className="mt-3 text-[1.8rem] leading-[1.02] tracking-tight">{job.title}</h2>
+                    <h2 className="mt-3 text-[1.8rem] leading-[1.02] tracking-tight">
+                      <Link href={`/jobs/${slugifyJob(job)}`} className="transition-colors hover:text-[#8B764C]">
+                        {job.title}
+                      </Link>
+                    </h2>
                     <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-black/44">
                       <span>{job.location}</span>
                       {job.salary ? <span>{job.salary}</span> : null}
@@ -165,12 +169,10 @@ export default function JobsPageClient() {
                     </p>
                   </div>
 
-                  {job.href ? (
-                    <Link href={job.href} className="btn-secondary md:justify-self-end">
-                      View Role
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  ) : null}
+                  <Link href={`/jobs/${slugifyJob(job)}`} className="btn-secondary md:justify-self-end">
+                    View Role
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </article>
               ))}
             </div>
