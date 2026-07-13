@@ -5,11 +5,9 @@ import Link from 'next/link';
 
 import CinematicHero from '@/components/home/CinematicHero';
 import HorizontalStackingCards from '@/components/home/HorizontalStackingCards';
-import { ClientLogosSection } from '@/components/home/ClientLogosSection';
 import { ServicesIndustriesSection } from '@/components/home/ServicesIndustriesSection';
 import { DeliveryModelsSection } from '@/components/home/DeliveryModelsSection';
 import TrustBlock from '@/components/home/TrustBlock';
-import TestimonialsCarousel from '@/components/home/TestimonialsCarousel';
 import { ProcessSection } from '@/components/home/ProcessSection';
 
 const proofStrip = [
@@ -42,9 +40,6 @@ export default function HomePage() {
       {/* Horizontal Cards - GSAP scroll-stop */}
       <HorizontalStackingCards />
 
-      {/* Client Logos */}
-      <ClientLogosSection />
-
       {/* Delivery Models */}
       <DeliveryModelsSection />
 
@@ -54,8 +49,7 @@ export default function HomePage() {
       {/* Trust Block */}
       <TrustBlock />
 
-      {/* Testimonials */}
-      <TestimonialsCarousel />
+      {/* Client logos + testimonials removed until real, consented material exists (see PRD P2) */}
 
       {/* Process */}
       <ProcessSection />
@@ -70,9 +64,9 @@ export default function HomePage() {
               </span>
               <h2 className="text-4xl md:text-5xl font-serif text-espresso">Hiring Trends</h2>
             </div>
-            <button className="text-espresso font-bold text-[10px] uppercase tracking-widest hover:underline">
+            <Link href="/insights" className="text-espresso font-bold text-[10px] uppercase tracking-widest hover:underline">
               View All Articles
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
@@ -93,7 +87,7 @@ export default function HomePage() {
                 img: '/images/hero-industrial-manufacturing-ontario.webp',
               },
             ].map((post, i) => (
-              <div key={post.title} className="group cursor-pointer">
+              <Link key={post.title} href="/insights" className="group cursor-pointer">
                 <div className="aspect-[16/10] rounded-2xl overflow-hidden mb-4 md:mb-6">
                   <img
                     src={post.img}
@@ -107,7 +101,7 @@ export default function HomePage() {
                 <h4 className="text-lg md:text-xl font-serif text-espresso group-hover:text-brand-green transition-colors">
                   {post.title}
                 </h4>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

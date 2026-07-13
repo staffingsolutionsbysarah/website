@@ -10,19 +10,19 @@ const cards = [
   {
     title: 'Manufacturing & Operations',
     desc: 'From plant managers to specialized technicians, we source the backbone of modern industry.',
-    img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070',
+    img: '/images/hero-industrial-manufacturing-ontario.webp',
     href: '/industries',
   },
   {
     title: 'Construction & Infrastructure',
     desc: 'Certified professionals for high-stakes projects. We understand the technical nuances of every trade.',
-    img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=2070',
+    img: '/images/hero-trades-construction-plans.webp',
     href: '/industries',
   },
   {
     title: 'Professional Services',
     desc: 'Strategic leadership placement in Sales, Marketing, and Finance for companies ready to scale.',
-    img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069',
+    img: '/images/business-planning-strategy-flatlay.webp',
     href: '/services',
   },
 ];
