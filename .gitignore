@@ -52,3 +52,4 @@ session-summary*
 .playwright-mcp/
 deck-*.jpeg
 .claude/worktrees/
+.metadata-spec.md
