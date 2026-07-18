@@ -54,3 +54,5 @@ deck-*.jpeg
 .claude/worktrees/
 .metadata-spec.md
 OPENCODE-RELAY.md
+design-handoff/
+.firecrawl/
