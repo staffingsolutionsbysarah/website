@@ -1,0 +1,11 @@
+Model Information:
+* title:	Casted Hard Surface Industrial Part
+* source:	https://sketchfab.com/3d-models/casted-hard-surface-industrial-part-edb8b23859e84e87bc7beb365f0f12e0
+* author:	Bayomy (https://sketchfab.com/Bayomy)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Casted Hard Surface Industrial Part" (https://sketchfab.com/3d-models/casted-hard-surface-industrial-part-edb8b23859e84e87bc7beb365f0f12e0) by Bayomy (https://sketchfab.com/Bayomy) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
