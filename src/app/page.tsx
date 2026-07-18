@@ -1,6 +1,9 @@
 'use client';
 
-import CinematicHero from '@/components/home/CinematicHero';
+import { useState } from 'react';
+import PreloaderSearch from '@/components/home/PreloaderSearch';
+import HeroMachinedStage from '@/components/home/HeroMachinedStage';
+import JobsMaterialCards from '@/components/home/JobsMaterialCards';
 import { ProcessSection } from '@/components/home/ProcessSection';
 
 const proofStrip = [
@@ -11,10 +14,17 @@ const proofStrip = [
 ] as const;
 
 export default function HomePage() {
+  const [preloaderDone, setPreloaderDone] = useState(false);
+
   return (
     <main className="bg-[#FAF9F6] text-[#2C3434]">
-      {/* Hero — Canada signal preloader → cinematic image hero */}
-      <CinematicHero />
+      {/* Search-montage preloader — every search ends at the brand */}
+      {!preloaderDone && (
+        <PreloaderSearch onComplete={() => setPreloaderDone(true)} />
+      )}
+
+      {/* Hero — 3D machined part on dark stage */}
+      <HeroMachinedStage />
 
       {/* Proof Strip — dark band anchored to hero base */}
       <section className="relative z-10 bg-[#2C3434] py-8 md:py-12 border-t border-white/8">
@@ -29,6 +39,9 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* Active roles — material texture cards */}
+      <JobsMaterialCards />
 
       {/* Client logos + testimonials removed until real, consented material exists (see PRD P2) */}
 

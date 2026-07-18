@@ -1,9 +1,13 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const processSteps = [
   {
@@ -40,6 +44,31 @@ export function ProcessSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView   = useInView(sectionRef, { once: true, margin: '-120px' });
   const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const items = sectionRef.current?.querySelectorAll('.process-item');
+      if (!items?.length) return;
+
+      gsap.fromTo(
+        items,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 78%',
+          },
+        },
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
@@ -79,11 +108,12 @@ export function ProcessSection() {
                 key={p.step}
                 onClick={() => setActive(i)}
                 className={[
-                  'group flex w-full items-center gap-4 rounded-2xl px-5 py-4 text-left transition-all duration-300',
+                  'process-item group flex w-full items-center gap-4 rounded-2xl px-5 py-4 text-left transition-all duration-300',
                   active === i
                     ? 'bg-white/6'
                     : 'hover:bg-white/3',
                 ].join(' ')}
+                style={{ opacity: 0 }}
               >
                 <span
                   className={[
@@ -135,7 +165,7 @@ export function ProcessSection() {
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-0"
               >
-                <div className="depth-plane-dark rounded-[2rem] p-10 md:p-12">
+                <div className="process-item depth-plane-dark rounded-[2rem] p-10 md:p-12" style={{ opacity: 0 }}>
                   {/* Step badge */}
                   <div className="mb-8 flex items-center gap-4">
                     <span className="rounded-full border border-[#8B764C]/30 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] text-[#8B764C]">
@@ -185,12 +215,10 @@ export function ProcessSection() {
         {/* Mobile: vertical stack */}
         <div className="space-y-5 lg:hidden">
           {processSteps.map((p, i) => (
-            <motion.div
+            <div
               key={p.step}
-              initial={{ opacity: 0, y: 32 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: i * 0.12 }}
-              className="depth-plane-dark rounded-[1.5rem] p-7"
+              className="process-item depth-plane-dark rounded-[1.5rem] p-7"
+              style={{ opacity: 0 }}
             >
               <div className="mb-4 flex items-center gap-3">
                 <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-[#8B764C]">
@@ -204,7 +232,7 @@ export function ProcessSection() {
               <p className="mt-4 border-l border-[#8B764C]/20 pl-4 text-xs italic leading-relaxed text-[#AB9D82]/60">
                 {p.proof}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

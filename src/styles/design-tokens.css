@@ -1,0 +1,69 @@
+/**
+ * Staffing Solutions by Sarah Fell — Design Tokens
+ * Pulled from Claude Design project "Staffing Solutions by Sarah — Design System"
+ * (colors_and_type.css, 2026-07-18). Google Fonts @import stripped — fonts load
+ * via next/font in layout.tsx. NOT yet imported globally: element selectors
+ * (h1/h2/p) need a sitewide audit first. Import into globals.css when applying
+ * the system beyond the homepage hero.
+ */
+:root {
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Manrope', system-ui, sans-serif;
+
+  --color-charcoal:       #2C3434;
+  --color-dark-panel:     #1F2628;
+  --color-gold:           #C6A64A;
+  --color-gold-hover:     #A8872F;
+  --color-gold-light:     #E7D08A;
+  --color-bg:             #EFEDEF;
+
+  /* five canonical brand colors (Color Scheme.png) */
+  --color-off-white:      #EFEDEF;
+  --color-charcoal-dark:  #2C3434;
+  --color-warm-beige:     #AB9D82;
+  --color-antique-gold:   #8B764C;
+  --color-clay-brown:     #714E3C;
+
+  --color-section:        #F4F2ED;
+  --color-section-soft:   #FAF8F3;
+  --color-parchment:      #F5EEDF;
+  --color-khaki:          #C3B091;
+
+  --fg-primary:     var(--color-charcoal);
+  --fg-secondary:   rgba(44, 52, 52, 0.66);
+  --fg-tertiary:    rgba(44, 52, 52, 0.42);
+  --fg-on-dark:     #FFFFFF;
+  --fg-on-dark-muted: rgba(255, 255, 255, 0.64);
+  --fg-accent:      var(--color-gold);
+  --fg-accent-dark: var(--color-gold-light);
+
+  --bg-page:        var(--color-bg);
+  --bg-section:     var(--color-section);
+  --bg-section-alt: var(--color-section-soft);
+  --bg-dark:        var(--color-dark-panel);
+  --bg-dark-alt:    var(--color-charcoal);
+
+  --border-light:   rgba(44, 52, 52, 0.08);
+  --border-dark:    rgba(255, 255, 255, 0.08);
+
+  --section-padding-y: clamp(5rem, 8vw, 8rem);
+  --section-padding-x: clamp(1.5rem, 4vw, 2.5rem);
+  --content-max-width: 1380px;
+
+  --radius-sm:   0.5rem;
+  --radius-md:   1rem;
+  --radius-lg:   1.75rem;
+  --radius-xl:   2.125rem;
+  --radius-full: 9999px;
+
+  --shadow-card:      0 26px 80px rgba(31,38,40,0.08), 0 52px 120px rgba(31,38,40,0.05);
+  --shadow-card-dark: 0 30px 100px rgba(0,0,0,0.22), 0 56px 140px rgba(0,0,0,0.18);
+  --shadow-hover:     0 24px 48px -12px rgba(0,0,0,0.25);
+  --shadow-btn:       0 4px 16px rgba(198,166,74,0.24);
+
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-micro: 180ms ease;
+  --transition-card:  300ms ease-out;
+  --transition-page:  800ms cubic-bezier(0.22, 1, 0.36, 1);
+  --stagger-delay: 0.12s;
+}
