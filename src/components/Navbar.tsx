@@ -7,15 +7,12 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const leftNavItems = [
-  { href: '/hire-talent', label: 'Hire Talent' },
-  { href: '/find-work', label: 'Find Work' },
-  { href: '/services', label: 'Services' },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
 ];
 
 const rightNavItems = [
-  { href: '/industries', label: 'Industries' },
-  { href: '/locations', label: 'Locations' },
-  { href: '/about', label: 'About' },
+  { href: '/jobs', label: 'Jobs' },
 ];
 
 export default function Navbar() {
